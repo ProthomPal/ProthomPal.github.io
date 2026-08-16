@@ -1,10 +1,1087 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Portfolio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prothom Pal — Game Designer</title>
+<meta name="description" content="Game Designer working on mobile and Amazon Fire TV games. Systems, progression, economy and player retention, driven by data." />
+<meta name="theme-color" content="#F4F2FB" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Prothom Pal — Game Designer" />
+<meta property="og:description" content="Mobile Games & Amazon Fire TV Games. Systems, progression, economy and player retention." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --paper:#F4F2FB;
+  --panel:#FFFFFF;
+  --ink:#171233;
+  --ink-soft:#5B5580;
+  --line:#DFDAF2;
+  --plum:#6D3BF5;
+  --plum-deep:#4B21C4;
+  --amber:#FF9F1C;
+  --mint:#0FA37F;
+
+  --shadow-sm:0 1px 2px rgba(23,18,51,.05), 0 6px 18px rgba(23,18,51,.05);
+  --shadow-md:0 2px 4px rgba(23,18,51,.06), 0 18px 44px rgba(23,18,51,.09);
+
+  --display:"Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --body:"Figtree", system-ui, -apple-system, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  --wrap:1080px;
+  --r:16px;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background-color:var(--paper);
+  /* graph-paper grid: the designer's tuning sheet */
+  background-image:
+    linear-gradient(to right, rgba(109,59,245,.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(109,59,245,.055) 1px, transparent 1px);
+  background-size:28px 28px;
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--plum-deep);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 22px}
+
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.08;letter-spacing:-.02em;font-weight:800}
+p{margin:0 0 14px}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+  margin:0 0 14px;display:flex;align-items:center;gap:10px;
+}
+.eyebrow::after{content:"";height:1px;flex:1;background:var(--line)}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 16px;z-index:99}
+.skip:focus{left:12px;top:12px}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(10px);
+  background:rgba(244,242,251,.86);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;gap:18px;height:60px}
+.mark{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.mark:hover{text-decoration:none;color:var(--plum-deep)}
+.nav-links{display:flex;gap:20px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:14px;font-weight:500;color:var(--ink-soft);white-space:nowrap;padding:4px 0;
+  border-bottom:2px solid transparent;
+}
+.nav-links a:hover{color:var(--ink);text-decoration:none;border-bottom-color:var(--amber)}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--body);font-size:15px;font-weight:600;
+  padding:12px 22px;border-radius:999px;border:1.5px solid transparent;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  cursor:pointer;
+}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:var(--plum);color:#fff;box-shadow:0 6px 16px rgba(109,59,245,.28)}
+.btn-primary:hover{background:var(--plum-deep);box-shadow:0 10px 24px rgba(109,59,245,.32)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+
+/* ============================================================
+   SECTION RHYTHM
+   ============================================================ */
+.band{padding:64px 0}
+.band-tight{padding:34px 0}
+.band + .band{border-top:1px solid var(--line)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:64px 0 44px}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+.hero-name{
+  font-size:clamp(46px,8.4vw,84px);
+  letter-spacing:-.045em;line-height:.92;text-transform:uppercase;
+}
+.hero-name span{display:block}
+.hero-name .n2{color:var(--plum)}
+.hero-role{
+  font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-soft);margin:20px 0 16px;
+}
+.hero-role b{color:var(--ink);font-weight:700}
+.hero-pitch{font-size:19px;max-width:44ch;color:var(--ink);margin-bottom:26px}
+.hero-pitch em{font-style:normal;background:linear-gradient(transparent 62%, rgba(255,159,28,.42) 62%)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---- signature: the retention curve ---- */
+.curve{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 16px 10px;box-shadow:var(--shadow-md);
+}
+.curve-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.curve-title{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.curve-legend{display:flex;gap:14px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
+.curve-legend i{
+  display:inline-block;width:16px;height:2px;margin-right:5px;vertical-align:middle;
+  background:repeating-linear-gradient(to right,#A9A2C9 0 4px,transparent 4px 8px);
+}
+.curve-legend .after i{background:var(--mint);height:3px}
+.curve svg{width:100%;height:auto;display:block}
+.curve-foot{
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);
+  border-top:1px solid var(--line);margin-top:8px;padding-top:8px;
+}
+.grid-line{stroke:var(--line);stroke-width:1}
+.axis-label{font-family:var(--mono);font-size:11px;fill:var(--ink-soft)}
+.line-base{fill:none;stroke:#A9A2C9;stroke-width:2.5;stroke-dasharray:5 5;stroke-linejoin:round;stroke-linecap:round}
+.line-after{fill:none;stroke:var(--mint);stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
+.dot-after{fill:var(--mint)}
+.callout-box{fill:var(--panel);stroke:var(--mint);stroke-width:1.5;rx:8}
+.callout-text{font-family:var(--mono);font-size:12px;font-weight:700;fill:var(--mint)}
+.callout-sub{font-family:var(--mono);font-size:10px;fill:var(--ink-soft)}
+
+/* draw-on animation */
+.anim .line-base{opacity:0;animation:fadeIn .7s ease forwards;animation-delay:.2s}
+.anim .line-after{stroke-dashoffset:var(--len);animation:draw 1.4s cubic-bezier(.22,.8,.3,1) forwards;animation-delay:.45s}
+.anim .curve-fade{opacity:0;animation:fadeIn .6s ease forwards;animation-delay:1.5s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+
+/* ============================================================
+   AWARDS
+   ============================================================ */
+.awards{display:flex;gap:12px;flex-wrap:wrap}
+.award{
+  display:flex;align-items:center;gap:12px;
+  background:var(--panel);border:1px solid var(--line);border-radius:999px;
+  padding:9px 18px 9px 14px;box-shadow:var(--shadow-sm);
+}
+.award .medal{font-size:17px;line-height:1}
+.award .place{font-size:14.5px;font-weight:600}
+.award .game{
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);
+  border-left:1px solid var(--line);padding-left:12px;margin-left:2px;white-space:nowrap;
+}
+
+/* ============================================================
+   WORK CARDS
+   ============================================================ */
+.cards{display:grid;gap:20px}
+.card{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:26px 26px 24px;box-shadow:var(--shadow-sm);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#C8BDF2}
+.card-num{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;
+  color:var(--plum);margin-bottom:8px;
+}
+.card-title{font-size:clamp(26px,3.4vw,34px);margin-bottom:8px}
+.card-role{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+.card-desc{max-width:62ch;color:var(--ink)}
+
+.metrics{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 6px}
+.metric{
+  border:1px solid var(--line);border-radius:12px;padding:11px 16px;
+  background:linear-gradient(180deg,#FBFAFF,#F6F4FE);min-width:132px;
+}
+.metric .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.metric .v{font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:3px}
+.metric .v .from{color:var(--ink-soft);font-weight:600}
+.metric .v .arrow{color:var(--amber);padding:0 3px}
+.metric .v .to{color:var(--mint)}
+
+.note{
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);
+  background:rgba(255,159,28,.1);border-left:2px solid var(--amber);
+  padding:8px 12px;border-radius:0 8px 8px 0;margin:14px 0 0;display:inline-block;
+}
+.card-foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px}
+.status{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);display:inline-flex;align-items:center;gap:7px;
+}
+.status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.go{font-family:var(--body);font-weight:600;font-size:15px;color:var(--plum-deep);margin-left:auto}
+.go:hover{text-decoration:none}
+.go .arr{display:inline-block;transition:transform .15s ease}
+.card:hover .go .arr{transform:translateX(5px)}
+
+.bullets{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.bullets li{position:relative;padding-left:20px;font-size:15.5px}
+.bullets li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:2px;background:var(--amber)}
+
+/* upcoming */
+.upcoming{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  border:1px dashed #C4BBEA;border-radius:var(--r);padding:18px 22px;
+  background:rgba(255,255,255,.55);margin-top:20px;
+}
+.upcoming .tag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--plum-deep);background:rgba(109,59,245,.1);padding:5px 10px;border-radius:999px;
+}
+.upcoming h3{font-size:21px}
+.upcoming .meta{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+.job{display:grid;grid-template-columns:184px 1fr;gap:26px;padding:26px 0;border-top:1px solid var(--line)}
+.job:first-of-type{border-top:none}
+.job .co{font-family:var(--display);font-size:20px;font-weight:800}
+.job .when{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:5px}
+.job .titles{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
+.job .titles b{font-size:16.5px;font-weight:600}
+.job .titles span{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+.job-lead{
+  background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--plum);
+  border-radius:var(--r);padding:26px;box-shadow:var(--shadow-sm);margin-bottom:8px;
+}
+.job-lead .co{font-size:26px}
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.skillset{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow-sm)}
+.skillset h3{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--plum);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;background:#F4F2FB;border:1px solid var(--line);border-radius:8px;padding:5px 11px}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact{padding:70px 0 56px;border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(34px,6vw,60px);letter-spacing:-.04em;max-width:14ch}
+.contact h2 em{font-style:normal;color:var(--plum)}
+.links{display:grid;gap:2px;margin-top:30px;max-width:660px}
+.link-row{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:baseline;padding:13px 0;border-top:1px solid var(--line)}
+.link-row .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.link-row a{font-size:16px;font-weight:500;word-break:break-word}
+.foot{margin-top:44px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ============================================================
+   CASE STUDY VIEWS
+   ============================================================ */
+.view[hidden]{display:none}
+.cs-head{padding:46px 0 30px}
+.back{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:inline-block;margin-bottom:26px}
+.back:hover{color:var(--plum-deep);text-decoration:none}
+.cs-title{font-size:clamp(36px,6.4vw,64px);letter-spacing:-.04em;max-width:16ch}
+.cs-kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);margin-bottom:14px}
+.cs-sub{font-size:19px;color:var(--ink-soft);max-width:60ch;margin-top:16px}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:32px 0 0}
+.fact{background:var(--panel);padding:15px 18px}
+.fact .k{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
+.fact .v{font-size:15.5px;font-weight:600;margin-top:4px}
+
+.step{display:grid;grid-template-columns:180px 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--line)}
+.step-label{position:sticky;top:80px;align-self:start}
+.step-label .n{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--amber);letter-spacing:.14em}
+.step-label h3{font-size:23px;margin-top:6px}
+.step-body{max-width:68ch}
+.step-body p:last-child{margin-bottom:0}
+
+.fill{
+  display:block;font-family:var(--mono);font-size:13.5px;line-height:1.65;color:var(--ink-soft);
+  background:var(--panel);border:1px dashed #C4BBEA;border-radius:12px;padding:14px 16px;margin:0 0 12px;
+}
+.fill b{color:var(--plum-deep);font-weight:700}
+
+.media{
+  border:1px dashed #C4BBEA;border-radius:var(--r);background:rgba(255,255,255,.6);
+  aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--mono);font-size:12px;color:var(--ink-soft);padding:20px;margin:16px 0 4px;
+}
+.caption{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:0 0 12px}
+
+.callout{
+  background:rgba(255,159,28,.1);border:1px solid rgba(255,159,28,.4);
+  border-radius:var(--r);padding:16px 18px;font-size:14.5px;margin:20px 0 0;
+}
+.callout b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:#9A5B00}
+
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:6px 0 16px}
+
+.cs-next{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:34px 0 70px;border-top:1px solid var(--line);margin-top:10px}
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .skills{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:10px}
+  .step{grid-template-columns:1fr;gap:14px}
+  .step-label{position:static}
+  .nav-links a:nth-child(n+4){display:none}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .band{padding:48px 0}
+  .card{padding:22px 18px}
+  .metric{flex:1 1 132px}
+  .link-row{grid-template-columns:1fr;gap:2px}
+  .go{margin-left:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-delay:0s !important;transition-duration:.001ms !important}
+  .reveal{opacity:1;transform:none}
+  .anim .line-base,.anim .line-after{stroke-dashoffset:0}
+  .anim .curve-fade{opacity:1}
+}
+</style>
 </head>
 <body>
-  <h1>HI</h1>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="mark" href="#top">Prothom&nbsp;Pal</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="assets/resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ==========================================================
+     HOME
+     ========================================================== -->
+<div class="view" id="view-home">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 class="hero-name"><span>Prothom</span><span class="n2">Pal</span></h1>
+        <p class="hero-role">Mobile Games &amp; Amazon Fire TV Games <b>|</b> Game Designer</p>
+        <p class="hero-pitch">I design systems, content and progression that hold players — and I use <em>data to prove it</em>.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#work">View my work</a>
+          <a class="btn btn-ghost" href="assets/resume.pdf">Resume</a>
+        </div>
+      </div>
+
+      <!-- Signature element: the retention curve -->
+      <figure class="curve anim" id="curve" style="margin:0">
+        <div class="curve-head">
+          <span class="curve-title">Retention curve — My Cooking Story</span>
+          <span class="curve-legend">
+            <span class="before"><i></i>Before</span>
+            <span class="after"><i></i>After</span>
+          </span>
+        </div>
+        <svg viewBox="0 0 640 300" role="img" aria-label="Retention curve showing day-1 retention improving from 38 percent to 44.7 percent after design changes">
+          <!-- horizontal grid -->
+          <line class="grid-line" x1="44" y1="30"  x2="616" y2="30"/>
+          <line class="grid-line" x1="44" y1="87"  x2="616" y2="87"/>
+          <line class="grid-line" x1="44" y1="145" x2="616" y2="145"/>
+          <line class="grid-line" x1="44" y1="202" x2="616" y2="202"/>
+          <line class="grid-line" x1="44" y1="260" x2="616" y2="260"/>
+          <!-- y labels -->
+          <text class="axis-label" x="8" y="34">100</text>
+          <text class="axis-label" x="14" y="91">75</text>
+          <text class="axis-label" x="14" y="149">50</text>
+          <text class="axis-label" x="14" y="206">25</text>
+          <text class="axis-label" x="20" y="264">0</text>
+          <!-- x labels -->
+          <text class="axis-label" x="34"  y="282">D0</text>
+          <text class="axis-label" x="148" y="282">D1</text>
+          <text class="axis-label" x="262" y="282">D3</text>
+          <text class="axis-label" x="377" y="282">D7</text>
+          <text class="axis-label" x="487" y="282">D14</text>
+          <text class="axis-label" x="601" y="282">D30</text>
+          <!-- curves -->
+          <polyline class="line-base"  points="44,30 158,173 273,209 387,232 502,244 616,251"/>
+          <polyline class="line-after" points="44,30 158,157 273,196 387,223 502,237 616,246"/>
+          <!-- D1 markers + callout -->
+          <g class="curve-fade">
+            <circle class="dot-after" cx="158" cy="157" r="5"/>
+            <circle cx="158" cy="173" r="4" fill="#A9A2C9"/>
+            <rect class="callout-box" x="186" y="118" width="168" height="46" rx="8"/>
+            <text class="callout-text" x="198" y="139">D1  38% → 44.7%</text>
+            <text class="callout-sub"  x="198" y="155">LTV +3.95%</text>
+          </g>
+        </svg>
+        <figcaption class="curve-foot">Illustrative shape. D1 and LTV figures are measured results from live testing.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="band-tight" aria-labelledby="awards-h">
+    <div class="wrap">
+      <p class="eyebrow" id="awards-h">Awards</p>
+      <div class="awards">
+        <div class="award">
+          <span class="medal" aria-hidden="true">🏆</span>
+          <span class="place">2nd Runner-Up — BYOG Game Jam 2024</span>
+          <span class="game">NodeSmith</span>
+        </div>
+        <div class="award">
+          <span class="medal" aria-hidden="true">🏅</span>
+          <span class="place">Top 10 — Waves 2025: Road to Game Jam</span>
+          <span class="game">Entwined</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section class="band" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <p class="eyebrow" id="work-h">Featured work</p>
+      <div class="cards">
+
+        <!-- 01 -->
+        <article class="card reveal">
+          <p class="card-num">01</p>
+          <h2 class="card-title">My Cooking Story</h2>
+          <p class="card-role">Game Designer — 0→1 design &amp; economy</p>
+          <p class="card-desc">Designed the game from concept through production, with a focus on core gameplay, progression and economy.</p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="k">D1 Retention</div>
+              <div class="v"><span class="from">38%</span><span class="arrow">→</span><span class="to">44.7%</span></div>
+            </div>
+            <div class="metric">
+              <div class="k">LTV</div>
+              <div class="v"><span class="to">+3.95%</span></div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="status">Beta testing</span>
+            <a class="go" href="#/case/my-cooking-story">View case study <span class="arr">→</span></a>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="card reveal">
+          <p class="card-num">02</p>
+          <h2 class="card-title">Brainrot Game</h2>
+          <p class="card-role">Game Designer — 0→1 design</p>
+          <p class="card-desc">Designed the game from concept to implementation for Amazon Fire TV and Fire Tablet.</p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="k">D1 Retention</div>
+              <div class="v"><span class="from">15.75%</span><span class="arrow">→</span><span class="to">22.13%</span></div>
+            </div>
+            <div class="metric">
+              <div class="k">D7 Retention</div>
+              <div class="v"><span class="from">2.09%</span><span class="arrow">→</span><span class="to">5.10%</span></div>
+            </div>
+          </div>
+          <p class="note">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
+          <div class="card-foot">
+            <a class="go" href="#/case/brainrot-game">View case study <span class="arr">→</span></a>
+          </div>
+        </article>
+
+        <!-- 03 -->
+        <article class="card reveal">
+          <p class="card-num">03</p>
+          <h2 class="card-title">Goon Fight</h2>
+          <p class="card-role">Level Designer</p>
+          <p class="card-desc">Built and tuned combat levels — layout, encounters and difficulty pacing across the progression.</p>
+          <ul class="bullets">
+            <li>Level design</li>
+            <li>Encounter design</li>
+            <li>Difficulty and pacing</li>
+            <li>Iteration</li>
+            <li>Final gameplay</li>
+          </ul>
+          <div class="card-foot">
+            <a class="go" href="#/project/goon-fight">View project <span class="arr">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Upcoming -->
+      <div class="upcoming reveal">
+        <span class="tag">Coming soon</span>
+        <h3>Spa Salon</h3>
+        <span class="meta">0→1 game design · Mobile · Live production</span>
+        <a class="go" href="#/case/spa-salon" style="margin-left:auto">Preview the design work <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="band" id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <p class="eyebrow" id="exp-h">Experience</p>
+
+      <div class="job job-lead reveal" style="border-top:none">
+        <div>
+          <div class="co">Rendered Ideas</div>
+          <div class="when">1 year 7 months</div>
+        </div>
+        <div>
+          <div class="titles">
+            <b>Game Designer L-1</b><span>7 months</span>
+          </div>
+          <div class="titles">
+            <b>Trainee Game Designer</b><span>1 year</span>
+          </div>
+          <ul class="bullets">
+            <li>Designed core gameplay, progression and economy for mobile and Amazon Fire TV titles.</li>
+            <li>Ran data-driven design passes on live builds and lifted D1 and D7 retention.</li>
+            <li>Wrote design documentation and tuning sheets, and worked with engineering and art through production.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div>
+          <div class="co">Codex2D</div>
+          <div class="when">10 months</div>
+        </div>
+        <div>
+          <div class="titles"><b>Technical Designer</b></div>
+          <ul class="bullets">
+            <li>Prototyped and implemented gameplay systems in Unity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div>
+          <div class="co">Ramo Studios</div>
+          <div class="when">3 months</div>
+        </div>
+        <div>
+          <div class="titles"><b>Game Developer Intern</b></div>
+          <ul class="bullets">
+            <li>Supported feature implementation and gameplay bug fixing.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="band" id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <p class="eyebrow" id="skills-h">Skills</p>
+      <div class="skills">
+        <div class="skillset reveal">
+          <h3>Game design</h3>
+          <div class="chips">
+            <span class="chip">Systems</span><span class="chip">Progression</span><span class="chip">Economy</span>
+            <span class="chip">Level Design</span><span class="chip">Content</span><span class="chip">Balancing</span>
+            <span class="chip">UX</span><span class="chip">Live Ops</span><span class="chip">GDD</span>
+          </div>
+        </div>
+        <div class="skillset reveal">
+          <h3>Data &amp; prototyping</h3>
+          <div class="chips">
+            <span class="chip">Data-Driven Design</span><span class="chip">Game Analytics</span>
+            <span class="chip">Prototyping</span><span class="chip">Player Retention</span>
+          </div>
+        </div>
+        <div class="skillset reveal">
+          <h3>Tools</h3>
+          <div class="chips">
+            <span class="chip">Unity</span><span class="chip">Google Sheets</span><span class="chip">Google Docs</span>
+            <span class="chip">Jira</span><span class="chip">Photoshop</span><span class="chip">Android Studio</span>
+          </div>
+        </div>
+        <div class="skillset reveal">
+          <h3>Technical</h3>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">Unity Implementation</span><span class="chip">Game Data Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Let's build <em>better games.</em></h2>
+      <div class="links">
+        <div class="link-row"><span class="lbl">Email</span><a href="mailto:palprothom21@gmail.com">palprothom21@gmail.com</a></div>
+        <div class="link-row"><span class="lbl">LinkedIn</span><a href="https://www.linkedin.com/in/prothom-pal-0b169b219/" target="_blank" rel="noopener">linkedin.com/in/prothom-pal</a></div>
+        <div class="link-row"><span class="lbl">itch.io</span><a href="https://tkgluk.itch.io/" target="_blank" rel="noopener">tkgluk.itch.io — personal playable games</a></div>
+        <div class="link-row"><span class="lbl">Resume</span><a href="assets/resume.pdf">Download PDF</a></div>
+      </div>
+      <div class="foot">
+        <span>© <span id="year">2026</span> Prothom Pal</span>
+        <span>Game Designer · Mobile &amp; Amazon Fire TV</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==========================================================
+     CASE STUDY — MY COOKING STORY
+     ========================================================== -->
+<div class="view" id="view-my-cooking-story" hidden>
+  <div class="wrap cs-head">
+    <a class="back" href="#top">← Back to work</a>
+    <p class="cs-kicker">Case study 01 · Real-world problem solving</p>
+    <h1 class="cs-title">My Cooking Story</h1>
+    <p class="cs-sub">Designed from concept through production — core gameplay, progression and economy — then tuned against live data until D1 retention and LTV moved.</p>
+
+    <div class="facts">
+      <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
+      <div class="fact"><div class="k">Focus</div><div class="v">0→1 design &amp; economy</div></div>
+      <div class="fact"><div class="k">Platform</div><div class="v">Mobile</div></div>
+      <div class="fact"><div class="k">Status</div><div class="v">Beta testing</div></div>
+      <div class="fact"><div class="k">Studio</div><div class="v">Rendered Ideas</div></div>
+    </div>
+
+    <div class="callout">
+      <b>Confidentiality</b>
+      This case study only covers material cleared for public sharing. Internal build details, raw analytics exports and unreleased economy tables are anonymised or left out. <em>Confirm with Rendered Ideas before publishing any numbers or screenshots not already public.</em>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 01</div><h3>Problem</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> what was actually wrong. The observed symptom, where in the funnel it showed up, and why it mattered commercially. One or two paragraphs — no setup, start at the problem.</span>
+        <div class="media">Screenshot / funnel chart</div>
+        <p class="caption">Caption: what this shows and what to look at.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 02</div><h3>Analysis</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> how you found the cause. Which metrics and events you looked at, what the drop-off pattern told you, what you ruled out. Show the reasoning, not just the conclusion.</span>
+        <span class="fill"><b>Hypothesis:</b> state it in one sentence — "Players churned on Day 1 because X, so changing Y should move Z."</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 03</div><h3>Design change</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> the change you designed, and the alternatives you rejected. Cover economy tuning, progression pacing and any new systems or content. Explain the trade-offs.</span>
+        <div class="media">Before / after — progression or economy diagram</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 04</div><h3>Implementation</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> how it got built. Your tuning sheets, the config or data setup, what you specced versus what you implemented yourself, how you worked with engineering and art.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 05</div><h3>Testing</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> the test setup. Cohorts, build versions, sample size, how long it ran, which metric was the success criterion, and what you would have done if it failed.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 06</div><h3>Result</h3></div>
+      <div class="step-body">
+        <div class="result-grid">
+          <div class="metric">
+            <div class="k">D1 Retention</div>
+            <div class="v"><span class="from">38%</span><span class="arrow">→</span><span class="to">44.7%</span></div>
+          </div>
+          <div class="metric">
+            <div class="k">LTV</div>
+            <div class="v"><span class="to">+3.95%</span></div>
+          </div>
+        </div>
+        <span class="fill"><b>Write here:</b> what the numbers mean, what stayed flat, and what you would do next with more time. Close with the one thing this project taught you as a designer.</span>
+      </div>
+    </section>
+
+    <div class="cs-next">
+      <a class="btn btn-ghost" href="#top">← All work</a>
+      <a class="btn btn-primary" href="#/case/brainrot-game">Next: Brainrot Game →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================
+     CASE STUDY — BRAINROT GAME
+     ========================================================== -->
+<div class="view" id="view-brainrot-game" hidden>
+  <div class="wrap cs-head">
+    <a class="back" href="#top">← Back to work</a>
+    <p class="cs-kicker">Case study 02 · 0→1 game design + retention</p>
+    <h1 class="cs-title">Brainrot Game</h1>
+    <p class="cs-sub">Designed from concept to implementation for Amazon Fire TV and Fire Tablet, then iterated on the core loop until D1 and D7 retention more than held.</p>
+
+    <div class="facts">
+      <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
+      <div class="fact"><div class="k">Focus</div><div class="v">0→1 design</div></div>
+      <div class="fact"><div class="k">Platform</div><div class="v">Fire TV / Fire Tablet</div></div>
+      <div class="fact"><div class="k">Input</div><div class="v">TV remote &amp; touch</div></div>
+      <div class="fact"><div class="k">Studio</div><div class="v">Rendered Ideas</div></div>
+    </div>
+
+    <p class="note" style="margin-top:20px">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
+  </div>
+
+  <div class="wrap">
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 01</div><h3>Concept → prototype</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> where the idea came from, who it's for, and what the first playable proved or disproved. Include the pitch in one line.</span>
+        <div class="media">Prototype clip or first-build screenshot</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 02</div><h3>Core loop</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> the loop in a diagram plus a sentence. What the player does, what they earn, what pulls them into the next round.</span>
+        <div class="media">Core loop diagram</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 03</div><h3>Feature &amp; progression design</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> the features you specced, the unlock order, and the pacing curve. Note which features were cut and why.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 04</div><h3>UX on a 10-foot screen</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> what designing for a TV remote changed — focus states, readability at distance, input latency, and how the tablet build differed.</span>
+        <div class="media">UI flow / focus-state screens</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 05</div><h3>Implementation</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> what you built in Unity yourself, how the data was configured, and how the build reached Fire devices for testing.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 06</div><h3>Testing &amp; iteration</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> each iteration as a row — what you changed, what you expected, what actually moved. Three or four rounds is plenty.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 07</div><h3>Result</h3></div>
+      <div class="step-body">
+        <div class="result-grid">
+          <div class="metric">
+            <div class="k">D1 Retention</div>
+            <div class="v"><span class="from">15.75%</span><span class="arrow">→</span><span class="to">22.13%</span></div>
+          </div>
+          <div class="metric">
+            <div class="k">D7 Retention</div>
+            <div class="v"><span class="from">2.09%</span><span class="arrow">→</span><span class="to">5.10%</span></div>
+          </div>
+        </div>
+        <span class="fill"><b>Write here:</b> which change drove most of the uplift, and what you'd tackle next.</span>
+      </div>
+    </section>
+
+    <div class="cs-next">
+      <a class="btn btn-ghost" href="#top">← All work</a>
+      <a class="btn btn-primary" href="#/case/spa-salon">Next: Spa Salon →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================
+     CASE STUDY — SPA SALON
+     ========================================================== -->
+<div class="view" id="view-spa-salon" hidden>
+  <div class="wrap cs-head">
+    <a class="back" href="#top">← Back to work</a>
+    <p class="cs-kicker">Case study 03 · Content &amp; design · In production</p>
+    <h1 class="cs-title">Spa Salon</h1>
+    <p class="cs-sub">A live 0→1 mobile project designed toward a measurable retention goal: 45% D1.</p>
+
+    <div class="facts">
+      <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
+      <div class="fact"><div class="k">Focus</div><div class="v">0→1 · Content &amp; economy</div></div>
+      <div class="fact"><div class="k">Platform</div><div class="v">Mobile</div></div>
+      <div class="fact"><div class="k">Target</div><div class="v">45% D1 retention</div></div>
+      <div class="fact"><div class="k">Status</div><div class="v">In production</div></div>
+    </div>
+
+    <div class="callout">
+      <b>In progress</b>
+      Results aren't in yet. This page shows the design work and the target being designed toward; the outcome section gets filled once the build has live data.
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 01</div><h3>Concept &amp; audience</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> the pitch, the player you're designing for, and the comparable titles you studied.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 02</div><h3>Core loop</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> the session loop and the meta loop, and how they feed each other.</span>
+        <div class="media">Core loop diagram</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 03</div><h3>Content structure &amp; progression</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> how content is chunked, how much there is at launch, the unlock cadence, and where difficulty and novelty land across the first week.</span>
+        <div class="media">Progression map / content table</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 04</div><h3>Economy</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> currencies, sources and sinks, and the pacing assumptions behind your tuning sheet.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 05</div><h3>UX</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> first-session flow, tutorial pacing, and the screens you specced.</span>
+        <div class="media">Wireframes / UI flow</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 06</div><h3>Designing toward 45% D1</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> break the target into the levers you can pull — first-session length, tutorial completion, day-2 hook, reward cadence — and the assumed contribution of each. This is the section that shows how you think.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">STEP 07</div><h3>Prototyping &amp; next steps</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> what's playable so far, what you're testing next, and how you'll know the target is on track.</span>
+      </div>
+    </section>
+
+    <div class="cs-next">
+      <a class="btn btn-ghost" href="#top">← All work</a>
+      <a class="btn btn-primary" href="#/case/my-cooking-story">Next: My Cooking Story →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================
+     PROJECT — GOON FIGHT
+     ========================================================== -->
+<div class="view" id="view-goon-fight" hidden>
+  <div class="wrap cs-head">
+    <a class="back" href="#top">← Back to work</a>
+    <p class="cs-kicker">Project 03 · Level &amp; encounter design</p>
+    <h1 class="cs-title">Goon Fight</h1>
+    <p class="cs-sub">Level and encounter design: building combat spaces, tuning difficulty across the progression, and iterating on the ones that didn't play well.</p>
+
+    <div class="facts">
+      <div class="fact"><div class="k">Role</div><div class="v">Level Designer</div></div>
+      <div class="fact"><div class="k">Focus</div><div class="v">Levels &amp; encounters</div></div>
+      <div class="fact"><div class="k">Tools</div><div class="v">Unity</div></div>
+      <div class="fact"><div class="k">Levels shipped</div><div class="v">Add count</div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="step">
+      <div class="step-label"><div class="n">01</div><h3>Level design</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> your layout approach — sightlines, cover, spacing, how the player reads a space on entry.</span>
+        <div class="media">Level layout / blockout</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">02</div><h3>Encounter design</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> enemy composition, spawn order and timing, and the skill each encounter is asking the player to use.</span>
+        <div class="media">Encounter breakdown</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">03</div><h3>Difficulty &amp; pacing</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> the intensity curve across levels — where the peaks and rests sit, and how you kept the ramp readable.</span>
+        <div class="media">Difficulty / pacing curve</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">04</div><h3>Iteration</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Write here:</b> pick one level that failed playtest. What players did, what you changed, how it played after. One concrete example beats five vague ones.</span>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-label"><div class="n">05</div><h3>Final gameplay</h3></div>
+      <div class="step-body">
+        <span class="fill"><b>Add here:</b> gameplay video of the finished levels.</span>
+        <div class="media">Gameplay video embed</div>
+      </div>
+    </section>
+
+    <div class="cs-next">
+      <a class="btn btn-ghost" href="#top">← All work</a>
+      <a class="btn btn-primary" href="#/case/my-cooking-story">Case study: My Cooking Story →</a>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- year ---------- */
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---------- hash router ----------
+     Routes look like #/case/brainrot-game. Anything else (#work, #top)
+     stays on the home view and just scrolls. */
+  var ROUTES = {
+    "#/case/my-cooking-story": "view-my-cooking-story",
+    "#/case/brainrot-game":    "view-brainrot-game",
+    "#/case/spa-salon":        "view-spa-salon",
+    "#/project/goon-fight":    "view-goon-fight"
+  };
+  var views = document.querySelectorAll(".view");
+
+  function show(id) {
+    for (var i = 0; i < views.length; i++) {
+      views[i].hidden = views[i].id !== id;
+    }
+  }
+
+  function route() {
+    var hash = window.location.hash;
+
+    if (ROUTES[hash]) {
+      show(ROUTES[hash]);
+      window.scrollTo(0, 0);
+      document.title = document.querySelector("#" + ROUTES[hash] + " .cs-title").textContent + " — Prothom Pal";
+      observeAll();
+      return;
+    }
+
+    show("view-home");
+    document.title = "Prothom Pal — Game Designer";
+
+    if (hash && hash.length > 1) {
+      var target = document.querySelector(hash);
+      if (target) {
+        // let the view render before measuring position
+        requestAnimationFrame(function () {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener("hashchange", route);
+
+  /* ---------- scroll reveal ---------- */
+  var io = null;
+  if ("IntersectionObserver" in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  }
+
+  function observeAll() {
+    var items = document.querySelectorAll(".reveal:not(.in)");
+    for (var i = 0; i < items.length; i++) {
+      if (io) { io.observe(items[i]); } else { items[i].classList.add("in"); }
+    }
+  }
+
+  /* ---------- draw the retention curve ---------- */
+  function primeCurve() {
+    // Only the "after" line draws on. The "before" line stays dashed and fades in,
+    // so the two curves remain visually distinct.
+    var line = document.querySelector("#curve .line-after");
+    if (!line || typeof line.getTotalLength !== "function") return;
+    var len = line.getTotalLength();
+    line.style.setProperty("--len", len);
+    line.style.strokeDasharray = len + " " + len;
+    line.style.strokeDashoffset = len;
+  }
+
+  primeCurve();
+  route();
+  observeAll();
+})();
+</script>
 </body>
 </html>
