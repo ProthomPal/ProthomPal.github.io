@@ -13,6 +13,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://play-lh.googleusercontent.com" crossorigin>
+<link rel="preconnect" href="https://img.itch.zone" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -32,6 +34,7 @@
 
   --shadow-sm:0 1px 2px rgba(23,18,51,.05), 0 6px 18px rgba(23,18,51,.05);
   --shadow-md:0 2px 4px rgba(23,18,51,.06), 0 18px 44px rgba(23,18,51,.09);
+  --shadow-lg:0 30px 70px rgba(23,18,51,.18);
 
   --display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
   --body:"Figtree",system-ui,-apple-system,sans-serif;
@@ -69,7 +72,7 @@ p{margin:0 0 14px}
 
 .eyebrow{
   font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--ink-soft);margin:0 0 14px;
+  text-transform:uppercase;color:var(--ink-soft);margin:0 0 18px;
   display:flex;align-items:center;gap:10px;
 }
 .eyebrow::after{content:"";height:1px;flex:1;background:var(--line)}
@@ -98,19 +101,20 @@ p{margin:0 0 14px}
 .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
 .btn-ghost:hover{background:var(--ink);color:var(--paper)}
 .btn-store{background:var(--ink);color:var(--paper);font-size:14.5px}
-.btn-store:hover{background:#000}
+.btn-store:hover{background:#000;color:var(--paper)}
+.btn-sm{padding:9px 16px;font-size:14px}
 
 /* ============================================================
    RHYTHM
    ============================================================ */
 .band{padding:64px 0}
-.band-tight{padding:34px 0}
+.band-tight{padding:38px 0}
 .band + .band{border-top:1px solid var(--line)}
 
 /* ============================================================
    HERO
    ============================================================ */
-.hero{padding:64px 0 44px}
+.hero{padding:60px 0 40px}
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
 .hero-name{font-size:clamp(46px,8.4vw,84px);letter-spacing:-.045em;line-height:.92;text-transform:uppercase}
 .hero-name span{display:block}
@@ -121,70 +125,74 @@ p{margin:0 0 14px}
 .hero-pitch em{font-style:normal;background:linear-gradient(transparent 62%, rgba(255,159,28,.42) 62%)}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
 
-.curve{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 10px;box-shadow:var(--shadow-md)}
-.curve-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
-.curve-title{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
-.curve-legend{display:flex;gap:14px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
-.curve-legend i{display:inline-block;width:16px;height:2px;margin-right:5px;vertical-align:middle;background:repeating-linear-gradient(to right,#A9A2C9 0 4px,transparent 4px 8px)}
-.curve-legend .after i{background:var(--mint);height:3px}
-.curve-foot{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:8px;padding-top:8px}
-
-/* ============================================================
-   SVG DIAGRAM PRIMITIVES
-   ============================================================ */
-svg.dgm{width:100%;height:auto;display:block;overflow:visible}
-.gl{stroke:var(--line);stroke-width:1}
-.ax{font-family:var(--mono);font-size:10.5px;fill:var(--ink-soft)}
-.ax-strong{font-family:var(--mono);font-size:11px;font-weight:700;fill:var(--ink)}
-.dg-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;fill:var(--ink-soft)}
-.dg-title{font-family:var(--display);font-size:14px;font-weight:800;fill:var(--ink)}
-.dg-body{font-family:var(--body);font-size:13px;fill:var(--ink)}
-.dg-box{fill:var(--panel);stroke:var(--line);stroke-width:1.5}
-.dg-box-accent{fill:#F7F5FE;stroke:#C8BDF2;stroke-width:1.5}
-.sline{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.sline-ghost{fill:none;stroke:#A9A2C9;stroke-width:2.5;stroke-dasharray:5 5;stroke-linecap:round;stroke-linejoin:round}
-.mint{stroke:var(--mint)}
-.amberline{stroke:var(--amber)}
-.wall-mark{fill:none;stroke:var(--amber);stroke-width:1.4;stroke-dasharray:4 4}
-.arrowhead{fill:var(--ink-soft)}
-
-/* line-draw animation */
-.anim .sline,.animate .sline{stroke-dashoffset:var(--len,0);animation:draw 1.3s cubic-bezier(.22,.8,.3,1) forwards}
-.anim .sline-ghost,.animate .sline-ghost{opacity:0;animation:fadeIn .7s ease forwards;animation-delay:.15s}
-.anim .fade,.animate .fade{opacity:0;animation:fadeIn .6s ease forwards;animation-delay:1.1s}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fadeIn{to{opacity:1}}
+/* shipped-titles collage */
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.collage .tile{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-md);background:#EEEBF9;aspect-ratio:16/9}
+.collage .tile img{width:100%;height:100%;object-fit:cover}
+.collage .tile.tall{grid-row:span 2;aspect-ratio:auto;min-height:100%}
+.collage .badge{position:absolute;left:8px;bottom:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;background:rgba(23,18,51,.82);color:#fff;padding:4px 8px;border-radius:999px;backdrop-filter:blur(4px)}
+.collage-cap{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:10px;text-align:right}
 
 /* ============================================================
    AWARDS
    ============================================================ */
-.awards{display:flex;gap:12px;flex-wrap:wrap}
-.award{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:9px 18px 9px 14px;box-shadow:var(--shadow-sm);color:var(--ink)}
-.award .medal{font-size:17px;line-height:1}
-.award .place{font-size:14.5px;font-weight:600}
-.award .game{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);border-left:1px solid var(--line);padding-left:12px;white-space:nowrap}
+.award-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.award-card{display:flex;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.award-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#C8BDF2}
+.award-card .cover{width:160px;flex:none;background:#1a1520;overflow:hidden}
+.award-card .cover img{width:100%;height:100%;object-fit:cover}
+.award-card .meta{padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0}
+.award-card .prize{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9A5B00;display:flex;align-items:center;gap:6px}
+.award-card h3{font-size:20px}
+.award-card .jam{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+.award-card .acts{display:flex;gap:12px;margin-top:6px;font-family:var(--mono);font-size:11px}
 
 /* ============================================================
    WORK CARDS
    ============================================================ */
-.cards{display:grid;gap:20px}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.cards{display:grid;gap:22px}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#C8BDF2}
-.card-num{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--plum);margin-bottom:8px}
-.card-title{font-size:clamp(26px,3.4vw,34px);margin-bottom:8px}
-.card-role{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
-.card-desc{max-width:64ch}
+.card-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.appicon{width:68px;height:68px;border-radius:17px;flex:none;border:1px solid var(--line);box-shadow:var(--shadow-sm);object-fit:cover;background:#EEEBF9}
+.appicon-fake{display:grid;place-items:center;font-family:var(--display);font-size:26px;font-weight:800;color:#fff;background:linear-gradient(140deg,#6D3BF5,#B03BF5 55%,#FF9F1C)}
+.card-head .ht{min-width:0}
+.card-num{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.12em;color:var(--plum);margin-bottom:4px}
+.card-title{font-size:clamp(25px,3.2vw,32px);margin-bottom:5px}
+.card-role{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.card-desc{max-width:66ch}
 
-.outcomes{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 6px}
-.outcome{border:1px solid var(--line);border-radius:12px;padding:11px 16px;background:linear-gradient(180deg,#FBFAFF,#F6F4FE);flex:1 1 220px}
+/* screenshot strips */
+.shots{display:grid;gap:10px;margin:18px 0 4px}
+.shots-4{grid-template-columns:repeat(4,1fr)}
+.shots-3{grid-template-columns:repeat(3,1fr)}
+.shots-5{grid-template-columns:repeat(5,1fr)}
+.shot{border-radius:11px;overflow:hidden;border:1px solid var(--line);background:#EEEBF9;aspect-ratio:16/9;cursor:zoom-in;position:relative}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .35s cubic-bezier(.2,.8,.3,1)}
+.shot:hover img{transform:scale(1.05)}
+.shot.portrait{aspect-ratio:2/3}
+.shot-cap{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:8px}
+.cover-tile{
+  border-radius:11px;border:1px solid var(--line);overflow:hidden;
+  aspect-ratio:16/9;display:grid;place-items:center;text-align:center;padding:16px;
+  background:linear-gradient(140deg,#241a4d 0%,#4B21C4 45%,#B03BF5 100%);
+  color:#fff;position:relative;
+}
+.cover-tile .t{font-family:var(--display);font-size:clamp(16px,2.4vw,22px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.cover-tile .s{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.82;margin-top:7px}
+.cover-wide{aspect-ratio:auto;min-height:180px;grid-column:1 / -1}
+
+.outcomes{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+.outcome{border:1px solid var(--line);border-radius:12px;padding:11px 16px;background:linear-gradient(180deg,#FBFAFF,#F6F4FE);flex:1 1 230px}
 .outcome .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
 .outcome .v{font-size:15.5px;font-weight:600;margin-top:4px;line-height:1.35}
 .outcome .v b{color:var(--mint);font-weight:700}
 
 .note{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:rgba(255,159,28,.1);border-left:2px solid var(--amber);padding:8px 12px;border-radius:0 8px 8px 0;margin:14px 0 0;display:inline-block}
-.card-foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px}
+.card-foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
 .status{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:inline-flex;align-items:center;gap:7px}
 .status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.storelink{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
 .go{font-family:var(--body);font-weight:600;font-size:15px;color:var(--plum-deep);margin-left:auto}
 .go:hover{text-decoration:none}
 .go .arr{display:inline-block;transition:transform .15s ease}
@@ -192,10 +200,8 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .bullets{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
 .bullets li{position:relative;padding-left:20px;font-size:15.5px}
 .bullets li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:2px;background:var(--amber)}
-.storelink{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
-.storelink a{color:var(--plum-deep)}
 
-.upcoming{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:1px dashed #C4BBEA;border-radius:var(--r);padding:18px 22px;background:rgba(255,255,255,.55);margin-top:20px}
+.upcoming{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:1px dashed #C4BBEA;border-radius:var(--r);padding:18px 22px;background:rgba(255,255,255,.55);margin-top:22px}
 .upcoming .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--plum-deep);background:rgba(109,59,245,.1);padding:5px 10px;border-radius:999px}
 .upcoming h3{font-size:21px}
 .upcoming .meta{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
@@ -205,6 +211,8 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
    ============================================================ */
 .job{display:grid;grid-template-columns:184px 1fr;gap:26px;padding:26px 0;border-top:1px solid var(--line)}
 .job .co{font-family:var(--display);font-size:20px;font-weight:800}
+.job .co a{color:inherit}
+.job .co a:hover{color:var(--plum-deep)}
 .job .when{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:5px}
 .job .titles{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
 .job .titles b{font-size:16.5px;font-weight:600}
@@ -221,14 +229,14 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .contact{padding:70px 0 44px;border-top:1px solid var(--line)}
 .contact h2{font-size:clamp(34px,6vw,60px);letter-spacing:-.04em;max-width:14ch}
 .contact h2 em{font-style:normal;color:var(--plum)}
-.links{display:grid;gap:2px;margin-top:30px;max-width:680px}
+.links{display:grid;gap:2px;margin-top:30px;max-width:700px}
 .link-row{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:baseline;padding:13px 0;border-top:1px solid var(--line)}
 .link-row .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .link-row a{font-size:16px;font-weight:500;word-break:break-word}
 
 .sitefoot{border-top:1px solid var(--line);padding:24px 0 40px}
 .sitefoot .row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
-.rights{font-family:var(--mono);font-size:10.5px;line-height:1.7;color:#8A85A8;max-width:78ch;margin-top:14px}
+.rights{font-family:var(--mono);font-size:10.5px;line-height:1.75;color:#8A85A8;max-width:86ch;margin-top:14px}
 
 /* ============================================================
    CASE STUDY
@@ -237,12 +245,14 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .cs-head{padding:40px 0 26px}
 .back{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:inline-block;margin-bottom:24px}
 .back:hover{color:var(--plum-deep);text-decoration:none}
-.cs-title{font-size:clamp(36px,6.4vw,62px);letter-spacing:-.04em;max-width:17ch;line-height:1}
+.cs-titlerow{display:flex;align-items:center;gap:18px;margin-bottom:16px}
+.cs-title{font-size:clamp(34px,6vw,58px);letter-spacing:-.04em;max-width:17ch;line-height:1}
 .cs-kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);margin-bottom:14px}
 .cs-sub{font-size:19px;color:var(--ink-soft);max-width:62ch;margin-top:16px}
 .cs-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cs-gallery{margin-top:28px}
 
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:28px 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:26px 0 0}
 .fact{background:var(--panel);padding:15px 18px}
 .fact .k{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
 .fact .v{font-size:15.5px;font-weight:600;margin-top:4px}
@@ -271,7 +281,27 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
 .legend .dash i{background:repeating-linear-gradient(to right,#A9A2C9 0 4px,transparent 4px 8px)}
 
-/* ranked lists (sources / sinks) */
+svg.dgm{width:100%;height:auto;display:block;overflow:visible}
+.gl{stroke:var(--line);stroke-width:1}
+.ax{font-family:var(--mono);font-size:10.5px;fill:var(--ink-soft)}
+.ax-strong{font-family:var(--mono);font-size:11px;font-weight:700;fill:var(--ink)}
+.dg-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;fill:var(--ink-soft)}
+.dg-title{font-family:var(--display);font-size:14px;font-weight:800;fill:var(--ink)}
+.dg-box{fill:var(--panel);stroke:var(--line);stroke-width:1.5}
+.dg-box-accent{fill:#F7F5FE;stroke:#C8BDF2;stroke-width:1.5}
+.sline{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.sline-ghost{fill:none;stroke:#A9A2C9;stroke-width:2.5;stroke-dasharray:5 5;stroke-linecap:round;stroke-linejoin:round}
+.mint{stroke:var(--mint)}
+.amberline{stroke:var(--amber)}
+.wall-mark{fill:none;stroke:var(--amber);stroke-width:1.4;stroke-dasharray:4 4}
+.arrowhead{fill:var(--ink-soft)}
+.anim .sline,.animate .sline{stroke-dashoffset:var(--len,0);animation:draw 1.3s cubic-bezier(.22,.8,.3,1) forwards}
+.anim .sline-ghost,.animate .sline-ghost{opacity:0;animation:fadeIn .7s ease forwards;animation-delay:.15s}
+.anim .fade,.animate .fade{opacity:0;animation:fadeIn .6s ease forwards;animation-delay:1.1s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+
+/* ranked lists */
 .rank-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .rank h5{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px;font-weight:700}
 .rank.src h5{color:var(--mint)}
@@ -283,8 +313,8 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .rank.snk li::before{background:var(--amber)}
 .rank li .w{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
 
-/* three-act reward cadence */
-.acts{display:grid;grid-template-columns:1fr 1.35fr 1.25fr;gap:10px;margin:6px 0 4px}
+/* three acts */
+.acts-grid{display:grid;grid-template-columns:1fr 1.35fr 1.25fr;gap:10px;margin:6px 0 4px}
 .act{border-radius:12px;padding:14px 14px 12px;border:1px solid}
 .act h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;font-weight:700}
 .act .dots{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;min-height:16px;align-items:center}
@@ -298,7 +328,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .act3{background:rgba(15,163,127,.08);border-color:rgba(15,163,127,.4)}
 .act3 h5{color:var(--mint)}.act3 .dots i{background:var(--mint);width:12px;height:12px}
 
-/* verdict strip */
+/* verdict */
 .verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
 .vcell{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#FAF9FE}
 .vcell .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
@@ -307,7 +337,17 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .vcell.out .k{color:var(--mint)}
 
 .cs-next{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:34px 0 24px;border-top:1px solid var(--line);margin-top:10px}
-.cs-rights{font-family:var(--mono);font-size:10.5px;line-height:1.7;color:#8A85A8;padding-bottom:60px;max-width:78ch}
+.cs-rights{font-family:var(--mono);font-size:10.5px;line-height:1.75;color:#8A85A8;padding-bottom:60px;max-width:86ch}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(15,11,35,.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:32px}
+.lb.open{display:flex}
+.lb img{max-width:min(1200px,92vw);max-height:86vh;border-radius:12px;box-shadow:var(--shadow-lg);width:auto}
+.lb-close{position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:30px;line-height:1;cursor:pointer;font-family:var(--body);opacity:.85}
+.lb-close:hover{opacity:1}
+.lb-cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.7)}
 
 /* ============================================================
    REVEAL / RESPONSIVE / MOTION
@@ -316,22 +356,28 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .reveal.in{opacity:1;transform:none}
 
 @media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-grid{grid-template-columns:1fr;gap:32px}
   .skills{grid-template-columns:1fr}
+  .award-grid{grid-template-columns:1fr}
   .job{grid-template-columns:1fr;gap:10px}
   .step{grid-template-columns:1fr;gap:14px}
   .step-label{position:static}
-  .acts{grid-template-columns:1fr}
+  .acts-grid{grid-template-columns:1fr}
   .rank-cols{grid-template-columns:1fr}
   .verdict{grid-template-columns:1fr}
+  .shots-5{grid-template-columns:repeat(3,1fr)}
   .nav-links a:nth-child(n+4){display:none}
 }
 @media (max-width:560px){
   body{font-size:16px}
   .band{padding:48px 0}
-  .card{padding:22px 18px}
+  .card{padding:20px 16px}
+  .shots-4,.shots-3,.shots-5{grid-template-columns:1fr 1fr}
+  .award-card{flex-direction:column}
+  .award-card .cover{width:100%;aspect-ratio:16/9}
   .link-row{grid-template-columns:1fr;gap:2px}
   .go{margin-left:0}
+  .appicon{width:56px;height:56px;border-radius:14px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -377,58 +423,75 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
         </div>
       </div>
 
-      <figure class="curve anim" id="curve" style="margin:0">
-        <div class="curve-head">
-          <span class="curve-title">How I read a retention problem</span>
-          <span class="curve-legend">
-            <span class="before"><i></i>Before</span>
-            <span class="after"><i></i>After</span>
-          </span>
+      <div>
+        <div class="collage">
+          <a class="tile" href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">
+            <img src="https://play-lh.googleusercontent.com/MhZyjubLX-RlMCWNLXNgpUlzUQ8eOlPtu6CPWvFUBz74695Eebx1wlb2nFG9wxG8Wwi29pSyBiq25I_ldxtOQeY=w1052-h592" alt="My Cooking Story gameplay" loading="lazy">
+            <span class="badge">My Cooking Story</span>
+          </a>
+          <a class="tile" href="https://play.google.com/store/apps/details?id=com.renderedideas.goonfight" target="_blank" rel="noopener">
+            <img src="https://play-lh.googleusercontent.com/WLdu1hI90M2n9MUB3yD2gJ2sjd4QWW1ZhGVDr4eh-19N5fjF_39JZVQ4GCZdVilXCg8UVzvLZMRZrR3y8egEFw=w1052-h592" alt="Goon Fight gameplay" loading="lazy">
+            <span class="badge">Goon Fight</span>
+          </a>
+          <a class="tile" href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">
+            <img src="https://play-lh.googleusercontent.com/y8SOM9mru5f6sj4zMaZsZAy0oS5ohMm-nvPer9BmLh55FgCJi-w0pr7CXd4uol-ZRPUt1zRy1TBwMeiw1WaADg=w1052-h592" alt="My Cooking Story kitchen upgrade screen" loading="lazy">
+          </a>
+          <a class="tile" href="https://play.google.com/store/apps/details?id=com.renderedideas.goonfight" target="_blank" rel="noopener">
+            <img src="https://play-lh.googleusercontent.com/M0RzHaENVKiQKhf2JGNO-g2pVRdImhSi_ZNwBYStJbYq1hOAnDcE6ZnOTsrW674sPyVHschrsqVh_pq0OyVklg=w1052-h592" alt="Goon Fight combat" loading="lazy">
+          </a>
         </div>
-        <svg class="dgm" viewBox="0 0 640 300" role="img" aria-label="Two retention curves, the second holding higher than the first after design changes">
-          <line class="gl" x1="44" y1="30"  x2="616" y2="30"/>
-          <line class="gl" x1="44" y1="87"  x2="616" y2="87"/>
-          <line class="gl" x1="44" y1="145" x2="616" y2="145"/>
-          <line class="gl" x1="44" y1="202" x2="616" y2="202"/>
-          <line class="gl" x1="44" y1="260" x2="616" y2="260"/>
-          <text class="ax" x="10" y="150" transform="rotate(-90 10 150)" text-anchor="middle">Players returning</text>
-          <text class="ax" x="34"  y="282">D0</text>
-          <text class="ax" x="148" y="282">D1</text>
-          <text class="ax" x="262" y="282">D3</text>
-          <text class="ax" x="377" y="282">D7</text>
-          <text class="ax" x="487" y="282">D14</text>
-          <text class="ax" x="601" y="282">D30</text>
-          <polyline class="sline-ghost" points="44,30 158,173 273,209 387,232 502,244 616,251"/>
-          <polyline class="sline mint" points="44,30 158,157 273,196 387,223 502,237 616,246"/>
-          <g class="fade">
-            <circle cx="158" cy="157" r="5" fill="#0FA37F"/>
-            <circle cx="158" cy="173" r="4" fill="#A9A2C9"/>
-            <rect x="186" y="122" width="196" height="42" rx="8" fill="#FFFFFF" stroke="#0FA37F" stroke-width="1.5"/>
-            <text class="ax-strong" x="198" y="140" fill="#0FA37F">Hold the D1 shoulder</text>
-            <text class="ax" x="198" y="155">and the whole curve lifts</text>
-          </g>
-        </svg>
-        <figcaption class="curve-foot">Illustrative. Shape only — no project data shown.</figcaption>
-      </figure>
+        <p class="collage-cap">Shipped titles — Rendered Ideas</p>
+      </div>
     </div>
   </section>
 
   <!-- AWARDS -->
   <section class="band-tight" aria-labelledby="awards-h">
     <div class="wrap">
-      <p class="eyebrow" id="awards-h">Awards</p>
-      <div class="awards">
-        <div class="award">
-          <span class="medal" aria-hidden="true">🏆</span>
-          <span class="place">2nd Runner-Up — BYOG Game Jam 2024</span>
-          <span class="game">NodeSmith</span>
+      <p class="eyebrow" id="awards-h">Awards — game jams</p>
+      <div class="award-grid">
+
+        <div class="award-card reveal">
+          <a class="cover" href="https://exity.itch.io/nodesmith" target="_blank" rel="noopener">
+            <img src="https://img.itch.zone/aW1nLzE3ODc5OTc5LnBuZw==/original/aUN0EL.png" alt="NodeSmith cover art" loading="lazy">
+          </a>
+          <div class="meta">
+            <span class="prize"><span aria-hidden="true">🏆</span> 2nd Runner-Up</span>
+            <h3>NodeSmith</h3>
+            <span class="jam">BYOG Game Jam 2024 · IGDC</span>
+            <span class="jam">Node-based puzzle platformer · Unity</span>
+            <span class="acts">
+              <a href="https://exity.itch.io/nodesmith" target="_blank" rel="noopener">Play ↗</a>
+              <a href="https://www.youtube.com/watch?v=gZ14W4phJ0s" target="_blank" rel="noopener">Trailer ↗</a>
+            </span>
+          </div>
         </div>
-        <div class="award">
-          <span class="medal" aria-hidden="true">🏅</span>
-          <span class="place">Top 10 — Waves 2025: Road to Game Jam</span>
-          <span class="game">Entwined</span>
+
+        <div class="award-card reveal">
+          <a class="cover" href="https://tkgluk.itch.io/entwined-reimagined" target="_blank" rel="noopener">
+            <img src="https://img.itch.zone/aW1nLzE5OTAxMjk4LnBuZw==/original/rfE87a.png" alt="ENTWINED: Reimagined cover art" loading="lazy">
+          </a>
+          <div class="meta">
+            <span class="prize"><span aria-hidden="true">🏅</span> Top 10</span>
+            <h3>ENTWINED: Reimagined</h3>
+            <span class="jam">Waves 2025 · Road to Game Jam</span>
+            <span class="jam">Narrative puzzle platformer · Unity</span>
+            <span class="acts">
+              <a href="https://tkgluk.itch.io/entwined-reimagined" target="_blank" rel="noopener">Play ↗</a>
+              <a href="https://www.youtube.com/watch?v=5czF460ieF4" target="_blank" rel="noopener">Trailer ↗</a>
+            </span>
+          </div>
         </div>
+
       </div>
+
+      <div class="shots shots-4 reveal" style="margin-top:14px">
+        <figure class="shot portrait" style="margin:0"><img src="https://img.itch.zone/aW1hZ2UvMjk4ODkwMy8xNzg3OTk5NC5wbmc=/347x500/%2B5Pgex.png" alt="NodeSmith gameplay" loading="lazy"></figure>
+        <figure class="shot portrait" style="margin:0"><img src="https://img.itch.zone/aW1hZ2UvMjk4ODkwMy8xNzg3OTk5NS5wbmc=/347x500/aQ6yKL.png" alt="NodeSmith node controls" loading="lazy"></figure>
+        <figure class="shot portrait" style="margin:0"><img src="https://img.itch.zone/aW1hZ2UvMzMzMDcwMC8xOTkwNTY1Ny5wbmc=/347x500/O3DDBD.png" alt="ENTWINED gameplay" loading="lazy"></figure>
+        <figure class="shot portrait" style="margin:0"><img src="https://img.itch.zone/aW1hZ2UvMzMzMDcwMC8xOTkwNTY1Ni5wbmc=/347x500/u7jv3s.png" alt="ENTWINED world switching" loading="lazy"></figure>
+      </div>
+      <p class="shot-cap">Jam builds — NodeSmith and ENTWINED: Reimagined. Click any image to enlarge.</p>
     </div>
   </section>
 
@@ -438,11 +501,25 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <p class="eyebrow" id="work-h">Featured work</p>
       <div class="cards">
 
+        <!-- 01 -->
         <article class="card reveal">
-          <p class="card-num">01</p>
-          <h2 class="card-title">My Cooking Story</h2>
-          <p class="card-role">Game Designer — 0→1 design &amp; economy</p>
-          <p class="card-desc">Designed the game from concept through production, with a focus on core gameplay, progression and economy. Successive builds of level-by-level tuning took Day-1 retention past its internal target.</p>
+          <div class="card-head">
+            <img class="appicon" src="https://play-lh.googleusercontent.com/3Zo0QQXvSnDG3UkSobVO4ryASpKP0X6BaKMgD8nS_WqhpTcayfkGpKPdHKorLM1TrbghmRkauI78ljX4SQim=s180" alt="My Cooking Story app icon" loading="lazy">
+            <div class="ht">
+              <p class="card-num">01</p>
+              <h2 class="card-title">My Cooking Story</h2>
+              <p class="card-role">Game Designer — 0→1 design &amp; economy</p>
+            </div>
+          </div>
+          <p class="card-desc">A tycoon cooking and time-management game — cook multi-layer recipes, serve customers against the clock, upgrade the kitchen and grow the restaurant. I designed it from concept through production, focusing on core gameplay, progression and economy, then tuned it build over build until Day-1 retention cleared its target.</p>
+
+          <div class="shots shots-4">
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/MhZyjubLX-RlMCWNLXNgpUlzUQ8eOlPtu6CPWvFUBz74695Eebx1wlb2nFG9wxG8Wwi29pSyBiq25I_ldxtOQeY=w1052-h592" alt="My Cooking Story gameplay" loading="lazy"></figure>
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/fOCFMnTdR8xofWrEe1tESbcAP5aSTxCXG7NfQze7Z_b_YMafW0fOcBU_ad7N5ndaqcZ_qWWry0AkKs-vGlu7dw=w1052-h592" alt="My Cooking Story serving customers" loading="lazy"></figure>
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/y8SOM9mru5f6sj4zMaZsZAy0oS5ohMm-nvPer9BmLh55FgCJi-w0pr7CXd4uol-ZRPUt1zRy1TBwMeiw1WaADg=w1052-h592" alt="My Cooking Story upgrades" loading="lazy"></figure>
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/bNK9q7Rha-_1du0ZuVuHtVNf_itpPrKJ6MFzhzCLGLbZQBjUbAzD6PTKJSoxP-UGg2hSe7uDalwUBmkF5WMcxSk=w1052-h592" alt="My Cooking Story kitchen" loading="lazy"></figure>
+          </div>
+
           <div class="outcomes">
             <div class="outcome">
               <div class="k">Day-1 retention</div>
@@ -453,18 +530,33 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <div class="v"><b>Deepest funnel</b> measured on the title to date.</div>
             </div>
           </div>
-          <p class="storelink" style="margin-top:16px">Live on <a href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">Google Play ↗</a></p>
+
           <div class="card-foot">
             <span class="status">Beta testing</span>
+            <span class="storelink"><a href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">Google Play ↗</a></span>
             <a class="go" href="#/case/my-cooking-story">View case study <span class="arr">→</span></a>
           </div>
         </article>
 
+        <!-- 02 -->
         <article class="card reveal">
-          <p class="card-num">02</p>
-          <h2 class="card-title">Brainrot Game</h2>
-          <p class="card-role">Game Designer — 0→1 design</p>
-          <p class="card-desc">Designed the game from concept to implementation for Amazon Fire TV and Fire Tablet, then iterated on the core loop until early retention moved.</p>
+          <div class="card-head">
+            <div class="appicon appicon-fake" aria-hidden="true">BR</div>
+            <div class="ht">
+              <p class="card-num">02</p>
+              <h2 class="card-title">Brainrot Game</h2>
+              <p class="card-role">Game Designer — 0→1 design</p>
+            </div>
+          </div>
+          <p class="card-desc">A fast collection game for Amazon Fire TV and Fire Tablet: hatch eggs, collect and steal Brainrots, upgrade your lineup and compete in rankings. Designed from concept to implementation for a remote-first living-room audience, then iterated until early retention moved.</p>
+
+          <div class="shots shots-3">
+            <div class="cover-tile"><div><div class="t">Hatch</div><div class="s">Egg → reveal → collect</div></div></div>
+            <div class="cover-tile" style="background:linear-gradient(140deg,#3a1a5e 0%,#B03BF5 60%,#FF9F1C 100%)"><div><div class="t">Steal</div><div class="s">Raid rival zones</div></div></div>
+            <div class="cover-tile" style="background:linear-gradient(140deg,#0d3d33 0%,#0FA37F 55%,#7BE3B8 100%)"><div><div class="t">Compete</div><div class="s">Deck power · rankings</div></div></div>
+          </div>
+          <p class="shot-cap">Core loop pillars. Store artwork isn't available for embedding — see the Amazon listing.</p>
+
           <div class="outcomes">
             <div class="outcome">
               <div class="k">Retention</div>
@@ -476,24 +568,44 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             </div>
           </div>
           <p class="note">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
+
           <div class="card-foot">
+            <span class="status">Live</span>
+            <span class="storelink"><a href="https://www.amazon.in/Brainrot-Game-Steal-Brainrots-Multiplayer/dp/B0GJCLN6GD/" target="_blank" rel="noopener">Amazon Appstore ↗</a></span>
             <a class="go" href="#/case/brainrot-game">View case study <span class="arr">→</span></a>
           </div>
         </article>
 
+        <!-- 03 -->
         <article class="card reveal">
-          <p class="card-num">03</p>
-          <h2 class="card-title">Goon Fight</h2>
-          <p class="card-role">Level Designer</p>
-          <p class="card-desc">Built and tuned combat levels — layout, encounters and difficulty pacing across the progression.</p>
+          <div class="card-head">
+            <img class="appicon" src="https://play-lh.googleusercontent.com/WUZKUU5mv2hCIJo1Q3sEQ6mjYpClqyfnKI2YmN8TF8BP-PRPy_Oow_WGqIqWv21GQMM6J1txKXXXxzrhprTz=s180" alt="Goon Fight app icon" loading="lazy">
+            <div class="ht">
+              <p class="card-num">03</p>
+              <h2 class="card-title">Goon Fight</h2>
+              <p class="card-role">Level Designer</p>
+            </div>
+          </div>
+          <p class="card-desc">A retro 2D beat 'em up across dungeon, jungle, village and moving-bus environments. I built and tuned combat levels — layout, encounter composition and difficulty pacing across the progression.</p>
+
+          <div class="shots shots-5">
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/WLdu1hI90M2n9MUB3yD2gJ2sjd4QWW1ZhGVDr4eh-19N5fjF_39JZVQ4GCZdVilXCg8UVzvLZMRZrR3y8egEFw=w1052-h592" alt="Goon Fight street combat" loading="lazy"></figure>
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/M0RzHaENVKiQKhf2JGNO-g2pVRdImhSi_ZNwBYStJbYq1hOAnDcE6ZnOTsrW674sPyVHschrsqVh_pq0OyVklg=w1052-h592" alt="Goon Fight enemies" loading="lazy"></figure>
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/pOQtDG-Nh8wP_hZh1TOhB6eO2QAqwZ-ajSqVE-3NTE3O4xDODII25OTOsDeg5O58UrbrPhX08sGcGh0_cGtdYg=w1052-h592" alt="Goon Fight environment" loading="lazy"></figure>
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/KLxIBN22lc52bvhHYPlTggy7R8TLtdD0AQcOkbTPACeRJGaLUI445ihEcu5Nc9xai9Dcg2197XYzJvN_6hRu=w1052-h592" alt="Goon Fight boss encounter" loading="lazy"></figure>
+            <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/Zf5I7eVyioZTMc6pG59Wk6SsyUEnJMpF7pN47yFdE208Mn5XEReGHLv_vBYuGGnWWL_Hh_saaA_4x1MsSeFV4Pc=w1052-h592" alt="Goon Fight level" loading="lazy"></figure>
+          </div>
+
           <ul class="bullets">
-            <li>Level design</li>
-            <li>Encounter design</li>
-            <li>Difficulty and pacing</li>
-            <li>Iteration</li>
-            <li>Final gameplay</li>
+            <li>Level layout across four environment themes</li>
+            <li>Encounter composition — street goons through to bosses</li>
+            <li>Difficulty pacing and booster placement</li>
+            <li>Playtest iteration</li>
           </ul>
+
           <div class="card-foot">
+            <span class="status">Live</span>
+            <span class="storelink"><a href="https://play.google.com/store/apps/details?id=com.renderedideas.goonfight" target="_blank" rel="noopener">Google Play ↗</a></span>
             <a class="go" href="#/project/goon-fight">View project <span class="arr">→</span></a>
           </div>
         </article>
@@ -516,7 +628,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
       <div class="job job-lead reveal">
         <div>
-          <div class="co">Rendered Ideas</div>
+          <div class="co"><a href="https://www.renderedideas.com/" target="_blank" rel="noopener">Rendered Ideas ↗</a></div>
           <div class="when">1 year 7 months</div>
         </div>
         <div>
@@ -531,7 +643,10 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
 
       <div class="job reveal">
-        <div><div class="co">Codex2D</div><div class="when">10 months</div></div>
+        <div>
+          <div class="co"><a href="https://in.linkedin.com/company/codex2d" target="_blank" rel="noopener">Codex2D ↗</a></div>
+          <div class="when">10 months</div>
+        </div>
         <div>
           <div class="titles"><b>Technical Designer</b></div>
           <ul class="bullets"><li>Prototyped and implemented gameplay systems in Unity.</li></ul>
@@ -593,7 +708,9 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
         <div class="link-row"><span class="lbl">Email</span><a href="mailto:palprothom21@gmail.com">palprothom21@gmail.com</a></div>
         <div class="link-row"><span class="lbl">LinkedIn</span><a href="https://www.linkedin.com/in/prothom-pal-0b169b219/" target="_blank" rel="noopener">linkedin.com/in/prothom-pal</a></div>
         <div class="link-row"><span class="lbl">itch.io</span><a href="https://tkgluk.itch.io/" target="_blank" rel="noopener">tkgluk.itch.io — personal playable games</a></div>
-        <div class="link-row"><span class="lbl">Google Play</span><a href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">My Cooking Story</a></div>
+        <div class="link-row"><span class="lbl">My Cooking Story</span><a href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">Google Play</a></div>
+        <div class="link-row"><span class="lbl">Goon Fight</span><a href="https://play.google.com/store/apps/details?id=com.renderedideas.goonfight" target="_blank" rel="noopener">Google Play</a></div>
+        <div class="link-row"><span class="lbl">Brainrot Game</span><a href="https://www.amazon.in/Brainrot-Game-Steal-Brainrots-Multiplayer/dp/B0GJCLN6GD/" target="_blank" rel="noopener">Amazon Appstore</a></div>
         <div class="link-row"><span class="lbl">Resume</span><a href="assets/resume.pdf">Download PDF</a></div>
       </div>
     </div>
@@ -605,7 +722,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
         <span>© <span id="year">2026</span> Prothom Pal</span>
         <span>Game Designer · Mobile &amp; Amazon Fire TV</span>
       </div>
-      <p class="rights">My Cooking Story, Brainrot Game and Goon Fight are titles of Rendered Ideas. All rights, artwork, game data and related materials remain the property of Rendered Ideas. These pages describe design process and are shared for portfolio purposes only; no performance figures or internal data are published.</p>
+      <p class="rights">My Cooking Story, Brainrot Game and Goon Fight are titles of Rendered Ideas. All rights, artwork, game data and related materials remain the property of Rendered Ideas; screenshots and icons shown here are from the public store listings. NodeSmith and ENTWINED: Reimagined are game jam projects made with their respective teams, credited on their itch.io pages. These pages describe design process and are shared for portfolio purposes only; no performance figures or internal data are published.</p>
     </div>
   </footer>
 </div>
@@ -617,13 +734,24 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
   <div class="wrap cs-head">
     <a class="back" href="#top">← Back to work</a>
     <p class="cs-kicker">Case study 01 · Google Play · Casual time-management</p>
-    <h1 class="cs-title">Hitting a retention target, build by build</h1>
+    <div class="cs-titlerow">
+      <img class="appicon" src="https://play-lh.googleusercontent.com/3Zo0QQXvSnDG3UkSobVO4ryASpKP0X6BaKMgD8nS_WqhpTcayfkGpKPdHKorLM1TrbghmRkauI78ljX4SQim=s180" alt="My Cooking Story app icon" loading="lazy">
+      <h1 class="cs-title">Hitting a retention target, build by build</h1>
+    </div>
     <p class="cs-sub">How successive builds of My Cooking Story resolved every major level-design wall found along the way and carried Day-1 retention past its target — one level, one funnel and one loading theory at a time.</p>
 
     <div class="cs-actions">
       <a class="btn btn-store" href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">Play on Google Play ↗</a>
-      <span class="storelink">Rendered Ideas · Google Play</span>
+      <span class="storelink">Rendered Ideas · Simulation</span>
     </div>
+
+    <div class="shots shots-4 cs-gallery">
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/MhZyjubLX-RlMCWNLXNgpUlzUQ8eOlPtu6CPWvFUBz74695Eebx1wlb2nFG9wxG8Wwi29pSyBiq25I_ldxtOQeY=w1052-h592" alt="My Cooking Story gameplay" loading="lazy"></figure>
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/fOCFMnTdR8xofWrEe1tESbcAP5aSTxCXG7NfQze7Z_b_YMafW0fOcBU_ad7N5ndaqcZ_qWWry0AkKs-vGlu7dw=w1052-h592" alt="My Cooking Story serving customers" loading="lazy"></figure>
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/y8SOM9mru5f6sj4zMaZsZAy0oS5ohMm-nvPer9BmLh55FgCJi-w0pr7CXd4uol-ZRPUt1zRy1TBwMeiw1WaADg=w1052-h592" alt="My Cooking Story upgrade screen" loading="lazy"></figure>
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/bNK9q7Rha-_1du0ZuVuHtVNf_itpPrKJ6MFzhzCLGLbZQBjUbAzD6PTKJSoxP-UGg2hSe7uDalwUBmkF5WMcxSk=w1052-h592" alt="My Cooking Story kitchen" loading="lazy"></figure>
+    </div>
+    <p class="shot-cap">From the public Google Play listing. Click to enlarge.</p>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
@@ -637,18 +765,16 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
   <div class="wrap">
 
-    <!-- 01 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 01</div><h3>The starting point</h3></div>
       <div class="step-body">
-        <p>My Cooking Story is a tycoon-style cooking and time-management game: players build a restaurant across sequential themes, serving customers within a level's timer and target. The team's north-star metric was Day-1 retention against an internal benchmark — the share of new players who come back the day after installing.</p>
+        <p>My Cooking Story is a tycoon-style cooking and time-management game: players build a restaurant across sequential themes, preparing multi-layer recipes and serving customers within a level's timer and target. A slot system lets players cook ahead and store food before customers arrive, which is the skill ceiling the whole game is built around — plan early, serve fast.</p>
+        <p>The team's north-star metric was Day-1 retention against an internal benchmark — the share of new players who come back the day after installing.</p>
         <p>My job was to move that number without a rewrite. That meant treating the level list as a tunable system rather than a fixed sequence of content, and finding out where the game was losing people before deciding what to change.</p>
-        <p>Across successive builds I tracked level-by-level progression, funnel depth, session loading behaviour and retention side by side, using each build's data to find the next lever before moving on.</p>
         <p class="pull">Every build answered one question and raised the next. That loop is the whole story.</p>
       </div>
     </section>
 
-    <!-- 02 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 02</div><h3>The working loop</h3></div>
       <div class="step-body">
@@ -666,23 +792,18 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <rect class="dg-box" x="6"   y="34" width="150" height="62" rx="12"/>
               <text class="dg-title" x="81"  y="60" text-anchor="middle">Ship a build</text>
               <text class="ax"       x="81"  y="80" text-anchor="middle">one change set</text>
-
               <rect class="dg-box" x="184" y="34" width="150" height="62" rx="12"/>
               <text class="dg-title" x="259" y="60" text-anchor="middle">Read the funnel</text>
               <text class="ax"       x="259" y="80" text-anchor="middle">level by level</text>
-
               <rect class="dg-box-accent" x="362" y="34" width="150" height="62" rx="12"/>
               <text class="dg-title" x="437" y="60" text-anchor="middle">Locate the wall</text>
               <text class="ax"       x="437" y="80" text-anchor="middle">deepest drop first</text>
-
               <rect class="dg-box" x="540" y="34" width="154" height="62" rx="12"/>
               <text class="dg-title" x="617" y="60" text-anchor="middle">Retune</text>
               <text class="ax"       x="617" y="80" text-anchor="middle">timer · target · flow</text>
-
               <line x1="160" y1="65" x2="178" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah)"/>
               <line x1="338" y1="65" x2="356" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah)"/>
               <line x1="516" y1="65" x2="534" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah)"/>
-
               <path d="M617,100 L617,140 L81,140 L81,102" fill="none" stroke="#5B5580" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)"/>
               <text class="dg-label" x="350" y="160" text-anchor="middle">Re-measure the same levels every build</text>
             </g>
@@ -692,7 +813,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
     </section>
 
-    <!-- 03 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 03</div><h3>Resolving the level-design walls</h3></div>
       <div class="step-body">
@@ -710,7 +830,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             <polyline class="sline amberline" points="60,48 105,52 150,120 195,58 240,56 285,60 320,58"/>
             <path class="wall-mark" d="M150,44 L150,178"/>
             <text class="ax" x="150" y="196" text-anchor="middle" fill="#B26A00">players stall here</text>
-
             <line class="gl" x1="386" y1="40"  x2="670" y2="40"/>
             <line class="gl" x1="386" y1="90"  x2="670" y2="90"/>
             <line class="gl" x1="386" y1="140" x2="670" y2="140"/>
@@ -718,7 +837,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             <text class="dg-label" x="386" y="24">After — retuned</text>
             <polyline class="sline mint" points="400,50 445,48 490,52 535,46 580,50 625,47 660,48"/>
             <text class="ax" x="528" y="196" text-anchor="middle" fill="#0FA37F">ramp stays readable</text>
-
             <text class="ax" x="188" y="212" text-anchor="middle">Level →</text>
             <text class="ax" x="528" y="212" text-anchor="middle">Level →</text>
           </svg>
@@ -738,7 +856,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
     </section>
 
-    <!-- 04 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 04</div><h3>Funnel depth</h3></div>
       <div class="step-body">
@@ -774,13 +891,12 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
     </section>
 
-    <!-- 05 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 05</div><h3>Design framework: reward pacing</h3></div>
       <div class="step-body">
         <p>Level design and reward cadence are tuned together, following a three-act structure across the game's level range. Onboarding rewards every clear to build habit; the mid-game spaces rewards out to create breathing room between pushes; the late game shifts to bigger, rarer payouts that reward mastery rather than frequency.</p>
 
-        <div class="acts">
+        <div class="acts-grid">
           <div class="act act1">
             <h5>Act I — Onboarding</h5>
             <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -807,7 +923,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
     </section>
 
-    <!-- 06 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 06</div><h3>Design framework: currency sources &amp; sinks</h3></div>
       <div class="step-body">
@@ -843,7 +958,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
     </section>
 
-    <!-- 07 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 07</div><h3>Investigation: ruling out load time</h3></div>
       <div class="step-body">
@@ -872,7 +986,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
     </section>
 
-    <!-- 08 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 08</div><h3>Where it landed</h3></div>
       <div class="step-body">
@@ -887,7 +1000,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       </div>
     </section>
 
-    <!-- 09 -->
     <section class="step">
       <div class="step-label"><div class="n">SECTION 09</div><h3>What I took from it</h3></div>
       <div class="step-body">
@@ -909,7 +1021,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/brainrot-game">Next: Brainrot Game →</a>
     </div>
-    <p class="cs-rights">My Cooking Story is a Rendered Ideas title. All rights, artwork, game data and related materials remain the property of Rendered Ideas. This page describes design process only; no performance figures, cohort data or internal tuning values are published. Diagrams are schematic illustrations of method, not measured results.</p>
+    <p class="cs-rights">My Cooking Story is a Rendered Ideas title. All rights, artwork, game data and related materials remain the property of Rendered Ideas; screenshots shown are from the public Google Play listing. This page describes design process only — no performance figures, cohort data or internal tuning values are published, and all diagrams are schematic illustrations of method rather than measured results.</p>
   </div>
 </div>
 
@@ -919,54 +1031,105 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 <div class="view" id="view-brainrot-game" hidden>
   <div class="wrap cs-head">
     <a class="back" href="#top">← Back to work</a>
-    <p class="cs-kicker">Case study 02 · 0→1 game design + retention</p>
-    <h1 class="cs-title">Brainrot Game</h1>
-    <p class="cs-sub">Designed from concept to implementation for Amazon Fire TV and Fire Tablet, then iterated on the core loop until early retention moved.</p>
+    <p class="cs-kicker">Case study 02 · Amazon Fire TV &amp; Fire Tablet</p>
+    <div class="cs-titlerow">
+      <div class="appicon appicon-fake" aria-hidden="true">BR</div>
+      <h1 class="cs-title">Brainrot Game</h1>
+    </div>
+    <p class="cs-sub">A collection game built for the living room: hatch, collect, steal, upgrade, compete. Designed from concept to implementation for Fire TV and Fire Tablet, then iterated until early retention moved.</p>
+
+    <div class="cs-actions">
+      <a class="btn btn-store" href="https://www.amazon.in/Brainrot-Game-Steal-Brainrots-Multiplayer/dp/B0GJCLN6GD/" target="_blank" rel="noopener">View on Amazon Appstore ↗</a>
+      <span class="storelink">Rendered Ideas · Fire TV &amp; Fire Tablet</span>
+    </div>
+
+    <div class="shots shots-3 cs-gallery">
+      <div class="cover-tile"><div><div class="t">Hatch</div><div class="s">Egg → reveal → collect</div></div></div>
+      <div class="cover-tile" style="background:linear-gradient(140deg,#3a1a5e 0%,#B03BF5 60%,#FF9F1C 100%)"><div><div class="t">Steal</div><div class="s">Raid rival zones</div></div></div>
+      <div class="cover-tile" style="background:linear-gradient(140deg,#0d3d33 0%,#0FA37F 55%,#7BE3B8 100%)"><div><div class="t">Compete</div><div class="s">Deck power · rankings</div></div></div>
+    </div>
+    <p class="shot-cap">The three pillars the loop is built on.</p>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
       <div class="fact"><div class="k">Focus</div><div class="v">0→1 design</div></div>
       <div class="fact"><div class="k">Platform</div><div class="v">Fire TV / Fire Tablet</div></div>
       <div class="fact"><div class="k">Input</div><div class="v">TV remote &amp; touch</div></div>
+      <div class="fact"><div class="k">Session</div><div class="v">Short, repeatable</div></div>
       <div class="fact"><div class="k">Studio</div><div class="v">Rendered Ideas</div></div>
     </div>
-
-    <p class="note" style="margin-top:20px">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
   </div>
 
   <div class="wrap">
     <section class="step">
       <div class="step-label"><div class="n">STEP 01</div><h3>Concept → prototype</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> where the idea came from, who it's for, and what the first playable proved or disproved. Include the pitch in one line. Keep figures out unless they're already public.</span>
+        <p>The brief was a collection game aimed at short, repeatable sessions on a TV. The pitch in one line: hatch eggs, collect and steal Brainrots, build the strongest deck.</p>
+        <span class="fill"><b>Add here:</b> where the idea actually came from, who you were designing for, and what the first playable proved or disproved. One paragraph.</span>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">STEP 02</div><h3>Core loop</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> what the player does, what they earn, and what pulls them into the next round.</span>
+        <p>Buy eggs from the shop, hatch them to reveal new Brainrots, upgrade what you pull, explore zones to steal from others, then climb the rankings. Each step feeds the next: currency buys eggs, eggs produce collection, collection drives deck power, deck power earns ranking and more currency.</p>
+
+        <div class="dgm-card">
+          <h4>The collection loop</h4>
+          <svg class="dgm" viewBox="0 0 700 190" role="img" aria-label="A five-step collection loop: earn, buy eggs, hatch, upgrade, compete">
+            <defs>
+              <marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" class="arrowhead"/>
+              </marker>
+            </defs>
+            <g class="fade">
+              <rect class="dg-box" x="6"   y="34" width="128" height="62" rx="12"/>
+              <text class="dg-title" x="70"  y="60" text-anchor="middle">Earn</text>
+              <text class="ax"       x="70"  y="80" text-anchor="middle">play · steal</text>
+              <rect class="dg-box" x="150" y="34" width="128" height="62" rx="12"/>
+              <text class="dg-title" x="214" y="60" text-anchor="middle">Buy eggs</text>
+              <text class="ax"       x="214" y="80" text-anchor="middle">shop</text>
+              <rect class="dg-box-accent" x="294" y="34" width="128" height="62" rx="12"/>
+              <text class="dg-title" x="358" y="60" text-anchor="middle">Hatch</text>
+              <text class="ax"       x="358" y="80" text-anchor="middle">reveal moment</text>
+              <rect class="dg-box" x="438" y="34" width="128" height="62" rx="12"/>
+              <text class="dg-title" x="502" y="60" text-anchor="middle">Upgrade</text>
+              <text class="ax"       x="502" y="80" text-anchor="middle">deck power</text>
+              <rect class="dg-box" x="582" y="34" width="112" height="62" rx="12"/>
+              <text class="dg-title" x="638" y="60" text-anchor="middle">Compete</text>
+              <text class="ax"       x="638" y="80" text-anchor="middle">rankings</text>
+              <line x1="138" y1="65" x2="146" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
+              <line x1="282" y1="65" x2="290" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
+              <line x1="426" y1="65" x2="434" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
+              <line x1="570" y1="65" x2="578" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
+              <path d="M638,100 L638,140 L70,140 L70,102" fill="none" stroke="#5B5580" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah2)"/>
+              <text class="dg-label" x="354" y="160" text-anchor="middle">The reveal is the hook; the deck is the reason to come back</text>
+            </g>
+          </svg>
+        </div>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">STEP 03</div><h3>Feature &amp; progression design</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> the features you specced, the unlock order, and the pacing curve. Note which features were cut and why.</span>
+        <p>Progression runs on two tracks at once — collection breadth (how many Brainrots you've found, including rare and secret ones) and deck strength (how far you've upgraded them). Zones gate content, limited-time events add rarity pressure, and rankings give the whole thing a scoreboard.</p>
+        <span class="fill"><b>Add here:</b> the unlock order you specced, which features were cut and why, and how you paced the first session against the first week.</span>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">STEP 04</div><h3>UX on a 10-foot screen</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> what designing for a TV remote changed — focus states, readability at distance, input latency, and how the tablet build differed. This section is the one most portfolios can't write; make it specific.</span>
+        <p>A TV is not a phone with a bigger screen. There's no pointer, no swipe and no thumb — just a remote's D-pad, a viewer sitting several feet back, and a shared living-room context where sessions get interrupted. Every screen has to be navigable in a straight line, every focus state has to be unmistakable from across the room, and text has to survive being read at distance.</p>
+        <span class="fill"><b>Add here:</b> the specific decisions that came out of that — focus order and D-pad traversal, how you sized type and hit targets, what you cut because it needed a pointer, and what changed for the tablet build. This is the section most portfolios can't write; make it concrete.</span>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">STEP 05</div><h3>Implementation</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> what you built in Unity yourself, how the data was configured, and how builds reached Fire devices for testing.</span>
+        <span class="fill"><b>Write here:</b> what you built in Unity yourself, how the content and economy data were configured, and how builds reached Fire devices for testing.</span>
       </div>
     </section>
 
@@ -980,7 +1143,8 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     <section class="step">
       <div class="step-label"><div class="n">STEP 07</div><h3>Result</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> which change drove most of the uplift, and what you'd tackle next. Describe the direction of movement rather than the figures until they're cleared for sharing.</span>
+        <p>Both Day-1 and Day-7 retention improved across the iteration cycle, measured on Fire TV Stick and Fire Tablet.</p>
+        <span class="fill"><b>Add here:</b> which change drove most of the uplift, and what you'd tackle next. Describe the direction of movement rather than the figures until they're cleared for sharing.</span>
       </div>
     </section>
 
@@ -988,7 +1152,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/spa-salon">Next: Spa Salon →</a>
     </div>
-    <p class="cs-rights">Brainrot Game is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas. This page describes design process only.</p>
+    <p class="cs-rights">Brainrot Game is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas. This page describes design process only; feature descriptions reflect the public store listing.</p>
   </div>
 </div>
 
@@ -1081,14 +1245,32 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
   <div class="wrap cs-head">
     <a class="back" href="#top">← Back to work</a>
     <p class="cs-kicker">Project 03 · Level &amp; encounter design</p>
-    <h1 class="cs-title">Goon Fight</h1>
-    <p class="cs-sub">Level and encounter design: building combat spaces, tuning difficulty across the progression, and iterating on the ones that didn't play well.</p>
+    <div class="cs-titlerow">
+      <img class="appicon" src="https://play-lh.googleusercontent.com/WUZKUU5mv2hCIJo1Q3sEQ6mjYpClqyfnKI2YmN8TF8BP-PRPy_Oow_WGqIqWv21GQMM6J1txKXXXxzrhprTz=s180" alt="Goon Fight app icon" loading="lazy">
+      <h1 class="cs-title">Goon Fight</h1>
+    </div>
+    <p class="cs-sub">A retro 2D beat 'em up. I built and tuned combat levels — layout, encounter composition and difficulty pacing across four environment themes.</p>
+
+    <div class="cs-actions">
+      <a class="btn btn-store" href="https://play.google.com/store/apps/details?id=com.renderedideas.goonfight" target="_blank" rel="noopener">Play on Google Play ↗</a>
+      <span class="storelink">Rendered Ideas · Action</span>
+    </div>
+
+    <div class="shots shots-5 cs-gallery">
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/WLdu1hI90M2n9MUB3yD2gJ2sjd4QWW1ZhGVDr4eh-19N5fjF_39JZVQ4GCZdVilXCg8UVzvLZMRZrR3y8egEFw=w1052-h592" alt="Goon Fight street combat" loading="lazy"></figure>
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/M0RzHaENVKiQKhf2JGNO-g2pVRdImhSi_ZNwBYStJbYq1hOAnDcE6ZnOTsrW674sPyVHschrsqVh_pq0OyVklg=w1052-h592" alt="Goon Fight enemies" loading="lazy"></figure>
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/pOQtDG-Nh8wP_hZh1TOhB6eO2QAqwZ-ajSqVE-3NTE3O4xDODII25OTOsDeg5O58UrbrPhX08sGcGh0_cGtdYg=w1052-h592" alt="Goon Fight environment" loading="lazy"></figure>
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/KLxIBN22lc52bvhHYPlTggy7R8TLtdD0AQcOkbTPACeRJGaLUI445ihEcu5Nc9xai9Dcg2197XYzJvN_6hRu=w1052-h592" alt="Goon Fight boss" loading="lazy"></figure>
+      <figure class="shot" style="margin:0"><img src="https://play-lh.googleusercontent.com/Zf5I7eVyioZTMc6pG59Wk6SsyUEnJMpF7pN47yFdE208Mn5XEReGHLv_vBYuGGnWWL_Hh_saaA_4x1MsSeFV4Pc=w1052-h592" alt="Goon Fight level" loading="lazy"></figure>
+    </div>
+    <p class="shot-cap">From the public Google Play listing. Click to enlarge.</p>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Level Designer</div></div>
       <div class="fact"><div class="k">Focus</div><div class="v">Levels &amp; encounters</div></div>
+      <div class="fact"><div class="k">Genre</div><div class="v">2D beat 'em up</div></div>
+      <div class="fact"><div class="k">Environments</div><div class="v">Dungeon · Jungle · Village · Moving bus</div></div>
       <div class="fact"><div class="k">Tools</div><div class="v">Unity</div></div>
-      <div class="fact"><div class="k">Scope</div><div class="v">Combat level set</div></div>
     </div>
   </div>
 
@@ -1096,35 +1278,61 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     <section class="step">
       <div class="step-label"><div class="n">01</div><h3>Level design</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> your layout approach — sightlines, cover, spacing, how the player reads a space on entry.</span>
+        <p>A side-on brawler gives you one axis of movement and a camera that gates progress, so the design work is about what the player can see coming and how much room they have when it arrives. Each environment theme changes that arithmetic: a dungeon corridor pins you against walls, a jungle gives you verticality, a village opens the space out, and a moving bus removes retreat entirely.</p>
+        <span class="fill"><b>Add here:</b> your layout approach in your own words — how you spaced pickups and obstacles, where you placed the camera locks, and how you made a space readable the moment the player enters it.</span>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">02</div><h3>Encounter design</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> enemy composition, spawn order and timing, and the skill each encounter is asking the player to use.</span>
+        <p>Enemies range from low-level street goons to bosses, and the interesting work is composition rather than count — which enemy types are on screen together, in what order they arrive, and which player skill each wave is asking for. Boosters like shields, double punch and magic jump are part of that equation: where they're placed decides whether a wave reads as a threat or a power fantasy.</p>
+        <span class="fill"><b>Add here:</b> one encounter broken down beat by beat — spawn order, timing, what the player is meant to learn from it.</span>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">03</div><h3>Difficulty &amp; pacing</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> the intensity curve across levels — where the peaks and rests sit, and how you kept the ramp readable.</span>
+        <p>Intensity is shaped across the level set rather than within a single level: peaks at boss encounters and theme transitions, rests immediately after, and a slow widening of the enemy mix so new types get introduced against familiar ones.</p>
+
+        <div class="dgm-card">
+          <h4>Intensity across a level set</h4>
+          <svg class="dgm" viewBox="0 0 700 200" role="img" aria-label="A schematic intensity curve with peaks at boss encounters and rests after each">
+            <line class="gl" x1="46" y1="34"  x2="672" y2="34"/>
+            <line class="gl" x1="46" y1="82"  x2="672" y2="82"/>
+            <line class="gl" x1="46" y1="130" x2="672" y2="130"/>
+            <line class="gl" x1="46" y1="160" x2="672" y2="160"/>
+            <text class="ax" x="14" y="97" transform="rotate(-90 14 97)" text-anchor="middle">Intensity</text>
+            <polyline class="sline amberline" points="60,140 120,118 180,126 240,74 300,132 360,104 420,112 480,52 540,126 600,96 660,44"/>
+            <g class="fade">
+              <circle cx="240" cy="74" r="5" fill="#FF9F1C"/>
+              <circle cx="480" cy="52" r="5" fill="#FF9F1C"/>
+              <circle cx="660" cy="44" r="5" fill="#FF9F1C"/>
+              <text class="ax" x="240" y="62" text-anchor="middle" fill="#B26A00">boss</text>
+              <text class="ax" x="480" y="40" text-anchor="middle" fill="#B26A00">boss</text>
+              <text class="ax" x="300" y="150" text-anchor="middle">rest</text>
+              <text class="ax" x="540" y="146" text-anchor="middle">rest</text>
+            </g>
+            <text class="ax" x="360" y="184" text-anchor="middle">Level →</text>
+          </svg>
+          <p class="cap">Schematic. Illustrates the intended pacing shape, not measured difficulty data.</p>
+        </div>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">04</div><h3>Iteration</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> pick one level that failed playtest. What players did, what you changed, how it played after. One concrete example beats five vague ones.</span>
+        <span class="fill"><b>Write here:</b> pick one level that failed playtest. What players actually did, what you changed, how it played after. One concrete example beats five vague ones — this is the section a level design lead will read first.</span>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">05</div><h3>Final gameplay</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> a short walkthrough of the finished levels, in your own words.</span>
+        <p>The finished level set is live on Google Play across all four environment themes.</p>
+        <span class="fill"><b>Add here:</b> a short walkthrough of two or three levels you're proudest of, in your own words.</span>
       </div>
     </section>
 
@@ -1132,11 +1340,18 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/my-cooking-story">Case study: My Cooking Story →</a>
     </div>
-    <p class="cs-rights">Goon Fight is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas.</p>
+    <p class="cs-rights">Goon Fight is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas; screenshots shown are from the public Google Play listing. This page describes design process only.</p>
   </div>
 </div>
 
 </main>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close image viewer">×</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap">Click anywhere or press Esc to close</p>
+</div>
 
 <script>
 (function () {
@@ -1144,9 +1359,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  /* ---------- hash router ----------
-     Routes look like #/case/brainrot-game. Anything else (#work, #top)
-     stays on the home view and just scrolls. */
+  /* ---------- hash router ---------- */
   var ROUTES = {
     "#/case/my-cooking-story": "view-my-cooking-story",
     "#/case/brainrot-game":    "view-brainrot-game",
@@ -1183,7 +1396,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     }
   }
 
-  /* set each line's own length so CSS can draw it on */
   function primeLines(scope) {
     var ls = scope.querySelectorAll(".sline");
     for (var i = 0; i < ls.length; i++) {
@@ -1197,6 +1409,54 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     }
   }
 
+  /* ---------- broken images degrade quietly ----------
+     If a store CDN ever stops serving an image, hide the tile
+     rather than leaving a broken-image icon on the page. */
+  function guardImages(root) {
+    var imgs = (root || document).querySelectorAll("img");
+    for (var i = 0; i < imgs.length; i++) {
+      (function (img) {
+        if (img.getAttribute("data-guarded")) return;
+        img.setAttribute("data-guarded", "1");
+        img.addEventListener("error", function () {
+          var holder = img.closest(".shot, .tile, .cover");
+          if (holder) { holder.style.display = "none"; }
+          else { img.style.display = "none"; }
+        });
+      })(imgs[i]);
+    }
+  }
+
+  /* ---------- lightbox ---------- */
+  var lb = document.getElementById("lb"),
+      lbImg = document.getElementById("lbImg");
+
+  function openLb(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt || "";
+    lb.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLb() {
+    lb.classList.remove("open");
+    lbImg.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("click", function (e) {
+    var shot = e.target.closest ? e.target.closest(".shot") : null;
+    if (shot) {
+      var img = shot.querySelector("img");
+      if (img) { e.preventDefault(); openLb(img.currentSrc || img.src, img.alt); }
+      return;
+    }
+    if (e.target.closest && e.target.closest("#lb")) closeLb();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && lb.classList.contains("open")) closeLb();
+  });
+
+  /* ---------- routing ---------- */
   function route() {
     var hash = window.location.hash;
 
@@ -1206,6 +1466,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       window.scrollTo(0, 0);
       var v = document.getElementById(id), t = v.querySelector(".cs-title");
       document.title = (t ? t.textContent.trim() : "Case study") + " — Prothom Pal";
+      guardImages(v);
       observeAll();
       return;
     }
@@ -1227,9 +1488,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
   window.addEventListener("hashchange", route);
 
-  /* hero curve draws on load */
-  primeLines(document.getElementById("curve"));
-
+  guardImages(document);
   route();
   observeAll();
 })();
