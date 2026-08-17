@@ -682,7 +682,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
             <div class="card-copy">
               <p class="card-desc">A creature-collection game for Amazon Fire TV and Fire Tablet: explore, catch or steal creatures, fight in short timing-based encounters, and merge duplicates up a six-tier ladder.</p>
-              <p class="card-desc">Designed from concept to implementation against a hard constraint — a TV remote for input and low-end living-room hardware as the floor. Both shaped the systems more than any aesthetic goal did.</p>
+              <p class="card-desc">I owned the design from concept through to the tuned parameters a developer built against, under a hard constraint — a TV remote for input and low-end living-room hardware as the floor. Both shaped the systems more than any aesthetic goal did.</p>
               <div class="outcomes">
                 <div class="outcome">
                   <div class="k">Retention</div>
@@ -1227,7 +1227,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <div class="appicon appicon-fake" aria-hidden="true">BR</div>
       <h1 class="cs-title">From a pile of good mechanics to a system that holds together</h1>
     </div>
-    <p class="cs-sub">Brainrot is a creature-collection game built for low-end living-room hardware. I started with a list of appealing verbs and gradually learned to design around player behaviour, economy, clarity, performance and production cost. The game is the artifact — the change in how I think is the actual case study.</p>
+    <p class="cs-sub">Brainrot is a creature-collection game built for low-end living-room hardware. I was the only designer on a six-person team: I specified the systems and set the parameters, and a developer built them. I started with a list of appealing verbs and gradually learned to design around player behaviour, economy, clarity, performance and production cost. The game is the artifact — the change in how I think is the actual case study.</p>
 
     <div class="cs-actions">
       <a class="btn btn-store" href="https://www.amazon.in/Brainrot-Game-Steal-Brainrots-Multiplayer/dp/B0GJCLN6GD/" target="_blank" rel="noopener">View on Amazon Appstore ↗</a>
@@ -1242,7 +1242,8 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     <p class="shot-cap">The three pillars the loop is built on.</p>
 
     <div class="facts">
-      <div class="fact"><div class="k">Role</div><div class="v">Solo design &amp; implementation</div></div>
+      <div class="fact"><div class="k">Role</div><div class="v">Sole game designer</div></div>
+      <div class="fact"><div class="k">Team</div><div class="v">6 people</div></div>
       <div class="fact"><div class="k">Platform</div><div class="v">Mobile / Android TV</div></div>
       <div class="fact"><div class="k">Hardware floor</div><div class="v">Fire TV Stick 2nd Gen</div></div>
       <div class="fact"><div class="k">Systems</div><div class="v">Tiers · merging · QTE combat · economy</div></div>
@@ -1260,7 +1261,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
         <p>The core fantasy is acquisitive rather than heroic: <em>everything I find is potentially mine, and everything I own is potentially worth more than it currently is.</em> Ownership, upgrade and accumulation — not narrative triumph.</p>
 
         <h4>What made it difficult</h4>
-        <p>Collection games are deceptively expensive. They demand volume of content, a progression system that stays meaningful across hundreds of hours, an economy that doesn't inflate, and a rendering budget that survives dozens of animated creatures at once. Working solo, I had to satisfy all of that at once, and the constraints regularly contradicted each other.</p>
+        <p>Collection games are deceptively expensive. They demand volume of content, a progression system that stays meaningful across hundreds of hours, an economy that doesn't inflate, and a rendering budget that survives dozens of animated creatures at once. As the only designer on a six-person team, every one of those had to be reconciled by me — and the constraints regularly contradicted each other.</p>
         <p>The game targets low-end living-room and mobile hardware. That single fact shaped more decisions than any aesthetic goal: input had to be minimal, encounters short, on-screen creature counts bounded, and content produced cheaply and reused aggressively.</p>
       </div>
     </section>
@@ -1311,7 +1312,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
         <p>Is this one worth catching? Worth the HP cost? Worth keeping, or is it merge fodder? Do I spend now or save for an egg? Those questions are the game.</p>
 
-        <div class="dgm-wrap"></div>
         <div class="dtable-wrap">
           <table class="dtable">
             <thead>
@@ -1345,7 +1345,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
         <h4>B — Combat had to be extremely simple</h4>
         <p>Combat is built on directional quick-time events. A correct, timely directional input means your brainrot attacks. A wrong input or a timeout means the wild one attacks. That's the whole system.</p>
-        <p>The lesson wasn't "I implemented QTEs." It was working out what a combat system has to satisfy on constrained hardware and a constrained input device:</p>
+        <p>The lesson wasn't "I designed a QTE." It was working out what a combat system has to satisfy on constrained hardware and a constrained input device — the window widths, the input tolerances and the failure behaviour were mine to decide, and our developer built to them:</p>
         <ul class="bullets">
           <li><b>Low cognitive load</b> — the player should never have to plan</li>
           <li><b>Immediate feedback</b> — input and consequence in the same beat</li>
@@ -1517,7 +1517,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     <section class="step">
       <div class="step-label"><div class="n">SECTION 10</div><h3>Retention as a design constraint</h3></div>
       <div class="step-body">
-        <p>The most significant change in how I worked came from instrumenting the game and reading what players actually did. I stopped asking only "is this fun?" and started asking "where are players leaving?"</p>
+        <p>The most significant change in how I worked came from specifying what the game needed to measure, then reading what players actually did with it. I defined the events and the funnel steps; our developer wired them up. I stopped asking only "is this fun?" and started asking "where are players leaving?"</p>
 
         <div class="dtable-wrap">
           <table class="dtable">
@@ -1572,7 +1572,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <div class="step-label"><div class="n">SECTION 12</div><h3>When performance became game design</h3></div>
       <div class="step-body">
         <p>Brainrot wasn't designed on an unlimited PC. On the target hardware, frame rate degraded severely when many brainrots were on screen — which is to say, precisely when the game was doing the thing it exists to do.</p>
-        <p>The investigation covered animation cost, double-sided materials, debug drawing, shadow rendering, overall rendering cost, on-screen creature counts and vertex limits. But the significant outcome wasn't the optimisation work.</p>
+        <p>Our developer profiled it and worked through animation cost, double-sided materials, debug drawing, shadow rendering, overall rendering cost and vertex limits. My part was the design side of the same problem: deciding how many creatures could be on screen at once, when they were visible, and what the collection could look like within whatever budget the profiling left us. The significant outcome wasn't the optimisation work.</p>
 
         <div class="dgm-card">
           <h4>On-screen creature count is a design parameter, not a technical detail</h4>
@@ -1622,7 +1622,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             <p>Can I actually produce and run this?</p>
           </div>
         </div>
-        <p style="margin-top:16px">For a solo developer that distinction isn't a refinement. It's the difference between a shipped game and an interesting document.</p>
+        <p style="margin-top:16px">On a six-person team that distinction isn't a refinement. A design that can't be produced within the team's capacity or run on the target device isn't an ambitious design — it's a schedule problem I've handed to everyone else.</p>
       </div>
     </section>
 
@@ -1712,7 +1712,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <tr><td class="lead">Stealing</td><td class="was">Stealing creates excitement</td><td>Players need protection</td><td class="now">Shields</td><td>Risk requires counterplay, or it's just loss</td></tr>
               <tr><td class="lead">Milestones</td><td class="was">Players will notice objectives</td><td>Players forgot them entirely</td><td class="now">Improved visibility and sequencing</td><td>Presence is not comprehension</td></tr>
               <tr><td class="lead">Progression</td><td class="was">More levels means more engagement</td><td>Drop-offs clustered at specific points</td><td class="now">Level-by-level analysis and rebalancing</td><td>Content volume does not equal retention</td></tr>
-              <tr><td class="lead">Performance</td><td class="was">More brainrots means a better collection fantasy</td><td>Frame rate collapsed on low-end hardware</td><td class="now">Optimisation and bounded on-screen counts</td><td>Technical constraints shape design, not just schedules</td></tr>
+              <tr><td class="lead">Performance</td><td class="was">More brainrots means a better collection fantasy</td><td>Frame rate collapsed on low-end hardware</td><td class="now">Bounded on-screen counts, set against the profiled budget</td><td>Technical constraints shape design, not just schedules</td></tr>
             </tbody>
           </table>
         </div>
