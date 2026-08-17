@@ -4,13 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Prothom Pal — Game Designer</title>
-<meta name="description" content="Game Designer working on mobile and Amazon Fire TV games. Systems, progression, economy and player retention, driven by data." />
+<meta name="description" content="Game Designer working on mobile and Amazon Fire TV games. Systems, progression, economy and player retention." />
 <meta name="theme-color" content="#F4F2FB" />
-<link rel="icon" href="assets/img/favicon.png" />
 
 <meta property="og:title" content="Prothom Pal — Game Designer" />
 <meta property="og:description" content="Mobile Games & Amazon Fire TV Games. Systems, progression, economy and player retention." />
-<meta property="og:image" content="assets/img/og-cover.jpg" />
 <meta property="og:type" content="website" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,8 +29,6 @@
   --plum-deep:#4B21C4;
   --amber:#FF9F1C;
   --mint:#0FA37F;
-  --steel:#5B84B1;
-  --red:#D9453B;
 
   --shadow-sm:0 1px 2px rgba(23,18,51,.05), 0 6px 18px rgba(23,18,51,.05);
   --shadow-md:0 2px 4px rgba(23,18,51,.06), 0 18px 44px rgba(23,18,51,.09);
@@ -70,7 +66,6 @@ a:hover{text-decoration:underline}
 
 h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 p{margin:0 0 14px}
-.lede{font-size:18.5px}
 
 .eyebrow{
   font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.22em;
@@ -102,7 +97,8 @@ p{margin:0 0 14px}
 .btn-primary:hover{background:var(--plum-deep);box-shadow:0 10px 24px rgba(109,59,245,.32)}
 .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
 .btn-ghost:hover{background:var(--ink);color:var(--paper)}
-.btn-sm{padding:9px 16px;font-size:14px}
+.btn-store{background:var(--ink);color:var(--paper);font-size:14.5px}
+.btn-store:hover{background:#000}
 
 /* ============================================================
    RHYTHM
@@ -131,19 +127,31 @@ p{margin:0 0 14px}
 .curve-legend{display:flex;gap:14px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
 .curve-legend i{display:inline-block;width:16px;height:2px;margin-right:5px;vertical-align:middle;background:repeating-linear-gradient(to right,#A9A2C9 0 4px,transparent 4px 8px)}
 .curve-legend .after i{background:var(--mint);height:3px}
-.curve svg{width:100%;height:auto;display:block}
 .curve-foot{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:8px;padding-top:8px}
-.grid-line{stroke:var(--line);stroke-width:1}
-.axis-label{font-family:var(--mono);font-size:11px;fill:var(--ink-soft)}
-.line-base{fill:none;stroke:#A9A2C9;stroke-width:2.5;stroke-dasharray:5 5;stroke-linejoin:round;stroke-linecap:round}
-.line-after{fill:none;stroke:var(--mint);stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
-.dot-after{fill:var(--mint)}
-.callout-box{fill:var(--panel);stroke:var(--mint);stroke-width:1.5}
-.callout-text{font-family:var(--mono);font-size:12px;font-weight:700;fill:var(--mint)}
-.callout-sub{font-family:var(--mono);font-size:10px;fill:var(--ink-soft)}
-.anim .line-base{opacity:0;animation:fadeIn .7s ease forwards;animation-delay:.2s}
-.anim .line-after{stroke-dashoffset:var(--len);animation:draw 1.4s cubic-bezier(.22,.8,.3,1) forwards;animation-delay:.45s}
-.anim .curve-fade{opacity:0;animation:fadeIn .6s ease forwards;animation-delay:1.5s}
+
+/* ============================================================
+   SVG DIAGRAM PRIMITIVES
+   ============================================================ */
+svg.dgm{width:100%;height:auto;display:block;overflow:visible}
+.gl{stroke:var(--line);stroke-width:1}
+.ax{font-family:var(--mono);font-size:10.5px;fill:var(--ink-soft)}
+.ax-strong{font-family:var(--mono);font-size:11px;font-weight:700;fill:var(--ink)}
+.dg-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;fill:var(--ink-soft)}
+.dg-title{font-family:var(--display);font-size:14px;font-weight:800;fill:var(--ink)}
+.dg-body{font-family:var(--body);font-size:13px;fill:var(--ink)}
+.dg-box{fill:var(--panel);stroke:var(--line);stroke-width:1.5}
+.dg-box-accent{fill:#F7F5FE;stroke:#C8BDF2;stroke-width:1.5}
+.sline{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.sline-ghost{fill:none;stroke:#A9A2C9;stroke-width:2.5;stroke-dasharray:5 5;stroke-linecap:round;stroke-linejoin:round}
+.mint{stroke:var(--mint)}
+.amberline{stroke:var(--amber)}
+.wall-mark{fill:none;stroke:var(--amber);stroke-width:1.4;stroke-dasharray:4 4}
+.arrowhead{fill:var(--ink-soft)}
+
+/* line-draw animation */
+.anim .sline,.animate .sline{stroke-dashoffset:var(--len,0);animation:draw 1.3s cubic-bezier(.22,.8,.3,1) forwards}
+.anim .sline-ghost,.animate .sline-ghost{opacity:0;animation:fadeIn .7s ease forwards;animation-delay:.15s}
+.anim .fade,.animate .fade{opacity:0;animation:fadeIn .6s ease forwards;animation-delay:1.1s}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fadeIn{to{opacity:1}}
 
@@ -151,11 +159,8 @@ p{margin:0 0 14px}
    AWARDS
    ============================================================ */
 .awards{display:flex;gap:12px;flex-wrap:wrap}
-.award{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 18px 8px 10px;box-shadow:var(--shadow-sm);color:var(--ink)}
-a.award:hover{text-decoration:none;border-color:#C8BDF2;transform:translateY(-2px)}
-a.award{transition:transform .15s ease,border-color .15s ease}
-.award img{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none}
-.award .medal{font-size:17px;line-height:1;padding-left:6px}
+.award{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:9px 18px 9px 14px;box-shadow:var(--shadow-sm);color:var(--ink)}
+.award .medal{font-size:17px;line-height:1}
 .award .place{font-size:14.5px;font-weight:600}
 .award .game{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);border-left:1px solid var(--line);padding-left:12px;white-space:nowrap}
 
@@ -163,24 +168,18 @@ a.award{transition:transform .15s ease,border-color .15s ease}
    WORK CARDS
    ============================================================ */
 .cards{display:grid;gap:20px}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;overflow:hidden}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#C8BDF2}
-.card-grid{display:grid;grid-template-columns:320px 1fr;gap:0}
-.card-thumb{background:#EEEBF9;border-right:1px solid var(--line);min-height:100%}
-.card-thumb img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
-.card-body{padding:26px}
 .card-num{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--plum);margin-bottom:8px}
-.card-title{font-size:clamp(26px,3.4vw,32px);margin-bottom:8px}
+.card-title{font-size:clamp(26px,3.4vw,34px);margin-bottom:8px}
 .card-role{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
-.card-desc{max-width:62ch}
+.card-desc{max-width:64ch}
 
-.metrics{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 6px}
-.metric{border:1px solid var(--line);border-radius:12px;padding:11px 16px;background:linear-gradient(180deg,#FBFAFF,#F6F4FE);min-width:132px}
-.metric .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
-.metric .v{font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:3px}
-.metric .v .from{color:var(--ink-soft);font-weight:600}
-.metric .v .arrow{color:var(--amber);padding:0 3px}
-.metric .v .to{color:var(--mint)}
+.outcomes{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 6px}
+.outcome{border:1px solid var(--line);border-radius:12px;padding:11px 16px;background:linear-gradient(180deg,#FBFAFF,#F6F4FE);flex:1 1 220px}
+.outcome .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.outcome .v{font-size:15.5px;font-weight:600;margin-top:4px;line-height:1.35}
+.outcome .v b{color:var(--mint);font-weight:700}
 
 .note{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:rgba(255,159,28,.1);border-left:2px solid var(--amber);padding:8px 12px;border-radius:0 8px 8px 0;margin:14px 0 0;display:inline-block}
 .card-foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px}
@@ -193,6 +192,8 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 .bullets{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
 .bullets li{position:relative;padding-left:20px;font-size:15.5px}
 .bullets li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:2px;background:var(--amber)}
+.storelink{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+.storelink a{color:var(--plum-deep)}
 
 .upcoming{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:1px dashed #C4BBEA;border-radius:var(--r);padding:18px 22px;background:rgba(255,255,255,.55);margin-top:20px}
 .upcoming .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--plum-deep);background:rgba(109,59,245,.1);padding:5px 10px;border-radius:999px}
@@ -217,14 +218,17 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-size:14px;background:#F4F2FB;border:1px solid var(--line);border-radius:8px;padding:5px 11px}
 
-.contact{padding:70px 0 56px;border-top:1px solid var(--line)}
+.contact{padding:70px 0 44px;border-top:1px solid var(--line)}
 .contact h2{font-size:clamp(34px,6vw,60px);letter-spacing:-.04em;max-width:14ch}
 .contact h2 em{font-style:normal;color:var(--plum)}
-.links{display:grid;gap:2px;margin-top:30px;max-width:660px}
+.links{display:grid;gap:2px;margin-top:30px;max-width:680px}
 .link-row{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:baseline;padding:13px 0;border-top:1px solid var(--line)}
 .link-row .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .link-row a{font-size:16px;font-weight:500;word-break:break-word}
-.foot{margin-top:44px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+.sitefoot{border-top:1px solid var(--line);padding:24px 0 40px}
+.sitefoot .row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+.rights{font-family:var(--mono);font-size:10.5px;line-height:1.7;color:#8A85A8;max-width:78ch;margin-top:14px}
 
 /* ============================================================
    CASE STUDY
@@ -236,19 +240,12 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 .cs-title{font-size:clamp(36px,6.4vw,62px);letter-spacing:-.04em;max-width:17ch;line-height:1}
 .cs-kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);margin-bottom:14px}
 .cs-sub{font-size:19px;color:var(--ink-soft);max-width:62ch;margin-top:16px}
-.cs-banner{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);margin:28px 0 0;box-shadow:var(--shadow-sm)}
-.cs-banner img{width:100%;aspect-ratio:21/9;object-fit:cover}
+.cs-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:28px 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:28px 0 0}
 .fact{background:var(--panel);padding:15px 18px}
 .fact .k{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
 .fact .v{font-size:15.5px;font-weight:600;margin-top:4px}
-
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:26px 0 0}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow-sm)}
-.kpi .n{font-family:var(--display);font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1}
-.kpi .n.up{color:var(--mint)}
-.kpi .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px}
 
 .step{display:grid;grid-template-columns:180px 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--line)}
 .step-label{position:sticky;top:80px;align-self:start}
@@ -256,7 +253,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 .step-label h3{font-size:23px;margin-top:6px}
 .step-body{max-width:70ch;min-width:0}
 .step-body p:last-child{margin-bottom:0}
-.step-body h4{font-size:17px;margin:22px 0 6px;color:var(--plum-deep)}
+.step-body h4{font-size:17px;margin:24px 0 6px;color:var(--plum-deep)}
 
 .pull{font-family:var(--display);font-size:clamp(21px,3.2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.28;border-left:3px solid var(--amber);padding:4px 0 4px 20px;margin:24px 0}
 
@@ -267,52 +264,32 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 .callout b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:#9A5B00}
 .callout p:last-child{margin-bottom:0}
 
-.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:6px 0 16px}
-.cs-next{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:34px 0 70px;border-top:1px solid var(--line);margin-top:10px}
-
-/* data table */
-.dtable{width:100%;border-collapse:collapse;font-size:15px;margin:16px 0 8px}
-.dtable th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:left;font-weight:700;padding:10px 12px;border-bottom:1px solid var(--line)}
-.dtable td{padding:11px 12px;border-bottom:1px solid var(--line)}
-.dtable tr:last-child td{border-bottom:none}
-.dtable td.build{font-family:var(--mono);font-weight:700}
-.dtable td.num{font-family:var(--mono)}
-.dtable .good{color:var(--mint);font-weight:700}
-.dtable tr.total td{background:#F7F5FE;font-weight:600}
-
-/* ============================================================
-   CHARTS
-   ============================================================ */
-.chart-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 14px;box-shadow:var(--shadow-sm);margin:18px 0 6px}
-.chart-card h4{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 12px;font-weight:700}
-.chart-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.chart svg,svg.chart{width:100%;height:auto;display:block;overflow:visible}
-.gl{stroke:var(--line);stroke-width:1}
-.gl-strong{stroke:#C9C2E6;stroke-width:1}
-.ax{font-family:var(--mono);font-size:10.5px;fill:var(--ink-soft)}
-.ax-title{font-family:var(--mono);font-size:10px;fill:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase}
-.vlabel{font-family:var(--mono);font-size:10.5px;font-weight:700;fill:var(--ink)}
-.cbar{transform-box:fill-box;transform-origin:bottom}
-.cbar-h{transform-box:fill-box;transform-origin:left}
-.animate .cbar{transform:scaleY(0);animation:growY .7s cubic-bezier(.2,.8,.3,1) forwards}
-.animate .cbar-h{transform:scaleX(0);animation:growX .7s cubic-bezier(.2,.8,.3,1) forwards}
-@keyframes growY{to{transform:scaleY(1)}}
-@keyframes growX{to{transform:scaleX(1)}}
-.cline{fill:none;stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
-.animate .cline{animation:draw 1.2s ease forwards}
-.target{stroke:var(--amber);stroke-width:1.6;stroke-dasharray:7 5}
-.target-label{font-family:var(--mono);font-size:10px;fill:var(--amber)}
+.dgm-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 14px;box-shadow:var(--shadow-sm);margin:20px 0 6px}
+.dgm-card h4{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 14px;font-weight:700}
+.cap{font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--ink-soft);margin:10px 0 0}
 .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
 .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
-.cap{font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--ink-soft);margin:8px 0 0}
+.legend .dash i{background:repeating-linear-gradient(to right,#A9A2C9 0 4px,transparent 4px 8px)}
 
-/* three-act reward diagram */
-.acts{display:grid;grid-template-columns:1fr 1.5fr 1.4fr;gap:10px;margin:16px 0 4px}
+/* ranked lists (sources / sinks) */
+.rank-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rank h5{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px;font-weight:700}
+.rank.src h5{color:var(--mint)}
+.rank.snk h5{color:#B26A00}
+.rank ol{margin:0;padding:0;list-style:none;display:grid;gap:8px;counter-reset:r}
+.rank li{counter-increment:r;display:flex;align-items:center;gap:10px;background:#FAF9FE;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14.5px}
+.rank li::before{content:counter(r);font-family:var(--mono);font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff}
+.rank.src li::before{background:var(--mint)}
+.rank.snk li::before{background:var(--amber)}
+.rank li .w{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+
+/* three-act reward cadence */
+.acts{display:grid;grid-template-columns:1fr 1.35fr 1.25fr;gap:10px;margin:6px 0 4px}
 .act{border-radius:12px;padding:14px 14px 12px;border:1px solid}
 .act h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;font-weight:700}
 .act .dots{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;min-height:16px;align-items:center}
 .act .dots i{width:9px;height:9px;transform:rotate(45deg);display:block}
-.act .rule{font-size:13px;line-height:1.4}
+.act .rule{font-size:13.5px;line-height:1.4}
 .act .range{font-family:var(--mono);font-size:10px;color:var(--ink-soft);margin-top:8px}
 .act1{background:rgba(255,159,28,.09);border-color:rgba(255,159,28,.45)}
 .act1 h5{color:#9A5B00}.act1 .dots i{background:var(--amber)}
@@ -321,22 +298,16 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 .act3{background:rgba(15,163,127,.08);border-color:rgba(15,163,127,.4)}
 .act3 h5{color:var(--mint)}.act3 .dots i{background:var(--mint);width:12px;height:12px}
 
-/* ============================================================
-   IMAGE SLOTS
-   ============================================================ */
-.shot{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--panel);margin:18px 0 4px;box-shadow:var(--shadow-sm)}
-.shot img{width:100%;object-fit:cover}
-.shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 4px}
-.shot-grid .shot{margin:0}
-.ph-box{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  background:repeating-linear-gradient(45deg,#F7F5FE 0 10px,#F1EEFB 10px 20px);
-  border:1px dashed #C4BBEA;border-radius:var(--r);
-  font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);text-align:center;padding:18px;
-  width:100%;
-}
-.ph-box .file{color:var(--plum-deep);font-weight:700;word-break:break-all}
-.ph-box .dim{font-size:10.5px;opacity:.8}
+/* verdict strip */
+.verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
+.vcell{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#FAF9FE}
+.vcell .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.vcell p{margin:0;font-size:14px;line-height:1.45}
+.vcell.out{background:rgba(15,163,127,.08);border-color:rgba(15,163,127,.4)}
+.vcell.out .k{color:var(--mint)}
+
+.cs-next{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:34px 0 24px;border-top:1px solid var(--line);margin-top:10px}
+.cs-rights{font-family:var(--mono);font-size:10.5px;line-height:1.7;color:#8A85A8;padding-bottom:60px;max-width:78ch}
 
 /* ============================================================
    REVEAL / RESPONSIVE / MOTION
@@ -350,29 +321,24 @@ a.award{transition:transform .15s ease,border-color .15s ease}
   .job{grid-template-columns:1fr;gap:10px}
   .step{grid-template-columns:1fr;gap:14px}
   .step-label{position:static}
-  .card-grid{grid-template-columns:1fr}
-  .card-thumb{border-right:none;border-bottom:1px solid var(--line)}
-  .card-thumb img{aspect-ratio:16/9}
   .acts{grid-template-columns:1fr}
+  .rank-cols{grid-template-columns:1fr}
+  .verdict{grid-template-columns:1fr}
   .nav-links a:nth-child(n+4){display:none}
 }
 @media (max-width:560px){
   body{font-size:16px}
   .band{padding:48px 0}
-  .card-body{padding:22px 18px}
-  .metric{flex:1 1 132px}
+  .card{padding:22px 18px}
   .link-row{grid-template-columns:1fr;gap:2px}
   .go{margin-left:0}
-  .shot-grid{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;animation-delay:0s !important;transition-duration:.001ms !important}
   .reveal{opacity:1;transform:none}
-  .anim .line-base,.anim .curve-fade{opacity:1}
-  .anim .line-after{stroke-dashoffset:0}
-  .animate .cbar{transform:scaleY(1)}
-  .animate .cbar-h{transform:scaleX(1)}
+  .anim .sline,.animate .sline{stroke-dashoffset:0}
+  .anim .sline-ghost,.animate .sline-ghost,.anim .fade,.animate .fade{opacity:1}
 }
 </style>
 </head>
@@ -413,40 +379,36 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 
       <figure class="curve anim" id="curve" style="margin:0">
         <div class="curve-head">
-          <span class="curve-title">Retention curve — My Cooking Story</span>
+          <span class="curve-title">How I read a retention problem</span>
           <span class="curve-legend">
             <span class="before"><i></i>Before</span>
             <span class="after"><i></i>After</span>
           </span>
         </div>
-        <svg viewBox="0 0 640 300" role="img" aria-label="Retention curve showing day-1 retention improving to 44.7 percent after design changes">
-          <line class="grid-line" x1="44" y1="30"  x2="616" y2="30"/>
-          <line class="grid-line" x1="44" y1="87"  x2="616" y2="87"/>
-          <line class="grid-line" x1="44" y1="145" x2="616" y2="145"/>
-          <line class="grid-line" x1="44" y1="202" x2="616" y2="202"/>
-          <line class="grid-line" x1="44" y1="260" x2="616" y2="260"/>
-          <text class="axis-label" x="8" y="34">100</text>
-          <text class="axis-label" x="14" y="91">75</text>
-          <text class="axis-label" x="14" y="149">50</text>
-          <text class="axis-label" x="14" y="206">25</text>
-          <text class="axis-label" x="20" y="264">0</text>
-          <text class="axis-label" x="34"  y="282">D0</text>
-          <text class="axis-label" x="148" y="282">D1</text>
-          <text class="axis-label" x="262" y="282">D3</text>
-          <text class="axis-label" x="377" y="282">D7</text>
-          <text class="axis-label" x="487" y="282">D14</text>
-          <text class="axis-label" x="601" y="282">D30</text>
-          <polyline class="line-base"  points="44,30 158,173 273,209 387,232 502,244 616,251"/>
-          <polyline class="line-after" points="44,30 158,157 273,196 387,223 502,237 616,246"/>
-          <g class="curve-fade">
-            <circle class="dot-after" cx="158" cy="157" r="5"/>
+        <svg class="dgm" viewBox="0 0 640 300" role="img" aria-label="Two retention curves, the second holding higher than the first after design changes">
+          <line class="gl" x1="44" y1="30"  x2="616" y2="30"/>
+          <line class="gl" x1="44" y1="87"  x2="616" y2="87"/>
+          <line class="gl" x1="44" y1="145" x2="616" y2="145"/>
+          <line class="gl" x1="44" y1="202" x2="616" y2="202"/>
+          <line class="gl" x1="44" y1="260" x2="616" y2="260"/>
+          <text class="ax" x="10" y="150" transform="rotate(-90 10 150)" text-anchor="middle">Players returning</text>
+          <text class="ax" x="34"  y="282">D0</text>
+          <text class="ax" x="148" y="282">D1</text>
+          <text class="ax" x="262" y="282">D3</text>
+          <text class="ax" x="377" y="282">D7</text>
+          <text class="ax" x="487" y="282">D14</text>
+          <text class="ax" x="601" y="282">D30</text>
+          <polyline class="sline-ghost" points="44,30 158,173 273,209 387,232 502,244 616,251"/>
+          <polyline class="sline mint" points="44,30 158,157 273,196 387,223 502,237 616,246"/>
+          <g class="fade">
+            <circle cx="158" cy="157" r="5" fill="#0FA37F"/>
             <circle cx="158" cy="173" r="4" fill="#A9A2C9"/>
-            <rect class="callout-box" x="186" y="118" width="168" height="46" rx="8"/>
-            <text class="callout-text" x="198" y="139">D1  38% → 44.7%</text>
-            <text class="callout-sub"  x="198" y="155">LTV +3.95%</text>
+            <rect x="186" y="122" width="196" height="42" rx="8" fill="#FFFFFF" stroke="#0FA37F" stroke-width="1.5"/>
+            <text class="ax-strong" x="198" y="140" fill="#0FA37F">Hold the D1 shoulder</text>
+            <text class="ax" x="198" y="155">and the whole curve lifts</text>
           </g>
         </svg>
-        <figcaption class="curve-foot">Illustrative shape. D1 and LTV figures are measured results from live builds.</figcaption>
+        <figcaption class="curve-foot">Illustrative. Shape only — no project data shown.</figcaption>
       </figure>
     </div>
   </section>
@@ -456,16 +418,16 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <div class="wrap">
       <p class="eyebrow" id="awards-h">Awards</p>
       <div class="awards">
-        <a class="award" href="https://tkgluk.itch.io/" target="_blank" rel="noopener">
-          <img src="assets/img/award-nodesmith.jpg" alt="NodeSmith" data-ph="Square icon" data-dim="200×200">
+        <div class="award">
+          <span class="medal" aria-hidden="true">🏆</span>
           <span class="place">2nd Runner-Up — BYOG Game Jam 2024</span>
           <span class="game">NodeSmith</span>
-        </a>
-        <a class="award" href="https://tkgluk.itch.io/" target="_blank" rel="noopener">
-          <img src="assets/img/award-entwined.jpg" alt="Entwined" data-ph="Square icon" data-dim="200×200">
+        </div>
+        <div class="award">
+          <span class="medal" aria-hidden="true">🏅</span>
           <span class="place">Top 10 — Waves 2025: Road to Game Jam</span>
           <span class="game">Entwined</span>
-        </a>
+        </div>
       </div>
     </div>
   </section>
@@ -477,82 +439,62 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="cards">
 
         <article class="card reveal">
-          <div class="card-grid">
-            <div class="card-thumb">
-              <img src="assets/img/mcs-card.jpg" alt="My Cooking Story gameplay" data-ph="My Cooking Story — gameplay screenshot" data-dim="1200×900 · 4:3">
+          <p class="card-num">01</p>
+          <h2 class="card-title">My Cooking Story</h2>
+          <p class="card-role">Game Designer — 0→1 design &amp; economy</p>
+          <p class="card-desc">Designed the game from concept through production, with a focus on core gameplay, progression and economy. Successive builds of level-by-level tuning took Day-1 retention past its internal target.</p>
+          <div class="outcomes">
+            <div class="outcome">
+              <div class="k">Day-1 retention</div>
+              <div class="v"><b>Target cleared</b> — and held across most live markets independently.</div>
             </div>
-            <div class="card-body">
-              <p class="card-num">01</p>
-              <h2 class="card-title">My Cooking Story</h2>
-              <p class="card-role">Game Designer — 0→1 design &amp; economy</p>
-              <p class="card-desc">Designed the game from concept through production, with a focus on core gameplay, progression and economy. Four builds of level-by-level tuning took Day-1 retention past its 40% target.</p>
-              <div class="metrics">
-                <div class="metric">
-                  <div class="k">D1 Retention</div>
-                  <div class="v"><span class="from">38%</span><span class="arrow">→</span><span class="to">44.7%</span></div>
-                </div>
-                <div class="metric">
-                  <div class="k">LTV</div>
-                  <div class="v"><span class="to">+3.95%</span></div>
-                </div>
-              </div>
-              <div class="card-foot">
-                <span class="status">Beta testing</span>
-                <a class="go" href="#/case/my-cooking-story">View case study <span class="arr">→</span></a>
-              </div>
+            <div class="outcome">
+              <div class="k">Progression</div>
+              <div class="v"><b>Deepest funnel</b> measured on the title to date.</div>
             </div>
+          </div>
+          <p class="storelink" style="margin-top:16px">Live on <a href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">Google Play ↗</a></p>
+          <div class="card-foot">
+            <span class="status">Beta testing</span>
+            <a class="go" href="#/case/my-cooking-story">View case study <span class="arr">→</span></a>
           </div>
         </article>
 
         <article class="card reveal">
-          <div class="card-grid">
-            <div class="card-thumb">
-              <img src="assets/img/brainrot-card.jpg" alt="Brainrot Game on Fire TV" data-ph="Brainrot Game — Fire TV screenshot" data-dim="1200×900 · 4:3">
+          <p class="card-num">02</p>
+          <h2 class="card-title">Brainrot Game</h2>
+          <p class="card-role">Game Designer — 0→1 design</p>
+          <p class="card-desc">Designed the game from concept to implementation for Amazon Fire TV and Fire Tablet, then iterated on the core loop until early retention moved.</p>
+          <div class="outcomes">
+            <div class="outcome">
+              <div class="k">Retention</div>
+              <div class="v"><b>D1 and D7 both improved</b> across the iteration cycle.</div>
             </div>
-            <div class="card-body">
-              <p class="card-num">02</p>
-              <h2 class="card-title">Brainrot Game</h2>
-              <p class="card-role">Game Designer — 0→1 design</p>
-              <p class="card-desc">Designed the game from concept to implementation for Amazon Fire TV and Fire Tablet.</p>
-              <div class="metrics">
-                <div class="metric">
-                  <div class="k">D1 Retention</div>
-                  <div class="v"><span class="from">15.75%</span><span class="arrow">→</span><span class="to">22.13%</span></div>
-                </div>
-                <div class="metric">
-                  <div class="k">D7 Retention</div>
-                  <div class="v"><span class="from">2.09%</span><span class="arrow">→</span><span class="to">5.10%</span></div>
-                </div>
-              </div>
-              <p class="note">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
-              <div class="card-foot">
-                <a class="go" href="#/case/brainrot-game">View case study <span class="arr">→</span></a>
-              </div>
+            <div class="outcome">
+              <div class="k">Platform</div>
+              <div class="v">Designed for TV remote input first, touch second.</div>
             </div>
+          </div>
+          <p class="note">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
+          <div class="card-foot">
+            <a class="go" href="#/case/brainrot-game">View case study <span class="arr">→</span></a>
           </div>
         </article>
 
         <article class="card reveal">
-          <div class="card-grid">
-            <div class="card-thumb">
-              <img src="assets/img/goon-card.jpg" alt="Goon Fight combat level" data-ph="Goon Fight — combat screenshot" data-dim="1200×900 · 4:3">
-            </div>
-            <div class="card-body">
-              <p class="card-num">03</p>
-              <h2 class="card-title">Goon Fight</h2>
-              <p class="card-role">Level Designer</p>
-              <p class="card-desc">Built and tuned combat levels — layout, encounters and difficulty pacing across the progression.</p>
-              <ul class="bullets">
-                <li>Level design</li>
-                <li>Encounter design</li>
-                <li>Difficulty and pacing</li>
-                <li>Iteration</li>
-                <li>Final gameplay</li>
-              </ul>
-              <div class="card-foot">
-                <a class="go" href="#/project/goon-fight">View project <span class="arr">→</span></a>
-              </div>
-            </div>
+          <p class="card-num">03</p>
+          <h2 class="card-title">Goon Fight</h2>
+          <p class="card-role">Level Designer</p>
+          <p class="card-desc">Built and tuned combat levels — layout, encounters and difficulty pacing across the progression.</p>
+          <ul class="bullets">
+            <li>Level design</li>
+            <li>Encounter design</li>
+            <li>Difficulty and pacing</li>
+            <li>Iteration</li>
+            <li>Final gameplay</li>
+          </ul>
+          <div class="card-foot">
+            <a class="go" href="#/project/goon-fight">View project <span class="arr">→</span></a>
           </div>
         </article>
 
@@ -582,7 +524,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
           <div class="titles"><b>Trainee Game Designer</b><span>1 year</span></div>
           <ul class="bullets">
             <li>Designed core gameplay, progression and economy for mobile and Amazon Fire TV titles.</li>
-            <li>Ran build-over-build level and funnel analysis, resolving difficulty walls and lifting D1 retention past a 40% target.</li>
+            <li>Ran build-over-build level and funnel analysis, resolving difficulty walls and lifting Day-1 retention past its target.</li>
             <li>Wrote design documentation and tuning sheets, and worked with engineering and art through production.</li>
           </ul>
         </div>
@@ -651,14 +593,21 @@ a.award{transition:transform .15s ease,border-color .15s ease}
         <div class="link-row"><span class="lbl">Email</span><a href="mailto:palprothom21@gmail.com">palprothom21@gmail.com</a></div>
         <div class="link-row"><span class="lbl">LinkedIn</span><a href="https://www.linkedin.com/in/prothom-pal-0b169b219/" target="_blank" rel="noopener">linkedin.com/in/prothom-pal</a></div>
         <div class="link-row"><span class="lbl">itch.io</span><a href="https://tkgluk.itch.io/" target="_blank" rel="noopener">tkgluk.itch.io — personal playable games</a></div>
+        <div class="link-row"><span class="lbl">Google Play</span><a href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">My Cooking Story</a></div>
         <div class="link-row"><span class="lbl">Resume</span><a href="assets/resume.pdf">Download PDF</a></div>
-      </div>
-      <div class="foot">
-        <span>© <span id="year">2026</span> Prothom Pal</span>
-        <span>Game Designer · Mobile &amp; Amazon Fire TV</span>
       </div>
     </div>
   </section>
+
+  <footer class="sitefoot">
+    <div class="wrap">
+      <div class="row">
+        <span>© <span id="year">2026</span> Prothom Pal</span>
+        <span>Game Designer · Mobile &amp; Amazon Fire TV</span>
+      </div>
+      <p class="rights">My Cooking Story, Brainrot Game and Goon Fight are titles of Rendered Ideas. All rights, artwork, game data and related materials remain the property of Rendered Ideas. These pages describe design process and are shared for portfolio purposes only; no performance figures or internal data are published.</p>
+    </div>
+  </footer>
 </div>
 
 <!-- ==========================================================
@@ -668,32 +617,21 @@ a.award{transition:transform .15s ease,border-color .15s ease}
   <div class="wrap cs-head">
     <a class="back" href="#top">← Back to work</a>
     <p class="cs-kicker">Case study 01 · Google Play · Casual time-management</p>
-    <h1 class="cs-title">Hitting the 40% retention target, build by build</h1>
-    <p class="cs-sub">How four consecutive builds of My Cooking Story resolved every major level-design wall found along the way and carried Day-1 retention past its 40% target — one level, one funnel and one loading hang at a time.</p>
+    <h1 class="cs-title">Hitting a retention target, build by build</h1>
+    <p class="cs-sub">How successive builds of My Cooking Story resolved every major level-design wall found along the way and carried Day-1 retention past its target — one level, one funnel and one loading theory at a time.</p>
 
-    <figure class="cs-banner" style="margin-bottom:0">
-      <img src="assets/img/mcs-hero.jpg" alt="My Cooking Story restaurant gameplay" data-ph="My Cooking Story — wide gameplay banner" data-dim="1920×820 · 21:9">
-    </figure>
+    <div class="cs-actions">
+      <a class="btn btn-store" href="https://play.google.com/store/apps/details?id=com.renderedideas.mycookingstory" target="_blank" rel="noopener">Play on Google Play ↗</a>
+      <span class="storelink">Rendered Ideas · Google Play</span>
+    </div>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
       <div class="fact"><div class="k">Focus</div><div class="v">0→1 design, progression &amp; economy</div></div>
       <div class="fact"><div class="k">Platform</div><div class="v">Google Play</div></div>
-      <div class="fact"><div class="k">Markets</div><div class="v">PH · ID · MX · EG</div></div>
-      <div class="fact"><div class="k">Builds analysed</div><div class="v">v8 → v20</div></div>
+      <div class="fact"><div class="k">Genre</div><div class="v">Tycoon time-management</div></div>
+      <div class="fact"><div class="k">Method</div><div class="v">Build-over-build funnel analysis</div></div>
       <div class="fact"><div class="k">Status</div><div class="v">Beta testing</div></div>
-    </div>
-
-    <div class="kpis">
-      <div class="kpi"><div class="n up">44.7%</div><div class="l">D1 retention, current build</div></div>
-      <div class="kpi"><div class="n up">+10.9 pts</div><div class="l">Gain over prior build</div></div>
-      <div class="kpi"><div class="n">3 / 4</div><div class="l">Markets clearing 40% outright</div></div>
-      <div class="kpi"><div class="n">1,443</div><div class="l">Install cohort, current build</div></div>
-    </div>
-
-    <div class="callout">
-      <b>A note on sharing</b>
-      <p>This page covers analysis and design reasoning only. Build internals, raw event exports and unreleased tuning tables are left out. Confirm with Rendered Ideas before publishing anything here that isn't already public.</p>
     </div>
   </div>
 
@@ -703,115 +641,136 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <section class="step">
       <div class="step-label"><div class="n">SECTION 01</div><h3>The starting point</h3></div>
       <div class="step-body">
-        <p>My Cooking Story is a tycoon-style cooking and time-management game: players build a restaurant across sequential themes, serving customers within a level's timer and target. The north-star metric was Day-1 retention at a 40% benchmark — the share of new players who come back the day after installing.</p>
-        <p>Across four builds I tracked level-by-level progression, funnel depth, session loading behaviour and retention side by side, using each build's data to find the next lever before moving on.</p>
+        <p>My Cooking Story is a tycoon-style cooking and time-management game: players build a restaurant across sequential themes, serving customers within a level's timer and target. The team's north-star metric was Day-1 retention against an internal benchmark — the share of new players who come back the day after installing.</p>
+        <p>My job was to move that number without a rewrite. That meant treating the level list as a tunable system rather than a fixed sequence of content, and finding out where the game was losing people before deciding what to change.</p>
+        <p>Across successive builds I tracked level-by-level progression, funnel depth, session loading behaviour and retention side by side, using each build's data to find the next lever before moving on.</p>
         <p class="pull">Every build answered one question and raised the next. That loop is the whole story.</p>
-
-        <table class="dtable">
-          <thead><tr><th>Build</th><th>Players</th><th>What it established</th></tr></thead>
-          <tbody>
-            <tr><td class="build" style="color:var(--steel)">v8</td><td class="num">1,724</td><td>Baseline. Large, stable sample; the reference point for every later build.</td></tr>
-            <tr><td class="build" style="color:var(--amber)">v14</td><td class="num">109</td><td>Early iteration. Resolved an old Level 3 cliff.</td></tr>
-            <tr><td class="build" style="color:var(--plum)">v18</td><td class="num">369</td><td>Resolved a Level 11 difficulty spike and deepened the funnel.</td></tr>
-            <tr><td class="build" style="color:var(--mint)">v20</td><td class="num">1,443</td><td>Resolved the Level 15–16 spike. D1 retention cleared the 40% target.</td></tr>
-          </tbody>
-        </table>
-
-        <span class="fill"><b>Add your voice here:</b> one short paragraph on what <em>you</em> personally owned across these builds — which levels you retuned, which economy values you changed, which analysis you ran. The report is written in team voice; a portfolio needs your contribution stated plainly.</span>
       </div>
     </section>
 
     <!-- 02 -->
     <section class="step">
-      <div class="step-label"><div class="n">SECTION 02</div><h3>Resolving the level-design walls</h3></div>
+      <div class="step-label"><div class="n">SECTION 02</div><h3>The working loop</h3></div>
       <div class="step-body">
-        <p>Three separate difficulty spikes surfaced across the four builds, each at a different point in the early-to-mid game. Tracking the same levels across every build shows each one being found and resolved in turn.</p>
+        <p>Rather than shipping a batch of changes and hoping, each build was scoped to answer one question. Ship, read the funnel, find the deepest wall, retune it, re-measure. Slower per build, but it meant every result could be attributed to something specific instead of being lost in a pile of simultaneous edits.</p>
 
-        <div class="chart-card">
-          <h4>Completion rate by level, all four builds</h4>
-          <div class="chart-row">
-            <div class="chart" data-chart="wall3"></div>
-            <div class="chart" data-chart="wall11"></div>
-            <div class="chart" data-chart="wall15"></div>
-          </div>
-          <div class="legend">
-            <span><i style="background:#5B84B1"></i>v8</span>
-            <span><i style="background:#FF9F1C"></i>v14</span>
-            <span><i style="background:#8E62F7"></i>v18</span>
-            <span><i style="background:#0FA37F"></i>v20</span>
-          </div>
-          <p class="cap">Every spike shown here is fully resolved in the current build. Level 15/16 shows both levels per build.</p>
+        <div class="dgm-card">
+          <h4>One question per build</h4>
+          <svg class="dgm" viewBox="0 0 700 190" role="img" aria-label="A four-step loop: ship a build, read the funnel, locate the wall, retune and re-measure">
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" class="arrowhead"/>
+              </marker>
+            </defs>
+            <g class="fade">
+              <rect class="dg-box" x="6"   y="34" width="150" height="62" rx="12"/>
+              <text class="dg-title" x="81"  y="60" text-anchor="middle">Ship a build</text>
+              <text class="ax"       x="81"  y="80" text-anchor="middle">one change set</text>
+
+              <rect class="dg-box" x="184" y="34" width="150" height="62" rx="12"/>
+              <text class="dg-title" x="259" y="60" text-anchor="middle">Read the funnel</text>
+              <text class="ax"       x="259" y="80" text-anchor="middle">level by level</text>
+
+              <rect class="dg-box-accent" x="362" y="34" width="150" height="62" rx="12"/>
+              <text class="dg-title" x="437" y="60" text-anchor="middle">Locate the wall</text>
+              <text class="ax"       x="437" y="80" text-anchor="middle">deepest drop first</text>
+
+              <rect class="dg-box" x="540" y="34" width="154" height="62" rx="12"/>
+              <text class="dg-title" x="617" y="60" text-anchor="middle">Retune</text>
+              <text class="ax"       x="617" y="80" text-anchor="middle">timer · target · flow</text>
+
+              <line x1="160" y1="65" x2="178" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah)"/>
+              <line x1="338" y1="65" x2="356" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah)"/>
+              <line x1="516" y1="65" x2="534" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah)"/>
+
+              <path d="M617,100 L617,140 L81,140 L81,102" fill="none" stroke="#5B5580" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+              <text class="dg-label" x="350" y="160" text-anchor="middle">Re-measure the same levels every build</text>
+            </g>
+          </svg>
+          <p class="cap">Re-checking the same levels build over build is what let each wall be caught rather than assumed fixed.</p>
         </div>
-
-        <h4>Level 3</h4>
-        <p>The baseline build saw Level 3 completion at 79.5% with a 22.7% drop-off — the first wall new players hit. It was corrected to 93.9% by v14 and has held in the mid-90s through every build since, reaching 96.4% in the current build.</p>
-
-        <h4>Level 11</h4>
-        <p>v14 introduced a temporary regression at Level 11, corrected by v18 to 97.2% completion. It has stayed resolved since, holding at 97.6% in the current build.</p>
-
-        <h4>Level 15–16</h4>
-        <p>A difficulty spike appeared here in v18, with completion in the mid-70s for both levels. It was resolved in the current build — Level 15 and Level 16 both now sit at 98.4% completion.</p>
-
-        <div class="shot-grid">
-          <figure class="shot" style="margin:0">
-            <img src="assets/img/mcs-level3-before.jpg" alt="Level 3 before retuning" data-ph="Level 3 — before retune" data-dim="1200×675 · 16:9">
-            <figcaption class="cap" style="padding:10px 12px">Before: the first wall new players hit.</figcaption>
-          </figure>
-          <figure class="shot" style="margin:0">
-            <img src="assets/img/mcs-level3-after.jpg" alt="Level 3 after retuning" data-ph="Level 3 — after retune" data-dim="1200×675 · 16:9">
-            <figcaption class="cap" style="padding:10px 12px">After: timer, target and customer flow retuned.</figcaption>
-          </figure>
-        </div>
-        <span class="fill"><b>Add here:</b> for one of these three walls, name the exact change — timer seconds, customer count, station throughput, order complexity. One concrete example is worth more than three vague ones.</span>
       </div>
     </section>
 
     <!-- 03 -->
     <section class="step">
-      <div class="step-label"><div class="n">SECTION 03</div><h3>Progression curve</h3></div>
+      <div class="step-label"><div class="n">SECTION 03</div><h3>Resolving the level-design walls</h3></div>
       <div class="step-body">
-        <p>The current build's completion and drop-off rates across the early-to-mid game, level by level. A flat, high completion line paired with a steadily thinning drop-off is the signature of a well-tuned difficulty ramp.</p>
+        <p>Three separate difficulty spikes surfaced across the builds, each at a different point in the early-to-mid game. Tracking the same levels every build shows each one being found and resolved in turn — and, in one case, being reintroduced by a change made elsewhere.</p>
 
-        <div class="chart-card">
-          <h4>Completion &amp; drop-off, Levels 1–35 — current build</h4>
-          <div class="chart" data-chart="progression"></div>
-          <div class="legend">
-            <span><i style="background:#0FA37F"></i>Completion rate (left axis)</span>
-            <span><i style="background:#C98A5E"></i>Drop-off rate (right axis)</span>
-          </div>
-          <p class="cap">No level in this range drops below 91% completion.</p>
+        <div class="dgm-card">
+          <h4>What a wall looks like in the completion line</h4>
+          <svg class="dgm" viewBox="0 0 700 220" role="img" aria-label="Two schematic completion lines: one dipping sharply at a wall, one running flat after retuning">
+            <line class="gl" x1="46" y1="40"  x2="330" y2="40"/>
+            <line class="gl" x1="46" y1="90"  x2="330" y2="90"/>
+            <line class="gl" x1="46" y1="140" x2="330" y2="140"/>
+            <line class="gl" x1="46" y1="170" x2="330" y2="170"/>
+            <text class="dg-label" x="46" y="24">Before — a wall</text>
+            <text class="ax" x="14" y="105" transform="rotate(-90 14 105)" text-anchor="middle">Completion</text>
+            <polyline class="sline amberline" points="60,48 105,52 150,120 195,58 240,56 285,60 320,58"/>
+            <path class="wall-mark" d="M150,44 L150,178"/>
+            <text class="ax" x="150" y="196" text-anchor="middle" fill="#B26A00">players stall here</text>
+
+            <line class="gl" x1="386" y1="40"  x2="670" y2="40"/>
+            <line class="gl" x1="386" y1="90"  x2="670" y2="90"/>
+            <line class="gl" x1="386" y1="140" x2="670" y2="140"/>
+            <line class="gl" x1="386" y1="170" x2="670" y2="170"/>
+            <text class="dg-label" x="386" y="24">After — retuned</text>
+            <polyline class="sline mint" points="400,50 445,48 490,52 535,46 580,50 625,47 660,48"/>
+            <text class="ax" x="528" y="196" text-anchor="middle" fill="#0FA37F">ramp stays readable</text>
+
+            <text class="ax" x="188" y="212" text-anchor="middle">Level →</text>
+            <text class="ax" x="528" y="212" text-anchor="middle">Level →</text>
+          </svg>
+          <p class="cap">Schematic. Illustrates the shape of the problem and the fix, not measured values.</p>
         </div>
 
-        <p>Fixing each wall shows up directly in how far players get before quitting. The chart below tracks what share of each build's total players were still active at a given level.</p>
+        <h4>The first wall — early onboarding</h4>
+        <p>The baseline build had a hard stall in the first few levels, before players had learned the loop well enough to know what they were doing wrong. This is the most expensive place in the game to lose someone: they haven't seen a restaurant come together yet, so there's nothing pulling them back. Retuning the timer, customer target and order complexity here cleared it, and it has held ever since.</p>
 
-        <div class="chart-card">
-          <h4>Funnel depth — players still active by level reached</h4>
-          <div class="chart" data-chart="funnel"></div>
-          <div class="legend">
-            <span><i style="background:#5B84B1"></i>v8</span>
-            <span><i style="background:#FF9F1C"></i>v14</span>
-            <span><i style="background:#8E62F7"></i>v18</span>
-            <span><i style="background:#0FA37F"></i>v20</span>
-          </div>
-          <p class="cap">The current build shows the deepest funnel of any build measured.</p>
-        </div>
+        <h4>The second wall — a regression, not a new problem</h4>
+        <p>A later build introduced a stall at a level that had been fine before. Nothing had been changed at that level directly; a tuning change further upstream had shifted what players arrived with. That's the argument for re-measuring the whole early game every build rather than only checking what you touched.</p>
+
+        <h4>The third wall — deeper in the ramp</h4>
+        <p>The last spike sat further into the mid-game, on a pair of consecutive levels. Because it came after the two earlier walls were resolved, more players were reaching it — which is exactly why fixing an early wall can make a later one look worse before it gets better. Retuning that pair was the change that finally moved the retention number.</p>
+
+        <p class="pull">Difficulty spikes need to be tracked, not just fixed once.</p>
       </div>
     </section>
 
     <!-- 04 -->
     <section class="step">
-      <div class="step-label"><div class="n">SECTION 04</div><h3>The payoff, in aggregate</h3></div>
+      <div class="step-label"><div class="n">SECTION 04</div><h3>Funnel depth</h3></div>
       <div class="step-body">
-        <p>By Level 20, 42.3% of current-build players are still active — more than double the earliest builds. By Level 30 the current build holds 31.9%, again the strongest of any build measured. Averaged across the first 30 levels, the current build also posts the best mean completion and the lowest mean drop-off to date.</p>
+        <p>Fixing each wall shows up directly in how far players get before quitting. Comparing the same funnel across builds is the clearest way to see whether a level change actually bought progression or just moved the drop somewhere else.</p>
 
-        <div class="chart-card">
-          <h4>Mean completion and drop-off, Levels 1–30</h4>
-          <div class="chart-row">
-            <div class="chart" data-chart="meanComp"></div>
-            <div class="chart" data-chart="meanDrop"></div>
+        <div class="dgm-card">
+          <h4>How the funnel changed shape</h4>
+          <svg class="dgm" viewBox="0 0 700 250" role="img" aria-label="Two schematic funnel curves, the later build holding more players deeper into the level list">
+            <line class="gl" x1="52" y1="30"  x2="676" y2="30"/>
+            <line class="gl" x1="52" y1="80"  x2="676" y2="80"/>
+            <line class="gl" x1="52" y1="130" x2="676" y2="130"/>
+            <line class="gl" x1="52" y1="180" x2="676" y2="180"/>
+            <line class="gl" x1="52" y1="205" x2="676" y2="205"/>
+            <text class="ax" x="16" y="115" transform="rotate(-90 16 115)" text-anchor="middle">Players still active</text>
+            <polyline class="sline-ghost" points="60,34 180,120 300,152 420,172 540,186 660,196"/>
+            <polyline class="sline mint"  points="60,32 180,86 300,116 420,134 540,150 660,164"/>
+            <g class="fade">
+              <path d="M300,120 L300,148" stroke="#0FA37F" stroke-width="1.2" stroke-dasharray="3 3"/>
+              <rect x="316" y="102" width="196" height="40" rx="8" fill="#FFFFFF" stroke="#0FA37F" stroke-width="1.4"/>
+              <text class="ax-strong" x="328" y="120" fill="#0FA37F">More players, deeper in</text>
+              <text class="ax" x="328" y="134">at every stage of the list</text>
+            </g>
+            <text class="ax" x="364" y="228" text-anchor="middle">Level reached →</text>
+          </svg>
+          <div class="legend">
+            <span class="dash"><i></i>Earlier build</span>
+            <span><i style="background:#0FA37F"></i>Current build</span>
           </div>
-          <p class="cap">Each build's most reliable range. Lower drop-off is better.</p>
+          <p class="cap">Schematic. Shows the direction of change, not measured values.</p>
         </div>
+
+        <p>Averaged across the early-to-mid game, the current build also holds the best mean completion and the lowest mean drop-off of any build measured — the walls aren't just resolved individually, the ramp as a whole is flatter.</p>
       </div>
     </section>
 
@@ -819,35 +778,32 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <section class="step">
       <div class="step-label"><div class="n">SECTION 05</div><h3>Design framework: reward pacing</h3></div>
       <div class="step-body">
-        <p>Level design and reward cadence are tuned together, following a three-act structure across the game's level range. Onboarding levels reward every clear to build habit; the mid-game spaces rewards out to create breathing room between pushes; the late game shifts to bigger, rarer payouts that reward mastery rather than frequency.</p>
+        <p>Level design and reward cadence are tuned together, following a three-act structure across the game's level range. Onboarding rewards every clear to build habit; the mid-game spaces rewards out to create breathing room between pushes; the late game shifts to bigger, rarer payouts that reward mastery rather than frequency.</p>
 
         <div class="acts">
           <div class="act act1">
             <h5>Act I — Onboarding</h5>
             <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
             <div class="rule">Reward every level</div>
-            <div class="range">L1 → L15/16</div>
+            <div class="range">Early game</div>
           </div>
           <div class="act act2">
             <h5>Act II — Breathing gaps</h5>
             <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="rule">Milestone every 4–5 levels</div>
-            <div class="range">L16 → L60</div>
+            <div class="rule">Milestone rewards at set intervals</div>
+            <div class="range">Mid game</div>
           </div>
           <div class="act act3">
             <h5>Act III — Mastery stretch</h5>
             <div class="dots"><i></i><i></i><i></i><i></i><i></i></div>
             <div class="rule">Bigger, rarer payouts</div>
-            <div class="range">L61 → L95</div>
+            <div class="range">Late game</div>
           </div>
         </div>
-        <p class="cap" style="margin-bottom:14px">Reward cadence by act — the reward-frequency pattern the level list follows.</p>
+        <p class="cap" style="margin-bottom:18px">Reward cadence by act — the reward-frequency pattern the level list follows.</p>
 
-        <p>This cadence is deliberately asymmetric: dense, predictable rewards while players are still learning the core loop, widening as mastery increases, and a switch to weight-over-frequency in the endgame where players are optimising rather than discovering. Upgrade unlocks and new-content introductions are kept off the same level as each other wherever possible, so no single level asks a player to absorb two new things at once.</p>
-
-        <figure class="shot">
-          <img src="assets/img/mcs-milestone-chest.jpg" alt="Milestone chest reward screen" data-ph="Milestone chest / reward screen" data-dim="1200×675 · 16:9">
-        </figure>
+        <p>This cadence is deliberately asymmetric: dense, predictable rewards while players are still learning the core loop, widening as mastery increases, and a switch to weight-over-frequency in the endgame where players are optimising rather than discovering.</p>
+        <p>One rule sits underneath all of it — upgrade unlocks and new-content introductions are kept off the same level as each other wherever possible, so no single level asks a player to absorb two new things at once. Most of the early walls traced back to levels that broke this rule.</p>
       </div>
     </section>
 
@@ -857,96 +813,95 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-body">
         <p>The soft-currency loop follows a standard tycoon-economy structure: a small number of high-volume sources feed a small number of high-value sinks, keeping the loop legible without over-simplifying player choice.</p>
 
-        <div class="chart-card">
-          <h4>Share of soft currency earned and spent</h4>
-          <div class="chart-row">
-            <div class="chart" data-chart="sources"></div>
-            <div class="chart" data-chart="sinks"></div>
+        <div class="dgm-card">
+          <h4>The soft-currency loop, by weight</h4>
+          <div class="rank-cols">
+            <div class="rank src">
+              <h5>Sources</h5>
+              <ol>
+                <li>Level-clear coins <span class="w">backbone</span></li>
+                <li>Milestone chests <span class="w">interval</span></li>
+                <li>Daily login bonus <span class="w">return hook</span></li>
+                <li>Ad-watch bonus <span class="w">optional</span></li>
+              </ol>
+            </div>
+            <div class="rank snk">
+              <h5>Sinks</h5>
+              <ol>
+                <li>Station upgrades <span class="w">primary</span></li>
+                <li>Container upgrades <span class="w">secondary</span></li>
+                <li>Speed boosters <span class="w">optional</span></li>
+                <li>Item unlocks <span class="w">gated</span></li>
+              </ol>
+            </div>
           </div>
-          <p class="cap">Illustrative share of total currency earned (sources) and spent (sinks) across a typical playthrough.</p>
+          <p class="cap">Ranked by share of currency earned and spent across a typical playthrough. Order shown; proportions not published.</p>
         </div>
 
-        <p>On the source side, level-clear rewards are the backbone of the loop — a predictable, always-available baseline — supplemented by milestone chests at set intervals, a daily login bonus to anchor return visits, and an optional ad-watch bonus for players who want to accelerate.</p>
-        <p>On the sink side, station upgrades are the primary spend: they visibly and immediately improve throughput, which keeps the upgrade loop satisfying. Then come container upgrades, speed boosters for players in a hurry, and item unlocks that gate new recipes behind progression.</p>
-
-        <figure class="shot">
-          <img src="assets/img/mcs-upgrade-ui.jpg" alt="Station upgrade screen" data-ph="Station upgrade screen — the primary sink" data-dim="1200×675 · 16:9">
-        </figure>
+        <p>On the source side, level-clear rewards are the backbone of the loop — a predictable, always-available baseline. Milestone chests sit on top at set intervals, a daily login bonus anchors return visits, and an optional ad-watch bonus is there for players who want to accelerate without paying.</p>
+        <p>On the sink side, station upgrades are deliberately the primary spend, because they visibly and immediately improve throughput. The player sees the restaurant get faster, which is what keeps the upgrade loop satisfying. Container upgrades follow, then speed boosters for players in a hurry, and item unlocks that gate new recipes behind progression.</p>
       </div>
     </section>
 
     <!-- 07 -->
     <section class="step">
-      <div class="step-label"><div class="n">SECTION 07</div><h3>Investigation: session loading time</h3></div>
+      <div class="step-label"><div class="n">SECTION 07</div><h3>Investigation: ruling out load time</h3></div>
       <div class="step-body">
-        <p>Early in the investigation, a drop early in the onboarding funnel looked like a candidate for a load-time problem. The current build carries direct loading-time telemetry for dropped-off sessions, which let the theory be tested directly.</p>
+        <p>Early on, a drop in the onboarding funnel looked like it might be a load-time problem rather than a design one — a reasonable theory, and one that would have sent the work in a completely different direction. The build carried loading-time telemetry for dropped sessions, so it could be tested directly instead of argued about.</p>
 
-        <div class="chart-card">
-          <h4>Load time for the 145 users who dropped off at a level-load moment</h4>
-          <div class="chart" data-chart="loadtime"></div>
-          <p class="cap">80% of these users loaded in under 6 seconds.</p>
+        <div class="dgm-card">
+          <h4>Testing the theory</h4>
+          <div class="verdict">
+            <div class="vcell">
+              <div class="k">Hypothesis</div>
+              <p>Players are dropping at level load because the game is slow to start a level.</p>
+            </div>
+            <div class="vcell">
+              <div class="k">Test</div>
+              <p>Load time recorded for every dropped session, then checked against each level's drop-off rate.</p>
+            </div>
+            <div class="vcell out">
+              <div class="k">Verdict — ruled out</div>
+              <p>The overwhelming majority of dropped sessions loaded fast, with no correlation between a level's load time and its drop-off.</p>
+            </div>
+          </div>
         </div>
 
-        <p>Across all 95 levels, per-level average load time showed essentially no correlation with that level's drop-off rate. The small number of longer sessions were isolated, not concentrated on any particular level or device pattern — confirming that load time was never the retention bottleneck it first appeared to be.</p>
-        <p class="pull">The data ruled out a systemic slowdown, confirming performance was never the retention bottleneck.</p>
+        <p>The few slow sessions were isolated, not concentrated on any particular level or device pattern. That closed the line of investigation with confidence and sent the work back to level tuning, where the actual problem was.</p>
+        <p class="pull">Data can rule out a theory as usefully as it confirms one.</p>
       </div>
     </section>
 
     <!-- 08 -->
     <section class="step">
-      <div class="step-label"><div class="n">SECTION 08</div><h3>Day-1 retention: target achieved</h3></div>
+      <div class="step-label"><div class="n">SECTION 08</div><h3>Where it landed</h3></div>
       <div class="step-body">
-        <p>Every fix above has to answer one question: does it move the metric the team is actually held to? The current build is the second with retention instrumented, and the movement is the clearest result in this case study.</p>
+        <p>Every fix above has to answer one question: does it move the metric the team is actually held to? It did.</p>
+        <p>Day-1 retention cleared its internal target with room to spare, on an install cohort large enough that this reflects a genuine shift rather than a favourable sampling window. Most of the game's live markets clear the target independently, and the one that doesn't sits just short of it — which matters more than the headline, because it's the evidence that the underlying game moved, not a single lucky market.</p>
+        <p>The retention gain also arrived later than the level-design gain. The number held flat through the build that resolved the second wall, and only jumped once the third was fixed and the funnel got meaningfully deeper. Not every improvement shows up immediately in the top-line metric — which is an argument for tracking progression directly rather than judging every change by retention alone.</p>
 
-        <div class="chart-card">
-          <h4>Day-1 retention across builds, cohort-weighted</h4>
-          <div class="chart" data-chart="d1"></div>
-          <p class="cap">v8 and v14 predate retention instrumentation. The prior build's figure uses its full live install window (4,171 installs) for the most reliable read; the current build reflects a 1,443-install cohort.</p>
+        <div class="callout">
+          <b>Outcome</b>
+          <p>My Cooking Story moved from an unstable early build to a validated, retention-positive live game. Every major level-design wall found in the process was resolved, and Day-1 retention now sits comfortably above its target.</p>
         </div>
-
-        <p>D1 retention moved from roughly 33.8% in the prior build to 44.7% in the current one — a +10.9 point gain on a cohort large enough to trust, clearing the 40% target with room to spare.</p>
-
-        <div class="chart-card">
-          <h4>Day-1 retention by market, current build</h4>
-          <div class="chart" data-chart="markets"></div>
-          <p class="cap">Three of four markets clear the 40% target outright; the fourth sits within 1.3 points of it.</p>
-        </div>
-
-        <table class="dtable">
-          <thead><tr><th>Market</th><th>Cohort</th><th>D1 retention</th></tr></thead>
-          <tbody>
-            <tr><td>Egypt</td><td class="num">786</td><td class="num good">47.3%</td></tr>
-            <tr><td>Indonesia</td><td class="num">192</td><td class="num good">45.3%</td></tr>
-            <tr><td>Philippines</td><td class="num">348</td><td class="num good">41.7%</td></tr>
-            <tr><td>Mexico</td><td class="num">93</td><td class="num">38.7%</td></tr>
-            <tr class="total"><td>Overall</td><td class="num">1,443</td><td class="num">44.7%</td></tr>
-          </tbody>
-        </table>
-
-        <p>Overall retention exceeds target by 4.7 points on a cohort of 1,443 — large enough that this reflects a genuine shift, not a favourable sampling window.</p>
       </div>
     </section>
 
     <!-- 09 -->
     <section class="step">
-      <div class="step-label"><div class="n">SECTION 09</div><h3>What this case study shows</h3></div>
+      <div class="step-label"><div class="n">SECTION 09</div><h3>What I took from it</h3></div>
       <div class="step-body">
-        <h4>01 — Difficulty spikes need to be tracked, not just fixed once.</h4>
-        <p>Three separate spikes surfaced across four builds, each in a different part of the early-mid game. Re-checking the same levels build over build is what let each one be caught and resolved.</p>
+        <h4>Track spikes, don't assume they stay fixed.</h4>
+        <p>Three separate walls surfaced across the builds, one of them reintroduced by a change made somewhere else entirely. Re-checking the same levels every build is what caught it.</p>
 
-        <h4>02 — Data can rule out a theory as usefully as it confirms one.</h4>
-        <p>What looked like a loading-time issue in the onboarding funnel turned out to be a fast, well-performing session experience for the large majority of players — closing that line of investigation with confidence.</p>
+        <h4>Ruling a theory out is real progress.</h4>
+        <p>The load-time investigation produced no fix and no metric movement, and it was still one of the most useful things I did — it stopped the team spending a build on the wrong problem.</p>
 
-        <h4>03 — Retention gains lagged level-design gains, then caught up.</h4>
-        <p>D1 retention held flat through the build that resolved Level 11, and only jumped once the Level 15–16 fix landed and the funnel got meaningfully deeper. Not every improvement shows up immediately in the top-line metric.</p>
+        <h4>Fixing an early wall can make a later one look worse.</h4>
+        <p>More players surviving the early game means more players arriving at the next spike. Progression data has to be read as a whole funnel, not level by level in isolation.</p>
 
-        <h4>04 — Compounding fixes cleared the target with room to spare.</h4>
-        <p>A 40% target sounds like a narrow needle to thread until three of four markets clear it independently and the fourth sits within 1.3 points — evidence that the underlying game, not a lucky cohort, is what moved the number.</p>
-
-        <div class="callout">
-          <b>Outcome</b>
-          <p>My Cooking Story moved from an unstable early build to a validated, retention-positive live game. Every major level-design wall found in the process was resolved, and Day-1 retention now sits comfortably above its 40% target.</p>
-        </div>
+        <h4>Compounding small fixes beat one big swing.</h4>
+        <p>No single change carried the target. Scoping each build to one question is slower, but it's the only way to know which change did what.</p>
       </div>
     </section>
 
@@ -954,6 +909,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/brainrot-game">Next: Brainrot Game →</a>
     </div>
+    <p class="cs-rights">My Cooking Story is a Rendered Ideas title. All rights, artwork, game data and related materials remain the property of Rendered Ideas. This page describes design process only; no performance figures, cohort data or internal tuning values are published. Diagrams are schematic illustrations of method, not measured results.</p>
   </div>
 </div>
 
@@ -965,11 +921,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <a class="back" href="#top">← Back to work</a>
     <p class="cs-kicker">Case study 02 · 0→1 game design + retention</p>
     <h1 class="cs-title">Brainrot Game</h1>
-    <p class="cs-sub">Designed from concept to implementation for Amazon Fire TV and Fire Tablet, then iterated on the core loop until D1 and D7 retention both moved.</p>
-
-    <figure class="cs-banner" style="margin-bottom:0">
-      <img src="assets/img/brainrot-hero.jpg" alt="Brainrot Game on a TV screen" data-ph="Brainrot Game — wide gameplay banner" data-dim="1920×820 · 21:9">
-    </figure>
+    <p class="cs-sub">Designed from concept to implementation for Amazon Fire TV and Fire Tablet, then iterated on the core loop until early retention moved.</p>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
@@ -979,11 +931,6 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="fact"><div class="k">Studio</div><div class="v">Rendered Ideas</div></div>
     </div>
 
-    <div class="kpis">
-      <div class="kpi"><div class="n up">22.13%</div><div class="l">D1 retention, from 15.75%</div></div>
-      <div class="kpi"><div class="n up">5.10%</div><div class="l">D7 retention, from 2.09%</div></div>
-    </div>
-
     <p class="note" style="margin-top:20px">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
   </div>
 
@@ -991,16 +938,14 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <section class="step">
       <div class="step-label"><div class="n">STEP 01</div><h3>Concept → prototype</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> where the idea came from, who it's for, and what the first playable proved or disproved. Include the pitch in one line.</span>
-        <figure class="shot"><img src="assets/img/brainrot-prototype.jpg" alt="Early prototype build" data-ph="Early prototype screenshot" data-dim="1200×675 · 16:9"></figure>
+        <span class="fill"><b>Write here:</b> where the idea came from, who it's for, and what the first playable proved or disproved. Include the pitch in one line. Keep figures out unless they're already public.</span>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">STEP 02</div><h3>Core loop</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> the loop in a diagram plus a sentence. What the player does, what they earn, what pulls them into the next round.</span>
-        <figure class="shot"><img src="assets/img/brainrot-loop.png" alt="Core loop diagram" data-ph="Core loop diagram (make in Figma/Sheets)" data-dim="1200×675 · 16:9"></figure>
+        <span class="fill"><b>Write here:</b> what the player does, what they earn, and what pulls them into the next round.</span>
       </div>
     </section>
 
@@ -1014,8 +959,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <section class="step">
       <div class="step-label"><div class="n">STEP 04</div><h3>UX on a 10-foot screen</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> what designing for a TV remote changed — focus states, readability at distance, input latency, and how the tablet build differed.</span>
-        <figure class="shot"><img src="assets/img/brainrot-firetv-ui.jpg" alt="Fire TV focus states" data-ph="Fire TV UI / focus states" data-dim="1200×675 · 16:9"></figure>
+        <span class="fill"><b>Write here:</b> what designing for a TV remote changed — focus states, readability at distance, input latency, and how the tablet build differed. This section is the one most portfolios can't write; make it specific.</span>
       </div>
     </section>
 
@@ -1036,12 +980,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <section class="step">
       <div class="step-label"><div class="n">STEP 07</div><h3>Result</h3></div>
       <div class="step-body">
-        <div class="chart-card">
-          <h4>Retention before and after</h4>
-          <div class="chart" data-chart="brainrot"></div>
-          <p class="cap">Measured on Fire TV Stick and Fire Tablet.</p>
-        </div>
-        <span class="fill"><b>Write here:</b> which change drove most of the uplift, and what you'd tackle next.</span>
+        <span class="fill"><b>Write here:</b> which change drove most of the uplift, and what you'd tackle next. Describe the direction of movement rather than the figures until they're cleared for sharing.</span>
       </div>
     </section>
 
@@ -1049,6 +988,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/spa-salon">Next: Spa Salon →</a>
     </div>
+    <p class="cs-rights">Brainrot Game is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas. This page describes design process only.</p>
   </div>
 </div>
 
@@ -1060,23 +1000,19 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <a class="back" href="#top">← Back to work</a>
     <p class="cs-kicker">Case study 03 · Content &amp; design · In production</p>
     <h1 class="cs-title">Spa Salon</h1>
-    <p class="cs-sub">A live 0→1 mobile project designed toward a measurable retention goal: 45% D1.</p>
-
-    <figure class="cs-banner" style="margin-bottom:0">
-      <img src="assets/img/spa-hero.jpg" alt="Spa Salon concept" data-ph="Spa Salon — wide concept or gameplay banner" data-dim="1920×820 · 21:9">
-    </figure>
+    <p class="cs-sub">A live 0→1 mobile project, designed toward a measurable Day-1 retention goal from the first build.</p>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
       <div class="fact"><div class="k">Focus</div><div class="v">0→1 · Content &amp; economy</div></div>
       <div class="fact"><div class="k">Platform</div><div class="v">Mobile</div></div>
-      <div class="fact"><div class="k">Target</div><div class="v">45% D1 retention</div></div>
+      <div class="fact"><div class="k">Goal</div><div class="v">A set D1 retention target</div></div>
       <div class="fact"><div class="k">Status</div><div class="v">In production</div></div>
     </div>
 
     <div class="callout">
       <b>In progress</b>
-      <p>Results aren't in yet. This page shows the design work and the target being designed toward; the outcome section gets filled once the build has live data.</p>
+      <p>Results aren't in yet. This page shows the design work and the target being designed toward; the outcome section gets filled once the build has live data and the figures are cleared for sharing.</p>
     </div>
   </div>
 
@@ -1085,7 +1021,6 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-label"><div class="n">STEP 01</div><h3>Concept &amp; audience</h3></div>
       <div class="step-body">
         <span class="fill"><b>Write here:</b> the pitch, the player you're designing for, and the comparable titles you studied.</span>
-        <figure class="shot"><img src="assets/img/spa-concept.jpg" alt="Spa Salon concept art" data-ph="Concept art or moodboard" data-dim="1200×675 · 16:9"></figure>
       </div>
     </section>
 
@@ -1093,7 +1028,6 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-label"><div class="n">STEP 02</div><h3>Core loop</h3></div>
       <div class="step-body">
         <span class="fill"><b>Write here:</b> the session loop and the meta loop, and how they feed each other.</span>
-        <figure class="shot"><img src="assets/img/spa-loop.png" alt="Core loop diagram" data-ph="Core loop diagram" data-dim="1200×675 · 16:9"></figure>
       </div>
     </section>
 
@@ -1101,14 +1035,13 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-label"><div class="n">STEP 03</div><h3>Content structure &amp; progression</h3></div>
       <div class="step-body">
         <span class="fill"><b>Write here:</b> how content is chunked, how much there is at launch, the unlock cadence, and where difficulty and novelty land across the first week.</span>
-        <figure class="shot"><img src="assets/img/spa-progression.png" alt="Progression map" data-ph="Progression map / content table" data-dim="1200×675 · 16:9"></figure>
       </div>
     </section>
 
     <section class="step">
       <div class="step-label"><div class="n">STEP 04</div><h3>Economy</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> currencies, sources and sinks, and the pacing assumptions behind your tuning sheet. A sources/sinks split like the one on the My Cooking Story page works well here.</span>
+        <span class="fill"><b>Write here:</b> currencies, sources and sinks, and the pacing assumptions behind your tuning sheet. A ranked sources/sinks split like the one on the My Cooking Story page works well here.</span>
       </div>
     </section>
 
@@ -1116,14 +1049,13 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-label"><div class="n">STEP 05</div><h3>UX</h3></div>
       <div class="step-body">
         <span class="fill"><b>Write here:</b> first-session flow, tutorial pacing, and the screens you specced.</span>
-        <figure class="shot"><img src="assets/img/spa-wireframes.jpg" alt="Wireframes" data-ph="Wireframes / UI flow" data-dim="1200×675 · 16:9"></figure>
       </div>
     </section>
 
     <section class="step">
-      <div class="step-label"><div class="n">STEP 06</div><h3>Designing toward 45% D1</h3></div>
+      <div class="step-label"><div class="n">STEP 06</div><h3>Designing toward the target</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> break the target into levers you can pull — first-session length, tutorial completion, day-2 hook, reward cadence — and the assumed contribution of each. This is the section that shows how you think.</span>
+        <span class="fill"><b>Write here:</b> break the retention target into the levers you can pull — first-session length, tutorial completion, day-2 hook, reward cadence — and the assumed contribution of each. This is the section that shows how you think.</span>
       </div>
     </section>
 
@@ -1138,6 +1070,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/my-cooking-story">Next: My Cooking Story →</a>
     </div>
+    <p class="cs-rights">Spa Salon is a Rendered Ideas title in development. All rights, artwork and related materials remain the property of Rendered Ideas.</p>
   </div>
 </div>
 
@@ -1151,15 +1084,11 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <h1 class="cs-title">Goon Fight</h1>
     <p class="cs-sub">Level and encounter design: building combat spaces, tuning difficulty across the progression, and iterating on the ones that didn't play well.</p>
 
-    <figure class="cs-banner" style="margin-bottom:0">
-      <img src="assets/img/goon-hero.jpg" alt="Goon Fight combat" data-ph="Goon Fight — wide gameplay banner" data-dim="1920×820 · 21:9">
-    </figure>
-
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Level Designer</div></div>
       <div class="fact"><div class="k">Focus</div><div class="v">Levels &amp; encounters</div></div>
       <div class="fact"><div class="k">Tools</div><div class="v">Unity</div></div>
-      <div class="fact"><div class="k">Levels shipped</div><div class="v">Add count</div></div>
+      <div class="fact"><div class="k">Scope</div><div class="v">Combat level set</div></div>
     </div>
   </div>
 
@@ -1168,7 +1097,6 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-label"><div class="n">01</div><h3>Level design</h3></div>
       <div class="step-body">
         <span class="fill"><b>Write here:</b> your layout approach — sightlines, cover, spacing, how the player reads a space on entry.</span>
-        <figure class="shot"><img src="assets/img/goon-blockout.jpg" alt="Level blockout" data-ph="Level layout / blockout (top-down works well)" data-dim="1200×675 · 16:9"></figure>
       </div>
     </section>
 
@@ -1176,7 +1104,6 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-label"><div class="n">02</div><h3>Encounter design</h3></div>
       <div class="step-body">
         <span class="fill"><b>Write here:</b> enemy composition, spawn order and timing, and the skill each encounter is asking the player to use.</span>
-        <figure class="shot"><img src="assets/img/goon-encounter.jpg" alt="Encounter breakdown" data-ph="Encounter breakdown / spawn map" data-dim="1200×675 · 16:9"></figure>
       </div>
     </section>
 
@@ -1184,7 +1111,6 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <div class="step-label"><div class="n">03</div><h3>Difficulty &amp; pacing</h3></div>
       <div class="step-body">
         <span class="fill"><b>Write here:</b> the intensity curve across levels — where the peaks and rests sit, and how you kept the ramp readable.</span>
-        <figure class="shot"><img src="assets/img/goon-pacing.png" alt="Pacing curve" data-ph="Difficulty / pacing curve (chart from Sheets)" data-dim="1200×675 · 16:9"></figure>
       </div>
     </section>
 
@@ -1198,8 +1124,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
     <section class="step">
       <div class="step-label"><div class="n">05</div><h3>Final gameplay</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Add here:</b> a gameplay clip of the finished levels. A looping GIF or MP4 reads faster than stills.</span>
-        <figure class="shot"><img src="assets/img/goon-gameplay.gif" alt="Gameplay clip" data-ph="Gameplay clip (GIF or MP4 poster)" data-dim="1200×675 · 16:9"></figure>
+        <span class="fill"><b>Write here:</b> a short walkthrough of the finished levels, in your own words.</span>
       </div>
     </section>
 
@@ -1207,6 +1132,7 @@ a.award{transition:transform .15s ease,border-color .15s ease}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/my-cooking-story">Case study: My Cooking Story →</a>
     </div>
+    <p class="cs-rights">Goon Fight is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas.</p>
   </div>
 </div>
 
@@ -1216,420 +1142,94 @@ a.award{transition:transform .15s ease,border-color .15s ease}
 (function () {
   "use strict";
 
-  /* ==========================================================
-     1. CASE STUDY DATA
-     Everything the charts draw comes from here. Values marked
-     APPROX were read off the report's charts — replace them
-     with your exact figures when you have the sheet open.
-     ========================================================== */
-  var COLOR = { v8:"#5B84B1", v14:"#FF9F1C", v18:"#8E62F7", v20:"#0FA37F",
-                bar:"#C98A5E", ink:"#171233", soft:"#5B5580", amber:"#FF9F1C",
-                mint:"#0FA37F", red:"#D9453B", plum:"#6D3BF5" };
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-  var BUILDS = ["v8","v14","v18","v20"];
-  var BUILD_COLORS = [COLOR.v8, COLOR.v14, COLOR.v18, COLOR.v20];
-
-  var DATA = {
-    /* Completion % for the three difficulty walls */
-    wall3:  { title:"Level 3",      values:[[79.5],[93.9],[94.0],[96.4]] },   /* v18 APPROX */
-    wall11: { title:"Level 11",     values:[[98.0],[70.0],[97.2],[97.6]] },   /* v8, v14 APPROX */
-    wall15: { title:"Level 15 / 16", legend:["L15","L16"],
-              values:[[98.0,86.0],[100.0,88.0],[78.0,75.0],[98.4,98.4]] },    /* v8–v18 APPROX */
-
-    /* Levels 1-35, current build — APPROX, read off the report chart */
-    progression: {
-      completion:[91.5,95.8,96.4,96.3,96.6,96.5,96.8,96.9,96.3,97.2,97.6,97.1,97.2,97.4,98.4,
-                  98.4,97.6,97.2,98.2,98.6,98.3,98.0,97.9,97.6,98.3,98.6,98.2,98.1,97.6,97.4,
-                  97.9,97.5,98.2,97.2,98.4],
-      dropoff:[10.4,7.2,5.4,6.1,4.6,4.5,4.4,3.9,3.7,5.3,3.6,3.6,3.7,3.5,2.9,
-               2.6,3.9,4.1,2.9,2.0,2.2,2.4,3.0,3.2,3.1,1.9,2.1,2.0,3.5,3.5,
-               3.4,3.1,3.6,4.8,2.6]
-    },
-
-    /* % of each build's players still active at level reached */
-    funnel: {
-      x:[1,5,10,15,20,30],
-      series:[
-        { name:"v8",  color:COLOR.v8,  values:[96,56,42,32.5,25,18.8] },   /* APPROX */
-        { name:"v14", color:COLOR.v14, values:[97,64,42,23,16.5,12] },     /* APPROX */
-        { name:"v18", color:COLOR.v18, values:[95,65,51,40,19.5,12.5] },   /* APPROX */
-        { name:"v20", color:COLOR.v20, values:[98,72,57,49,42.3,31.9] }    /* L20, L30 exact */
-      ]
-    },
-
-    meanComp: { title:"Mean completion, L1–30", values:[96.5,94.7,96.0,97.4], min:90, max:100, suffix:"" },
-    meanDrop: { title:"Mean drop-off, L1–30",  values:[5.3,8.1,6.4,3.8],   min:0,  max:10,  suffix:"" },
-
-    sources:[{label:"Level-Clear Coins",value:50},{label:"Milestone Chests",value:22},
-             {label:"Daily Login Bonus",value:16},{label:"Ad-Watch Bonus",value:12}],
-    sinks:  [{label:"Station Upgrades",value:42},{label:"Container Upgrades",value:28},
-             {label:"Speed Boosters",value:18},{label:"Item Unlocks",value:12}],
-
-    loadtime:[{label:"Under 6s",value:116,color:"#7FB069",sub:"fine"},
-              {label:"6–10s",value:16,color:COLOR.amber,sub:""},
-              {label:"10–60s",value:11,color:"#E0714A",sub:""},
-              {label:"60s+",value:2,color:COLOR.red,sub:"hang"}],
-
-    d1:{ builds:BUILDS, values:[null,null,33.8,44.7], target:40 },
-
-    markets:[{label:"EG",value:47.3,n:786},{label:"ID",value:45.3,n:192},
-             {label:"PH",value:41.7,n:348},{label:"MX",value:38.7,n:93}],
-
-    brainrot:[{label:"D1 retention",before:15.75,after:22.13},
-              {label:"D7 retention",before:2.09,after:5.10}]
+  /* ---------- hash router ----------
+     Routes look like #/case/brainrot-game. Anything else (#work, #top)
+     stays on the home view and just scrolls. */
+  var ROUTES = {
+    "#/case/my-cooking-story": "view-my-cooking-story",
+    "#/case/brainrot-game":    "view-brainrot-game",
+    "#/case/spa-salon":        "view-spa-salon",
+    "#/project/goon-fight":    "view-goon-fight"
   };
+  var views = document.querySelectorAll(".view");
 
-  /* ==========================================================
-     2. TINY SVG CHART TOOLKIT
-     ========================================================== */
-  var NS = 'xmlns="http://www.w3.org/2000/svg"';
-
-  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
-  function fmt(v){ return (Math.round(v*10)/10).toString(); }
-
-  function frame(w,h,inner,label){
-    return '<svg '+NS+' class="chart" viewBox="0 0 '+w+' '+h+'" role="img" aria-label="'+esc(label||"chart")+'">'+inner+'</svg>';
+  function show(id) {
+    for (var i = 0; i < views.length; i++) views[i].hidden = views[i].id !== id;
   }
 
-  /* grouped / simple vertical bars */
-  function bars(cfg){
-    var w=cfg.w||300, h=cfg.h||230,
-        p={t:cfg.padTop||26,r:10,b:38,l:cfg.padLeft||34},
-        iw=w-p.l-p.r, ih=h-p.t-p.b,
-        min=cfg.min||0, max=cfg.max||100,
-        y=function(v){return p.t+ih-((v-min)/(max-min))*ih;},
-        s='', i, j;
-
-    for(i=0;i<=(cfg.ticks||5);i++){
-      var tv=min+(max-min)*i/(cfg.ticks||5), ty=y(tv);
-      s+='<line class="gl" x1="'+p.l+'" y1="'+ty+'" x2="'+(w-p.r)+'" y2="'+ty+'"/>';
-      s+='<text class="ax" x="'+(p.l-6)+'" y="'+(ty+4)+'" text-anchor="end">'+fmt(tv)+'</text>';
-    }
-
-    var n=cfg.labels.length, sub=cfg.groups||1,
-        band=iw/n, bw=Math.min(cfg.maxBar||40,(band*0.66)/sub);
-
-    for(i=0;i<n;i++){
-      for(j=0;j<sub;j++){
-        var v=cfg.values[i][j], col=cfg.colors[i] || COLOR.plum;
-        if(sub>1 && j>0) col=shade(col,-0.28);
-        var gx=p.l+band*i+band/2, total=bw*sub+(sub-1)*3,
-            bx=gx-total/2+j*(bw+3), by=y(v), bh=p.t+ih-by;
-        s+='<rect class="cbar" x="'+bx+'" y="'+by+'" width="'+bw+'" height="'+Math.max(bh,1)+'" rx="3" fill="'+col+'" style="animation-delay:'+(i*0.07+j*0.05)+'s"/>';
-        if(cfg.showValues!==false)
-          s+='<text class="vlabel" x="'+(bx+bw/2)+'" y="'+(by-7)+'" text-anchor="middle">'+fmt(v)+(cfg.suffix||"")+'</text>';
-      }
-      s+='<text class="ax" x="'+(p.l+band*i+band/2)+'" y="'+(h-20)+'" text-anchor="middle">'+esc(cfg.labels[i])+'</text>';
-      if(cfg.sublabels && cfg.sublabels[i])
-        s+='<text class="ax" x="'+(p.l+band*i+band/2)+'" y="'+(h-8)+'" text-anchor="middle" opacity=".75">'+esc(cfg.sublabels[i])+'</text>';
-    }
-
-    if(cfg.target!=null){
-      var ty2=y(cfg.target);
-      s+='<line class="target" x1="'+p.l+'" y1="'+ty2+'" x2="'+(w-p.r)+'" y2="'+ty2+'"/>';
-      s+='<text class="target-label" x="'+(p.l+4)+'" y="'+(ty2-6)+'">'+esc(cfg.targetLabel||"target")+'</text>';
-    }
-    if(cfg.title) s+='<text class="ax-title" x="'+(p.l+iw/2)+'" y="14" text-anchor="middle">'+esc(cfg.title)+'</text>';
-    return frame(w,h,s,cfg.title||cfg.aria);
-  }
-
-  /* horizontal bars (sources / sinks) */
-  function hbars(cfg){
-    var rows=cfg.items.length, rowH=44, w=cfg.w||330, h=rows*rowH+34,
-        labelW=cfg.labelW||120, right=44, iw=w-labelW-right,
-        max=cfg.max||Math.max.apply(null,cfg.items.map(function(d){return d.value;})),
-        s='', i;
-    if(cfg.title) s+='<text class="ax-title" x="'+(w/2)+'" y="14" text-anchor="middle" fill="'+cfg.titleColor+'">'+esc(cfg.title)+'</text>';
-    for(i=0;i<rows;i++){
-      var d=cfg.items[i], yy=30+i*rowH, bw=(d.value/max)*iw;
-      s+='<text class="ax" x="'+(labelW-10)+'" y="'+(yy+18)+'" text-anchor="end">'+esc(d.label)+'</text>';
-      s+='<rect class="cbar-h" x="'+labelW+'" y="'+yy+'" width="'+bw+'" height="24" rx="4" fill="'+d.color+'" style="animation-delay:'+(i*0.08)+'s"/>';
-      s+='<text class="vlabel" x="'+(labelW+bw+8)+'" y="'+(yy+17)+'">'+fmt(d.value)+'%</text>';
-    }
-    return frame(w,h,s,cfg.title);
-  }
-
-  /* multi-series line chart */
-  function lines(cfg){
-    var w=cfg.w||640, h=cfg.h||300,
-        p={t:22,r:16,b:42,l:44}, iw=w-p.l-p.r, ih=h-p.t-p.b,
-        max=cfg.max||100, min=cfg.min||0,
-        n=cfg.x.length,
-        X=function(i){return p.l+(iw*i)/(n-1);},
-        Y=function(v){return p.t+ih-((v-min)/(max-min))*ih;},
-        s='', i, k;
-
-    for(i=0;i<=(cfg.ticks||5);i++){
-      var tv=min+(max-min)*i/(cfg.ticks||5), ty=Y(tv);
-      s+='<line class="gl" x1="'+p.l+'" y1="'+ty+'" x2="'+(w-p.r)+'" y2="'+ty+'"/>';
-      s+='<text class="ax" x="'+(p.l-7)+'" y="'+(ty+4)+'" text-anchor="end">'+fmt(tv)+'</text>';
-    }
-    for(i=0;i<n;i++)
-      s+='<text class="ax" x="'+X(i)+'" y="'+(h-22)+'" text-anchor="middle">'+esc(cfg.x[i])+'</text>';
-    if(cfg.xTitle) s+='<text class="ax-title" x="'+(p.l+iw/2)+'" y="'+(h-6)+'" text-anchor="middle">'+esc(cfg.xTitle)+'</text>';
-
-    for(k=0;k<cfg.series.length;k++){
-      var ser=cfg.series[k], pts=[], j;
-      for(j=0;j<n;j++) pts.push(X(j)+","+Y(ser.values[j]));
-      s+='<polyline class="cline" points="'+pts.join(" ")+'" stroke="'+ser.color+'" style="animation-delay:'+(k*0.12)+'s"/>';
-      for(j=0;j<n;j++) s+='<circle cx="'+X(j)+'" cy="'+Y(ser.values[j])+'" r="3.5" fill="'+ser.color+'"/>';
-    }
-    return frame(w,h,s,cfg.aria);
-  }
-
-  /* combo: completion line + drop-off bars, dual axis */
-  function combo(cfg){
-    var w=680,h=320,p={t:20,r:46,b:44,l:44},
-        iw=w-p.l-p.r, ih=h-p.t-p.b,
-        n=cfg.line.length,
-        band=iw/n,
-        Yl=function(v){return p.t+ih-((v-cfg.lMin)/(cfg.lMax-cfg.lMin))*ih;},
-        Yr=function(v){return p.t+ih-((v-0)/cfg.rMax)*ih;},
-        s='', i;
-
-    for(i=0;i<=5;i++){
-      var tv=cfg.lMin+(cfg.lMax-cfg.lMin)*i/5, ty=Yl(tv), rv=cfg.rMax*i/5;
-      s+='<line class="gl" x1="'+p.l+'" y1="'+ty+'" x2="'+(w-p.r)+'" y2="'+ty+'"/>';
-      s+='<text class="ax" x="'+(p.l-7)+'" y="'+(ty+4)+'" text-anchor="end">'+fmt(tv)+'</text>';
-      s+='<text class="ax" x="'+(w-p.r+7)+'" y="'+(ty+4)+'">'+fmt(rv)+'</text>';
-    }
-    for(i=0;i<n;i++){
-      var bw=Math.max(band*0.55,3), bx=p.l+band*i+(band-bw)/2,
-          by=Yr(cfg.bars[i]), bh=p.t+ih-by;
-      s+='<rect class="cbar" x="'+bx+'" y="'+by+'" width="'+bw+'" height="'+Math.max(bh,1)+'" rx="2" fill="'+COLOR.bar+'" opacity=".85" style="animation-delay:'+(i*0.02)+'s"/>';
-    }
-    var pts=[];
-    for(i=0;i<n;i++) pts.push((p.l+band*i+band/2)+","+Yl(cfg.line[i]));
-    s+='<polyline class="cline" points="'+pts.join(" ")+'" stroke="'+COLOR.mint+'"/>';
-    for(i=0;i<n;i+=1) s+='<circle cx="'+(p.l+band*i+band/2)+'" cy="'+Yl(cfg.line[i])+'" r="2.6" fill="'+COLOR.mint+'"/>';
-    for(i=0;i<n;i++){
-      if((i+1)%5===0 || i===0)
-        s+='<text class="ax" x="'+(p.l+band*i+band/2)+'" y="'+(h-24)+'" text-anchor="middle">'+(i+1)+'</text>';
-    }
-    s+='<text class="ax-title" x="'+(p.l+iw/2)+'" y="'+(h-6)+'" text-anchor="middle">Level</text>';
-    return frame(w,h,s,"Completion and drop-off by level");
-  }
-
-  function shade(hex,amt){
-    var c=hex.replace("#",""), num=parseInt(c,16),
-        r=(num>>16)&255, g=(num>>8)&255, b=num&255;
-    r=Math.round(Math.min(255,Math.max(0,r+255*amt)));
-    g=Math.round(Math.min(255,Math.max(0,g+255*amt)));
-    b=Math.round(Math.min(255,Math.max(0,b+255*amt)));
-    return "#"+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);
-  }
-
-  /* ==========================================================
-     3. BUILD EACH CHART
-     ========================================================== */
-  var CHARTS = {
-    wall3:function(){ return bars({ title:DATA.wall3.title, labels:BUILDS, colors:BUILD_COLORS,
-      values:DATA.wall3.values, min:0, max:100, suffix:"%", w:300, h:240 }); },
-    wall11:function(){ return bars({ title:DATA.wall11.title, labels:BUILDS, colors:BUILD_COLORS,
-      values:DATA.wall11.values, min:0, max:100, suffix:"%", w:300, h:240 }); },
-    wall15:function(){ return bars({ title:DATA.wall15.title, labels:BUILDS, colors:BUILD_COLORS,
-      values:DATA.wall15.values, groups:2, min:0, max:100, suffix:"", w:300, h:240, showValues:false }); },
-
-    progression:function(){ return combo({ line:DATA.progression.completion, bars:DATA.progression.dropoff,
-      lMin:0, lMax:100, rMax:20 }); },
-
-    funnel:function(){ return lines({ x:DATA.funnel.x, series:DATA.funnel.series, min:0, max:100,
-      xTitle:"Level reached", aria:"Funnel depth by build" }); },
-
-    meanComp:function(){ return bars({ title:DATA.meanComp.title, labels:BUILDS, colors:BUILD_COLORS,
-      values:DATA.meanComp.values.map(function(v){return [v];}), min:90, max:100, ticks:5, w:320, h:250 }); },
-    meanDrop:function(){ return bars({ title:DATA.meanDrop.title, labels:BUILDS, colors:BUILD_COLORS,
-      values:DATA.meanDrop.values.map(function(v){return [v];}), min:0, max:10, ticks:5, w:320, h:250 }); },
-
-    sources:function(){ return hbars({ title:"SOURCES", titleColor:COLOR.mint, labelW:130, max:50,
-      items:DATA.sources.map(function(d,i){ return {label:d.label, value:d.value,
-        color:[ "#6FA96B","#38A88C","#8E62F7","#E0A32E" ][i]}; }) }); },
-    sinks:function(){ return hbars({ title:"SINKS", titleColor:COLOR.amber, labelW:140, max:50,
-      items:DATA.sinks.map(function(d,i){ return {label:d.label, value:d.value,
-        color:[ "#D9713C","#DFAE2E","#D9453B","#B5714E" ][i]}; }) }); },
-
-    loadtime:function(){ return bars({ labels:DATA.loadtime.map(function(d){return d.label;}),
-      sublabels:DATA.loadtime.map(function(d){return d.sub;}),
-      colors:DATA.loadtime.map(function(d){return d.color;}),
-      values:DATA.loadtime.map(function(d){return [d.value];}),
-      min:0, max:120, ticks:6, w:620, h:270, maxBar:90 }); },
-
-    d1:function(){
-      var vals=DATA.d1.values, w=620,h=290,p={t:24,r:20,b:44,l:44},
-          iw=w-p.l-p.r, ih=h-p.t-p.b, n=vals.length,
-          X=function(i){return p.l+(iw*(i+0.5))/n;},
-          Y=function(v){return p.t+ih-(v/50)*ih;}, s='', i;
-      for(i=0;i<=5;i++){
-        var tv=50*i/5, ty=Y(tv);
-        s+='<line class="gl" x1="'+p.l+'" y1="'+ty+'" x2="'+(w-p.r)+'" y2="'+ty+'"/>';
-        s+='<text class="ax" x="'+(p.l-7)+'" y="'+(ty+4)+'" text-anchor="end">'+tv+'</text>';
-      }
-      var tY=Y(DATA.d1.target);
-      s+='<line class="target" x1="'+p.l+'" y1="'+tY+'" x2="'+(w-p.r)+'" y2="'+tY+'"/>';
-      s+='<text class="target-label" x="'+(p.l+4)+'" y="'+(tY-6)+'">40% D1 target</text>';
-      var pts=[];
-      for(i=0;i<n;i++){
-        s+='<text class="ax" x="'+X(i)+'" y="'+(h-22)+'" text-anchor="middle">'+DATA.d1.builds[i]+'</text>';
-        if(vals[i]==null){
-          s+='<text class="ax" x="'+X(i)+'" y="'+(p.t+ih-24)+'" text-anchor="middle" opacity=".6">no data</text>';
-          s+='<text class="ax" x="'+X(i)+'" y="'+(p.t+ih-12)+'" text-anchor="middle" opacity=".6">collected</text>';
-        } else { pts.push(X(i)+","+Y(vals[i])); }
-      }
-      s+='<polyline class="cline" points="'+pts.join(" ")+'" stroke="'+COLOR.mint+'" stroke-width="3.4"/>';
-      for(i=0;i<n;i++){
-        if(vals[i]==null) continue;
-        var col=(i===n-1)?COLOR.mint:COLOR.v18;
-        s+='<circle cx="'+X(i)+'" cy="'+Y(vals[i])+'" r="7" fill="'+col+'"/>';
-        s+='<text class="vlabel" x="'+X(i)+'" y="'+(Y(vals[i])-14)+'" text-anchor="middle">'+vals[i]+'%</text>';
-      }
-      return frame(w,h,s,"Day-1 retention across builds");
-    },
-
-    markets:function(){ return bars({
-      labels:DATA.markets.map(function(d){return d.label;}),
-      sublabels:DATA.markets.map(function(d){return "n="+d.n;}),
-      colors:DATA.markets.map(function(d){return d.value>=40?"#7FB069":COLOR.amber;}),
-      values:DATA.markets.map(function(d){return [d.value];}),
-      min:0, max:50, ticks:5, suffix:"%", target:40, targetLabel:"40% target", w:620, h:280, maxBar:80 }); },
-
-    brainrot:function(){ return bars({
-      labels:["D1 before","D1 after","D7 before","D7 after"],
-      colors:["#A9A2C9",COLOR.mint,"#A9A2C9",COLOR.mint],
-      values:[[15.75],[22.13],[2.09],[5.10]],
-      min:0, max:25, ticks:5, suffix:"%", w:620, h:260, maxBar:80 }); }
-  };
-
-  function renderCharts(root){
-    var hosts=(root||document).querySelectorAll("[data-chart]");
-    for(var i=0;i<hosts.length;i++){
-      var host=hosts[i], key=host.getAttribute("data-chart");
-      if(host.getAttribute("data-done")==="1" || !CHARTS[key]) continue;
-      try{ host.innerHTML=CHARTS[key](); host.setAttribute("data-done","1"); }
-      catch(e){ host.innerHTML='<p class="cap">Chart unavailable.</p>'; }
-    }
-  }
-
-  /* prime line-draw lengths, then let CSS animate */
-  function primeLines(scope){
-    var ls=scope.querySelectorAll(".cline");
-    for(var i=0;i<ls.length;i++){
-      if(ls[i].getAttribute("data-primed")) continue;
-      var len=ls[i].getTotalLength();
-      ls[i].style.strokeDasharray=len+" "+len;
-      ls[i].style.strokeDashoffset=len;
-      ls[i].setAttribute("data-primed","1");
-    }
-  }
-
-  /* ==========================================================
-     4. IMAGE PLACEHOLDERS
-     Any image that hasn't been added yet renders as a labelled
-     dashed box naming the file you need to drop in.
-     ========================================================== */
-  function placeholderFor(img){
-    var box=document.createElement("div");
-    box.className="ph-box";
-    var ar=img.getAttribute("data-dim")||"";
-    box.style.aspectRatio=(/21:9/.test(ar)?"21/9":(/4:3/.test(ar)?"4/3":(/200/.test(ar)?"1/1":"16/9")));
-    if(img.closest(".award")){ box.style.width="34px"; box.style.aspectRatio="1/1"; box.style.padding="0"; box.textContent="🏆"; return box; }
-    box.innerHTML='<span>'+esc(img.getAttribute("data-ph")||"Image")+'</span>'+
-                  '<span class="file">'+esc(img.getAttribute("src"))+'</span>'+
-                  '<span class="dim">'+esc(ar)+'</span>';
-    return box;
-  }
-  function wireImages(root){
-    var imgs=(root||document).querySelectorAll("img[data-ph]");
-    for(var i=0;i<imgs.length;i++){
-      (function(img){
-        if(img.getAttribute("data-wired")) return;
-        img.setAttribute("data-wired","1");
-        img.addEventListener("error",function(){
-          if(img.parentNode) img.parentNode.replaceChild(placeholderFor(img),img);
-        });
-        if(img.complete && img.naturalWidth===0 && img.parentNode)
-          img.parentNode.replaceChild(placeholderFor(img),img);
-      })(imgs[i]);
-    }
-  }
-
-  /* ==========================================================
-     5. ROUTER + REVEAL
-     ========================================================== */
-  document.getElementById("year").textContent=new Date().getFullYear();
-
-  var ROUTES={
-    "#/case/my-cooking-story":"view-my-cooking-story",
-    "#/case/brainrot-game":"view-brainrot-game",
-    "#/case/spa-salon":"view-spa-salon",
-    "#/project/goon-fight":"view-goon-fight"
-  };
-  var views=document.querySelectorAll(".view");
-
-  function show(id){
-    for(var i=0;i<views.length;i++) views[i].hidden=views[i].id!==id;
-  }
-
-  var io=null;
-  if("IntersectionObserver" in window){
-    io=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(!e.isIntersecting) return;
+  /* ---------- reveal + diagram animation ---------- */
+  var io = null;
+  if ("IntersectionObserver" in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
         e.target.classList.add("in");
-        if(e.target.classList.contains("chart-card")){
+        if (e.target.classList.contains("dgm-card")) {
           primeLines(e.target);
           e.target.classList.add("animate");
         }
         io.unobserve(e.target);
       });
-    },{threshold:.1, rootMargin:"0px 0px -40px 0px"});
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
   }
 
-  function observeAll(){
-    var items=document.querySelectorAll(".reveal:not(.in), .chart-card:not(.animate)");
-    for(var i=0;i<items.length;i++){
-      if(io){ io.observe(items[i]); }
-      else { items[i].classList.add("in","animate"); }
+  function observeAll() {
+    var items = document.querySelectorAll(".reveal:not(.in), .dgm-card:not(.animate)");
+    for (var i = 0; i < items.length; i++) {
+      if (io) { io.observe(items[i]); }
+      else { items[i].classList.add("in", "animate"); }
     }
   }
 
-  function route(){
-    var hash=window.location.hash;
-    if(ROUTES[hash]){
-      var id=ROUTES[hash];
+  /* set each line's own length so CSS can draw it on */
+  function primeLines(scope) {
+    var ls = scope.querySelectorAll(".sline");
+    for (var i = 0; i < ls.length; i++) {
+      if (ls[i].getAttribute("data-primed")) continue;
+      if (typeof ls[i].getTotalLength !== "function") continue;
+      var len = ls[i].getTotalLength();
+      ls[i].style.setProperty("--len", len);
+      ls[i].style.strokeDasharray = len + " " + len;
+      ls[i].style.strokeDashoffset = len;
+      ls[i].setAttribute("data-primed", "1");
+    }
+  }
+
+  function route() {
+    var hash = window.location.hash;
+
+    if (ROUTES[hash]) {
+      var id = ROUTES[hash];
       show(id);
-      var v=document.getElementById(id);
-      renderCharts(v); wireImages(v);
-      window.scrollTo(0,0);
-      var t=v.querySelector(".cs-title");
-      document.title=(t?t.textContent.trim():"Case study")+" — Prothom Pal";
+      window.scrollTo(0, 0);
+      var v = document.getElementById(id), t = v.querySelector(".cs-title");
+      document.title = (t ? t.textContent.trim() : "Case study") + " — Prothom Pal";
       observeAll();
       return;
     }
+
     show("view-home");
-    document.title="Prothom Pal — Game Designer";
-    if(hash && hash.length>1){
-      var target=document.querySelector(hash);
-      if(target){
-        requestAnimationFrame(function(){ target.scrollIntoView({behavior:"smooth",block:"start"}); });
+    document.title = "Prothom Pal — Game Designer";
+
+    if (hash && hash.length > 1) {
+      var target = document.querySelector(hash);
+      if (target) {
+        requestAnimationFrame(function () {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
         return;
       }
     }
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
-  window.addEventListener("hashchange",route);
+  window.addEventListener("hashchange", route);
 
-  /* hero curve */
-  (function(){
-    var line=document.querySelector("#curve .line-after");
-    if(!line||typeof line.getTotalLength!=="function") return;
-    var len=line.getTotalLength();
-    line.style.setProperty("--len",len);
-    line.style.strokeDasharray=len+" "+len;
-    line.style.strokeDashoffset=len;
-  })();
+  /* hero curve draws on load */
+  primeLines(document.getElementById("curve"));
 
-  wireImages(document);
   route();
   observeAll();
 })();
