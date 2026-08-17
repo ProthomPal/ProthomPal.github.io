@@ -392,6 +392,69 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .cs-next{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:34px 0 24px;border-top:1px solid var(--line);margin-top:10px}
 .cs-rights{font-family:var(--mono);font-size:10.5px;line-height:1.75;color:#8A85A8;padding-bottom:60px;max-width:86ch}
 
+/* ---- data table ---- */
+.dtable-wrap{overflow-x:auto;margin:16px 0 8px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.dtable{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.dtable th{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);text-align:left;font-weight:700;padding:11px 14px;border-bottom:1px solid var(--line);background:#FAF9FE;white-space:nowrap}
+.dtable td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+.dtable tr:last-child td{border-bottom:none}
+.dtable td.lead{font-weight:600;white-space:nowrap}
+.dtable td.was{color:var(--ink-soft)}
+.dtable td.now{color:var(--mint);font-weight:600}
+
+/* ---- chain diagram ---- */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:4px 0}
+.chain-node{font-family:var(--mono);font-size:12px;font-weight:700;background:#FAF9FE;border:1.5px solid var(--line);border-radius:999px;padding:7px 13px;white-space:nowrap}
+.chain-node.q{border-color:var(--amber);background:rgba(255,159,28,.12);color:#8A5200}
+.chain-node.q::after{content:" ?";color:var(--amber)}
+.chain-node.start{border-color:var(--plum);background:rgba(109,59,245,.09);color:var(--plum-deep)}
+.chain-sep{font-family:var(--mono);font-size:12px;color:#B4ADD4}
+.chain-note{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:10px;display:flex;align-items:center;gap:7px}
+.chain-note::before{content:"↺";font-size:14px;color:var(--plum)}
+
+/* ---- tier ladder ---- */
+.ladder{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;align-items:end;margin:6px 0 4px;min-height:150px}
+.rung{border-radius:10px 10px 0 0;padding:10px 4px;text-align:center;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;display:flex;align-items:flex-end;justify-content:center;box-shadow:var(--shadow-sm)}
+.rung.r1{background:#8E86B8;height:46px}
+.rung.r2{background:#9BA7BC;height:66px}
+.rung.r3{background:#E0A32E;height:86px}
+.rung.r4{background:#49B6D6;height:106px}
+.rung.r5{background:#B03BF5;height:126px}
+.rung.r6{background:linear-gradient(180deg,#FF9F1C,#F552A0);height:150px}
+
+/* ---- before / after compare ---- */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 4px}
+.cmp-cell{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#FAF9FE}
+.cmp-cell.now{background:rgba(15,163,127,.08);border-color:rgba(15,163,127,.4)}
+.cmp-cell .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+.cmp-cell.now .k{color:var(--mint)}
+.cmp-cell p{margin:0;font-size:14.5px;line-height:1.45}
+
+/* ---- designer stages ---- */
+.stages{display:grid;gap:10px;margin:6px 0 4px}
+.stage{display:grid;grid-template-columns:40px 1fr;gap:14px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--panel);align-items:start}
+.stage .sn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:700;color:#fff;background:var(--plum)}
+.stage:nth-child(2) .sn{background:#7B4CF3}
+.stage:nth-child(3) .sn{background:#8E62F7}
+.stage:nth-child(4) .sn{background:#B03BF5}
+.stage:nth-child(5) .sn{background:#E0771C}
+.stage:nth-child(6) .sn{background:var(--mint)}
+.stage h5{font-family:var(--display);font-size:16.5px;font-weight:800;margin:2px 0 5px;letter-spacing:-.01em}
+.stage .qn{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.45}
+.stage .qn b{color:var(--ink);font-weight:600}
+
+/* ---- lessons ---- */
+.lessons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 4px}
+.lesson{border-left:3px solid var(--plum);background:#FAF9FE;border-radius:0 12px 12px 0;padding:13px 15px}
+.lesson .n{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);font-weight:700;display:block;margin-bottom:5px}
+.lesson p{margin:0;font-size:14.5px;line-height:1.45}
+
+@media (max-width:700px){
+  .ladder{grid-template-columns:1fr;min-height:0}
+  .rung{height:auto !important;border-radius:10px;padding:10px 12px;align-items:center}
+  .cmp,.lessons{grid-template-columns:1fr}
+}
+
 /* ============================================================
    LIGHTBOX
    ============================================================ */
@@ -519,9 +582,9 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <a class="hl-more" href="#/project/goon-fight">↓ Read more</a>
             </div>
             <div class="hl-slide" data-hl="2">
-              <h3>Designing a collection loop for a TV remote</h3>
-              <p>A TV isn't a big phone — no pointer, no swipe, and a player sitting several feet back from the screen.</p>
-              <p>I designed Brainrot Game from concept to implementation for that constraint, then iterated the loop until early retention moved.</p>
+              <h3>Turning a pile of good mechanics into a system</h3>
+              <p>Brainrot started as a list of appealing verbs — explore, catch, fight, collect — none of which asked the player a question.</p>
+              <p>I rebuilt the loop around decisions, then let hardware limits, economy and player behaviour drive the design rather than my own instincts.</p>
               <a class="hl-more" href="#/case/brainrot-game">↓ Read more</a>
             </div>
           </div>
@@ -618,16 +681,16 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             </div>
 
             <div class="card-copy">
-              <p class="card-desc">A fast collection game for Amazon Fire TV and Fire Tablet: hatch eggs, collect and steal Brainrots, upgrade your lineup and compete in rankings.</p>
-              <p class="card-desc">Designed from concept to implementation for a remote-first living-room audience, then iterated until early retention moved.</p>
+              <p class="card-desc">A creature-collection game for Amazon Fire TV and Fire Tablet: explore, catch or steal creatures, fight in short timing-based encounters, and merge duplicates up a six-tier ladder.</p>
+              <p class="card-desc">Designed from concept to implementation against a hard constraint — a TV remote for input and low-end living-room hardware as the floor. Both shaped the systems more than any aesthetic goal did.</p>
               <div class="outcomes">
                 <div class="outcome">
                   <div class="k">Retention</div>
                   <div class="v"><b>D1 and D7 both improved</b> across the iteration cycle.</div>
                 </div>
                 <div class="outcome">
-                  <div class="k">Platform</div>
-                  <div class="v">Designed for TV remote input first, touch second.</div>
+                  <div class="k">Systems</div>
+                  <div class="v">Tiers, merging, QTE combat, healing, stealing and the economy circuit.</div>
                 </div>
               </div>
               <p class="note">Retention uplift measured on Fire TV Stick and Fire Tablet.</p>
@@ -1159,12 +1222,12 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 <div class="view" id="view-brainrot-game" hidden>
   <div class="wrap cs-head">
     <a class="back" href="#top">← Back to work</a>
-    <p class="cs-kicker">Case study 02 · Amazon Fire TV &amp; Fire Tablet</p>
+    <p class="cs-kicker">Case study 02 · Creature collection · Mobile &amp; Android TV</p>
     <div class="cs-titlerow">
       <div class="appicon appicon-fake" aria-hidden="true">BR</div>
-      <h1 class="cs-title">Brainrot Game</h1>
+      <h1 class="cs-title">From a pile of good mechanics to a system that holds together</h1>
     </div>
-    <p class="cs-sub">A collection game built for the living room: hatch, collect, steal, upgrade, compete. Designed from concept to implementation for Fire TV and Fire Tablet, then iterated until early retention moved.</p>
+    <p class="cs-sub">Brainrot is a creature-collection game built for low-end living-room hardware. I started with a list of appealing verbs and gradually learned to design around player behaviour, economy, clarity, performance and production cost. The game is the artifact — the change in how I think is the actual case study.</p>
 
     <div class="cs-actions">
       <a class="btn btn-store" href="https://www.amazon.in/Brainrot-Game-Steal-Brainrots-Multiplayer/dp/B0GJCLN6GD/" target="_blank" rel="noopener">View on Amazon Appstore ↗</a>
@@ -1173,106 +1236,492 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
     <div class="shots shots-3">
       <div class="cover-tile" style="border-radius:11px"><div><div class="t">Hatch</div><div class="s">Egg → reveal → collect</div></div></div>
-      <div class="cover-tile" style="border-radius:11px;background:linear-gradient(140deg,#3a1a5e 0%,#B03BF5 60%,#FF9F1C 100%)"><div><div class="t">Steal</div><div class="s">Raid rival zones</div></div></div>
-      <div class="cover-tile" style="border-radius:11px;background:linear-gradient(140deg,#0d3d33 0%,#0FA37F 55%,#7BE3B8 100%)"><div><div class="t">Compete</div><div class="s">Deck power · rankings</div></div></div>
+      <div class="cover-tile" style="border-radius:11px;background:linear-gradient(140deg,#3a1a5e 0%,#B03BF5 60%,#FF9F1C 100%)"><div><div class="t">Steal</div><div class="s">Own it, then defend it</div></div></div>
+      <div class="cover-tile" style="border-radius:11px;background:linear-gradient(140deg,#0d3d33 0%,#0FA37F 55%,#7BE3B8 100%)"><div><div class="t">Merge</div><div class="s">Duplicates become tiers</div></div></div>
     </div>
     <p class="shot-cap">The three pillars the loop is built on.</p>
 
     <div class="facts">
-      <div class="fact"><div class="k">Role</div><div class="v">Game Designer</div></div>
-      <div class="fact"><div class="k">Focus</div><div class="v">0→1 design</div></div>
-      <div class="fact"><div class="k">Platform</div><div class="v">Fire TV / Fire Tablet</div></div>
-      <div class="fact"><div class="k">Input</div><div class="v">TV remote &amp; touch</div></div>
-      <div class="fact"><div class="k">Session</div><div class="v">Short, repeatable</div></div>
-      <div class="fact"><div class="k">Studio</div><div class="v">Rendered Ideas</div></div>
+      <div class="fact"><div class="k">Role</div><div class="v">Solo design &amp; implementation</div></div>
+      <div class="fact"><div class="k">Platform</div><div class="v">Mobile / Android TV</div></div>
+      <div class="fact"><div class="k">Hardware floor</div><div class="v">Fire TV Stick 2nd Gen</div></div>
+      <div class="fact"><div class="k">Systems</div><div class="v">Tiers · merging · QTE combat · economy</div></div>
+      <div class="fact"><div class="k">Focus</div><div class="v">Systems, economy, UX, analytics, performance</div></div>
     </div>
   </div>
 
   <div class="wrap">
+
+    <!-- 01 -->
     <section class="step">
-      <div class="step-label"><div class="n">STEP 01</div><h3>Concept → prototype</h3></div>
+      <div class="step-label"><div class="n">SECTION 01</div><h3>What Brainrot is</h3></div>
       <div class="step-body">
-        <p>The brief was a collection game aimed at short, repeatable sessions on a TV. The pitch in one line: hatch eggs, collect and steal Brainrots, build the strongest deck.</p>
-        <span class="fill"><b>Add here:</b> where the idea actually came from, who you were designing for, and what the first playable proved or disproved. One paragraph.</span>
+        <p>The player moves through the world, encounters creatures, catches or steals them, fights in short timing-based encounters, levels them, and decides whether each one is worth keeping, merging or selling.</p>
+        <p>The core fantasy is acquisitive rather than heroic: <em>everything I find is potentially mine, and everything I own is potentially worth more than it currently is.</em> Ownership, upgrade and accumulation — not narrative triumph.</p>
+
+        <h4>What made it difficult</h4>
+        <p>Collection games are deceptively expensive. They demand volume of content, a progression system that stays meaningful across hundreds of hours, an economy that doesn't inflate, and a rendering budget that survives dozens of animated creatures at once. Working solo, I had to satisfy all of that at once, and the constraints regularly contradicted each other.</p>
+        <p>The game targets low-end living-room and mobile hardware. That single fact shaped more decisions than any aesthetic goal: input had to be minimal, encounters short, on-screen creature counts bounded, and content produced cheaply and reused aggressively.</p>
       </div>
     </section>
 
+    <!-- 02 -->
     <section class="step">
-      <div class="step-label"><div class="n">STEP 02</div><h3>Core loop</h3></div>
+      <div class="step-label"><div class="n">SECTION 02</div><h3>The original concept — and where it was naïve</h3></div>
       <div class="step-body">
-        <p>Buy eggs from the shop, hatch them to reveal new Brainrots, upgrade what you pull, explore zones to steal from others, then climb the rankings. Each step feeds the next: currency buys eggs, eggs produce collection, collection drives deck power, deck power earns ranking and more currency.</p>
+        <p>The first version of the design was a list of verbs that sounded fun: explore the world, discover brainrots, catch or steal them, fight, level them up, sell or keep, buy eggs, build a collection.</p>
+        <p>Each seemed compelling on its own — and that was precisely the problem. They were compelling to me, imagining the game, rather than to a player in minute forty of session three. Discovery is exciting once; the fiftieth discovery is only exciting if the game has given the player a reason to evaluate it. Selling is only interesting if there's something worth buying. Collection is only motivating if the collection is doing something.</p>
+        <p class="pull">The naïveté wasn't in the individual mechanics. It was assuming a large enough pile of good mechanics would arrange itself into a good game.</p>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 03</div><h3>Core loop evolution</h3></div>
+      <div class="step-body">
+        <p>The original loop was short and structurally hollow. The developed loop isn't longer for its own sake — it introduces decision points instead of just more steps.</p>
 
         <div class="dgm-card">
-          <h4>The collection loop</h4>
-          <svg class="dgm" viewBox="0 0 700 190" role="img" aria-label="A five-step collection loop: earn, buy eggs, hatch, upgrade, compete">
-            <defs>
-              <marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" class="arrowhead"/>
-              </marker>
-            </defs>
-            <g class="fade">
-              <rect class="dg-box" x="6"   y="34" width="128" height="62" rx="12"/>
-              <text class="dg-title" x="70"  y="60" text-anchor="middle">Earn</text>
-              <text class="ax"       x="70"  y="80" text-anchor="middle">play · steal</text>
-              <rect class="dg-box" x="150" y="34" width="128" height="62" rx="12"/>
-              <text class="dg-title" x="214" y="60" text-anchor="middle">Buy eggs</text>
-              <text class="ax"       x="214" y="80" text-anchor="middle">shop</text>
-              <rect class="dg-box-accent" x="294" y="34" width="128" height="62" rx="12"/>
-              <text class="dg-title" x="358" y="60" text-anchor="middle">Hatch</text>
-              <text class="ax"       x="358" y="80" text-anchor="middle">reveal moment</text>
-              <rect class="dg-box" x="438" y="34" width="128" height="62" rx="12"/>
-              <text class="dg-title" x="502" y="60" text-anchor="middle">Upgrade</text>
-              <text class="ax"       x="502" y="80" text-anchor="middle">deck power</text>
-              <rect class="dg-box" x="582" y="34" width="112" height="62" rx="12"/>
-              <text class="dg-title" x="638" y="60" text-anchor="middle">Compete</text>
-              <text class="ax"       x="638" y="80" text-anchor="middle">rankings</text>
-              <line x1="138" y1="65" x2="146" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
-              <line x1="282" y1="65" x2="290" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
-              <line x1="426" y1="65" x2="434" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
-              <line x1="570" y1="65" x2="578" y2="65" stroke="#5B5580" stroke-width="1.5" marker-end="url(#ah2)"/>
-              <path d="M638,100 L638,140 L70,140 L70,102" fill="none" stroke="#5B5580" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah2)"/>
-              <text class="dg-label" x="354" y="160" text-anchor="middle">The reveal is the hook; the deck is the reason to come back</text>
-            </g>
-          </svg>
+          <h4>Before — a sequence of events</h4>
+          <div class="chain">
+            <span class="chain-node start">Explore</span><span class="chain-sep">→</span>
+            <span class="chain-node">Find</span><span class="chain-sep">→</span>
+            <span class="chain-node">Catch</span><span class="chain-sep">→</span>
+            <span class="chain-node">Fight</span><span class="chain-sep">→</span>
+            <span class="chain-node">Upgrade</span>
+          </div>
+          <p class="cap">Nothing here asks the player a question. A loop without questions is a treadmill.</p>
+        </div>
+
+        <div class="dgm-card">
+          <h4>After — a sequence of decisions</h4>
+          <div class="chain">
+            <span class="chain-node start">Explore</span><span class="chain-sep">→</span>
+            <span class="chain-node">Find brainrot</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Catch or steal</span><span class="chain-sep">→</span>
+            <span class="chain-node">QTE fight</span><span class="chain-sep">→</span>
+            <span class="chain-node">XP</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Level up who</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Sell, keep or merge</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Spend or hoard</span><span class="chain-sep">→</span>
+            <span class="chain-node">Buy egg</span>
+          </div>
+          <p class="chain-note">Loops back to explore — amber nodes are the decisions the player has to make</p>
+        </div>
+
+        <p>Is this one worth catching? Worth the HP cost? Worth keeping, or is it merge fodder? Do I spend now or save for an egg? Those questions are the game.</p>
+
+        <div class="dgm-wrap"></div>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead>
+              <tr><th>Stage</th><th>Player motivation</th><th>Decision</th><th>Friction it addressed</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="lead">Explore</td><td>Curiosity, anticipation of a rare find</td><td>Where to spend limited session time</td><td class="was">Empty space between encounters felt dead</td></tr>
+              <tr><td class="lead">Find</td><td>Novelty, completion drive</td><td>Engage or skip</td><td class="was">Finding alone stopped mattering — needed stats and rarity</td></tr>
+              <tr><td class="lead">Catch / steal</td><td>Ownership</td><td>Spend resources on capture?</td><td class="was">Capture was frictionless, so it carried no weight</td></tr>
+              <tr><td class="lead">QTE fight</td><td>Mastery, tension</td><td>Which brainrot to field</td><td class="was">Cognitive load had to fall to near-zero on TV input</td></tr>
+              <tr><td class="lead">Level up</td><td>Investment payoff</td><td>Who receives investment</td><td class="was">Numbers rose without meaning — tiers gave them direction</td></tr>
+              <tr><td class="lead">Sell / keep / merge</td><td>Optimisation</td><td>The central economic decision</td><td class="was">Duplicates were dead weight until merging existed</td></tr>
+              <tr><td class="lead">Buy egg</td><td>Gambling anticipation</td><td>Spend or hoard</td><td class="was">Currency had no compelling sink</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
 
+    <!-- 04 -->
     <section class="step">
-      <div class="step-label"><div class="n">STEP 03</div><h3>Feature &amp; progression design</h3></div>
+      <div class="step-label"><div class="n">SECTION 04</div><h3>Three foundational problems</h3></div>
       <div class="step-body">
-        <p>Progression runs on two tracks at once — collection breadth (how many Brainrots you've found, including rare and secret ones) and deck strength (how far you've upgraded them). Zones gate content, limited-time events add rarity pressure, and rankings give the whole thing a scoreboard.</p>
-        <span class="fill"><b>Add here:</b> the unlock order you specced, which features were cut and why, and how you paced the first session against the first week.</span>
+        <h4>A — "Finding a brainrot" was not enough</h4>
+        <p>Discovery is a one-time thrill. Once a player has seen twenty creatures, a twenty-first means nothing unless the game gives them a way to evaluate it. The creature needed to be a proposition, not just an image.</p>
+        <p>So every creature got evaluable properties: HP, ATK, DEF, a QTE profile, rarity, a level, a tier multiplier, merge potential and collection value. A discovery became a small judgement rather than a small animation.</p>
+        <div class="callout">
+          <b>What this represents</b>
+          <p>This is the point where I stopped being a content designer — someone who adds things — and started being a systems designer — someone who defines how things relate to each other.</p>
+        </div>
+
+        <h4>B — Combat had to be extremely simple</h4>
+        <p>Combat is built on directional quick-time events. A correct, timely directional input means your brainrot attacks. A wrong input or a timeout means the wild one attacks. That's the whole system.</p>
+        <p>The lesson wasn't "I implemented QTEs." It was working out what a combat system has to satisfy on constrained hardware and a constrained input device:</p>
+        <ul class="bullets">
+          <li><b>Low cognitive load</b> — the player should never have to plan</li>
+          <li><b>Immediate feedback</b> — input and consequence in the same beat</li>
+          <li><b>Short encounters</b> — combat is a punctuation mark, not a chapter</li>
+          <li><b>Unambiguous</b> success and failure states</li>
+          <li><b>Minimal controls</b> — a TV remote has no room for a combat grammar</li>
+        </ul>
+        <p class="pull">Interaction cost is a design budget. Every input I ask for has to buy something the player values more than the effort of giving it.</p>
+
+        <h4>C — Progression could become meaningless</h4>
+        <p>I added levels, XP, rarity, tiers, merging and multipliers. Each addition made numbers go up — which surfaced the real question: if everything increases power, what actually matters?</p>
+        <div class="cmp">
+          <div class="cmp-cell">
+            <div class="k">Numerical progression</div>
+            <p>A bigger number. A level-up that only raises ATK is arithmetic.</p>
+          </div>
+          <div class="cmp-cell now">
+            <div class="k">Meaningful progression</div>
+            <p>A number that changes what the player can decide to do. A level-up that crosses the merge threshold is a door opening.</p>
+          </div>
+        </div>
+        <p style="margin-top:16px">Tiers, merge thresholds and rarity ceilings exist to convert arithmetic into decisions.</p>
       </div>
     </section>
 
+    <!-- 05 -->
     <section class="step">
-      <div class="step-label"><div class="n">STEP 04</div><h3>UX on a 10-foot screen</h3></div>
+      <div class="step-label"><div class="n">SECTION 05</div><h3>The tier system: turning excess into progression</h3></div>
       <div class="step-body">
-        <p>A TV is not a phone with a bigger screen. There's no pointer, no swipe and no thumb — just a remote's D-pad, a viewer sitting several feet back, and a shared living-room context where sessions get interrupted. Every screen has to be navigable in a straight line, every focus state has to be unmistakable from across the room, and text has to survive being read at distance.</p>
-        <span class="fill"><b>Add here:</b> the specific decisions that came out of that — focus order and D-pad traversal, how you sized type and hit targets, what you cut because it needed a pointer, and what changed for the tablet build. This is the section most portfolios can't write; make it concrete.</span>
+        <p>Identical brainrots merge into the next tier, and merging requires a minimum level. Both rules took iteration to arrive at.</p>
+
+        <div class="dgm-card">
+          <h4>The tier ladder</h4>
+          <div class="ladder">
+            <div class="rung r1">Base</div>
+            <div class="rung r2">Silver</div>
+            <div class="rung r3">Gold</div>
+            <div class="rung r4">Diamond</div>
+            <div class="rung r5">Shiny</div>
+            <div class="rung r6">God</div>
+          </div>
+          <p class="cap">Identical creatures merge upward. A God-tier creature is visible from the first hour and unreachable for a long time — which is exactly what a long-term goal should be.</p>
+        </div>
+
+        <h4>Why identical creatures merge</h4>
+        <p>Collection games generate duplicates relentlessly, and the default player experience of a duplicate is mild disappointment. Merging inverts that: a duplicate is no longer a failed roll, it's half of an upgrade.</p>
+
+        <h4>Why merging needs a level threshold</h4>
+        <p>Without one, merging is pure inventory management and can be done instantly on acquisition. The level requirement forces investment before consolidation, which does three things at once: it slows tier inflation, it makes each merge feel earned, and it routes duplicates back through the XP loop instead of around it.</p>
+
+        <div class="callout">
+          <b>Lesson</b>
+          <p>Excess content is not a problem to be prevented. It's a currency waiting for a system that can spend it.</p>
+        </div>
       </div>
     </section>
 
+    <!-- 06 -->
     <section class="step">
-      <div class="step-label"><div class="n">STEP 05</div><h3>Implementation</h3></div>
+      <div class="step-label"><div class="n">SECTION 06</div><h3>Healing: making damage matter without punishing attachment</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> what you built in Unity yourself, how the content and economy data were configured, and how builds reached Fire devices for testing.</span>
+        <p>The naive version restores HP after every fight. Convenient — and it makes combat consequence-free. Losing costs the player nothing but a few seconds.</p>
+        <p>The system that replaced it has weight: damage persists after combat, HP regenerates over real time, healing centres offer accelerated recovery, and a revive threshold governs what happens when a creature falls.</p>
+
+        <div class="dgm-card">
+          <h4>Finding the position between two bad extremes</h4>
+          <svg class="dgm" viewBox="0 0 700 168" role="img" aria-label="A spectrum from permanent loss to zero consequence, with timed regeneration positioned between them">
+            <defs>
+              <linearGradient id="spec" x1="0" x2="1">
+                <stop offset="0%" stop-color="#D9453B"/>
+                <stop offset="50%" stop-color="#0FA37F"/>
+                <stop offset="100%" stop-color="#8E86B8"/>
+              </linearGradient>
+            </defs>
+            <rect x="40" y="74" width="620" height="12" rx="6" fill="url(#spec)"/>
+            <g class="fade">
+              <text class="dg-label" x="40" y="60" fill="#B23A32">Permanent loss</text>
+              <text class="ax" x="40" y="112">Maximum tension</text>
+              <text class="ax" x="40" y="128">Poisons attachment — players stop</text>
+              <text class="ax" x="40" y="142">using the creatures they like</text>
+
+              <text class="dg-label" x="660" y="60" text-anchor="end">Full reset</text>
+              <text class="ax" x="660" y="112" text-anchor="end">Maximum comfort</text>
+              <text class="ax" x="660" y="128" text-anchor="end">No tension at all — losing</text>
+              <text class="ax" x="660" y="142" text-anchor="end">costs the player nothing</text>
+
+              <circle cx="350" cy="80" r="9" fill="#0FA37F" stroke="#fff" stroke-width="3"/>
+              <path d="M350,68 L350,44" stroke="#0FA37F" stroke-width="1.5"/>
+              <rect x="238" y="14" width="224" height="30" rx="8" fill="#FFFFFF" stroke="#0FA37F" stroke-width="1.5"/>
+              <text class="ax-strong" x="350" y="34" text-anchor="middle" fill="#0FA37F">Time-based regeneration</text>
+            </g>
+          </svg>
+          <p class="cap">The loss is real, but the cost is measured in patience rather than in the collection itself. Healing centres are the pressure valve.</p>
+        </div>
+
+        <p>The result is a genuine four-way tension between risk, recovery, resource management and attachment — and each player resolves it differently depending on how much they care about the particular creature that got hurt.</p>
       </div>
     </section>
 
+    <!-- 07 -->
     <section class="step">
-      <div class="step-label"><div class="n">STEP 06</div><h3>Testing &amp; iteration</h3></div>
+      <div class="step-label"><div class="n">SECTION 07</div><h3>Stealing and shields: social tension without multiplayer</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> each iteration as a row — what you changed, what you expected, what actually moved. Three or four rounds is plenty.</span>
+        <p>A collection that only ever grows has no stakes. Players needed a reason to care about the world beyond accumulation — something that could take from them. So: stealing. If brainrots can be stolen, owning one is a position to be defended rather than a permanent fact.</p>
+        <p>The moment theft became possible, protection became necessary — not as a nicety but as counterplay. A risk system without counterplay isn't tension, it's arbitrary loss.</p>
+
+        <div class="dgm-card">
+          <h4>The ownership cycle</h4>
+          <div class="chain">
+            <span class="chain-node start">Acquire</span><span class="chain-sep">→</span>
+            <span class="chain-node">Protect</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Risk</span><span class="chain-sep">→</span>
+            <span class="chain-node">Lose</span><span class="chain-sep">→</span>
+            <span class="chain-node">Recover</span>
+          </div>
+          <p class="chain-note">Ownership becomes a position to defend, not a fact to accumulate</p>
+        </div>
+
+        <p>The constraint that makes this interesting is that the game has no real-time online multiplayer. The design had to manufacture social pressure — the feeling of a contested world — without the infrastructure, latency budget or player population that genuine multiplayer requires. Producing the emotional output of multiplayer without its technical input was one of the more demanding constraint-driven decisions in the project.</p>
       </div>
     </section>
 
+    <!-- 08 -->
     <section class="step">
-      <div class="step-label"><div class="n">STEP 07</div><h3>Result</h3></div>
+      <div class="step-label"><div class="n">SECTION 08</div><h3>Milestones: presence is not comprehension</h3></div>
       <div class="step-body">
-        <p>Both Day-1 and Day-7 retention improved across the iteration cycle, measured on Fire TV Stick and Fire Tablet.</p>
-        <span class="fill"><b>Add here:</b> which change drove most of the uplift, and what you'd tackle next. Describe the direction of movement rather than the figures until they're cleared for sharing.</span>
+        <p>The milestone system gives players objectives and claimable rewards. It worked, technically. Players still forgot it existed.</p>
+        <p>The problem wasn't the objectives — it was their presentation. Unclaimed rewards weren't visible enough at the moments a player would care, objective sequencing was jagged rather than smoothly escalating, and the whole system sat outside the player's habitual attention path.</p>
+        <p class="pull">A reward the player never claims is not a reward. It's a feature that consumed development time and returned nothing.</p>
+        <p>This was the point at which UX stopped being a layer applied on top of my design and became part of the design itself.</p>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 09</div><h3>Economy and currency sinks</h3></div>
+      <div class="step-body">
+        <p>The economy accumulated pieces over time — selling brainrots, buying eggs, purchasing shields, healing costs, continue currency, upgrade costs. The important shift wasn't adding those pieces. It was realising what they had to add up to.</p>
+
+        <div class="dgm-card">
+          <h4>Currency generation is not an economy</h4>
+          <div class="chain">
+            <span class="chain-node start">Sources</span><span class="chain-sep">→</span>
+            <span class="chain-node">Storage</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Decisions</span><span class="chain-sep">→</span>
+            <span class="chain-node">Sinks</span><span class="chain-sep">→</span>
+            <span class="chain-node">Scarcity</span><span class="chain-sep">→</span>
+            <span class="chain-node">Motivation</span>
+          </div>
+          <p class="cap">Break any link and the circuit stops working.</p>
+        </div>
+
+        <div class="cmp">
+          <div class="cmp-cell">
+            <div class="k">Sources without sinks</div>
+            <p>Inflation, then indifference. A player with more currency than uses has effectively finished the game without being told.</p>
+          </div>
+          <div class="cmp-cell">
+            <div class="k">Sinks without decisions</div>
+            <p>A tax rather than an economy. The player pays, but nothing about the payment is interesting.</p>
+          </div>
+        </div>
+
+        <p style="margin-top:16px">What I was really designing wasn't a shop. It was the shape of scarcity — and therefore the shape of what the player wants.</p>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 10</div><h3>Retention as a design constraint</h3></div>
+      <div class="step-body">
+        <p>The most significant change in how I worked came from instrumenting the game and reading what players actually did. I stopped asking only "is this fun?" and started asking "where are players leaving?"</p>
+
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Metric</th><th>What it tells me</th></tr></thead>
+            <tbody>
+              <tr><td class="lead">Total users</td><td>The denominator — how much of the audience reaches this point at all</td></tr>
+              <tr><td class="lead">Level start users</td><td>Whether players choose to begin the level once they can</td></tr>
+              <tr><td class="lead">Level clear users</td><td>Whether the level is completable as designed</td></tr>
+              <tr><td class="lead">Start rate</td><td>Motivation indicator — a low start rate means the level isn't appealing, or isn't visible</td></tr>
+              <tr><td class="lead">Completion rate</td><td>Difficulty and clarity indicator</td></tr>
+              <tr><td class="lead">Drop-off rate</td><td>Where the funnel breaks</td></tr>
+              <tr><td class="lead">Average time</td><td>Overall pacing — sensitive to outliers</td></tr>
+              <tr><td class="lead">Median time</td><td>The typical player's experience; the more honest pacing number</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Measuring Day-1 retention reframed the work entirely. The number stopped being a verdict on quality and became a diagnostic prompt: what does the design need to accomplish in the first session for a player to return the next day, and is it accomplishing it?</p>
+
+        <div class="cmp">
+          <div class="cmp-cell">
+            <div class="k">Before</div>
+            <p>"I think players will like this." Content added because it seemed appealing. Analytics as a post-launch report.</p>
+          </div>
+          <div class="cmp-cell now">
+            <div class="k">After</div>
+            <p>"The data says players behave this way — what design decision could explain it?" Content added against an identified behavioural gap. Analytics as evidence inside the design process.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 11</div><h3>Designing around drop-off</h3></div>
+      <div class="step-body">
+        <h4>The QTE tutorial drop-off</h4>
+        <p>The tutorial was teaching too much at once. Every individual thing it taught was correct; collectively it exceeded what a new player could absorb in their first minutes. The fix wasn't better wording — it was fewer simultaneous concepts.</p>
+        <p><em>Teaching mechanics is not the same as teaching understanding. A player who has been shown something has not necessarily learned it.</em></p>
+
+        <h4>The connectivity popup</h4>
+        <p>An apparently external interruption — a connectivity prompt — produced measurable friction at a specific point in the funnel. It wasn't gameplay, and by my original mental model it wasn't my problem.</p>
+        <p><em>Anything that interrupts the loop is part of the player experience, regardless of whether the designer classifies it as "gameplay." The player doesn't distinguish between a bad level and a badly-timed dialog. They only experience the interruption.</em></p>
+
+        <h4>Progression drop-off</h4>
+        <p>I moved from looking at aggregate retention to looking at individual levels — the transition from a headline number to funnel analysis. Aggregate retention tells you that something is wrong. Per-level funnels tell you where, and "where" is the only form of the information you can act on.</p>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 12</div><h3>When performance became game design</h3></div>
+      <div class="step-body">
+        <p>Brainrot wasn't designed on an unlimited PC. On the target hardware, frame rate degraded severely when many brainrots were on screen — which is to say, precisely when the game was doing the thing it exists to do.</p>
+        <p>The investigation covered animation cost, double-sided materials, debug drawing, shadow rendering, overall rendering cost, on-screen creature counts and vertex limits. But the significant outcome wasn't the optimisation work.</p>
+
+        <div class="dgm-card">
+          <h4>On-screen creature count is a design parameter, not a technical detail</h4>
+          <svg class="dgm" viewBox="0 0 700 210" role="img" aria-label="Two schematic curves: unbounded creature counts collapsing frame rate, and a bounded count holding steady">
+            <line class="gl" x1="46" y1="34"  x2="330" y2="34"/>
+            <line class="gl" x1="46" y1="84"  x2="330" y2="84"/>
+            <line class="gl" x1="46" y1="134" x2="330" y2="134"/>
+            <line class="gl" x1="46" y1="164" x2="330" y2="164"/>
+            <text class="dg-label" x="46" y="20">Unbounded</text>
+            <text class="ax" x="16" y="99" transform="rotate(-90 16 99)" text-anchor="middle">Frame rate</text>
+            <polyline class="sline amberline" points="60,46 110,50 160,62 210,96 260,140 310,158"/>
+            <text class="ax" x="188" y="186" text-anchor="middle" fill="#B26A00">the collection fantasy eats itself</text>
+
+            <line class="gl" x1="386" y1="34"  x2="670" y2="34"/>
+            <line class="gl" x1="386" y1="84"  x2="670" y2="84"/>
+            <line class="gl" x1="386" y1="134" x2="670" y2="134"/>
+            <line class="gl" x1="386" y1="164" x2="670" y2="164"/>
+            <text class="dg-label" x="386" y="20">Bounded by design</text>
+            <polyline class="sline mint" points="400,46 450,48 500,46 550,50 600,47 660,48"/>
+            <text class="ax" x="528" y="186" text-anchor="middle" fill="#0FA37F">presentation designed to the budget</text>
+
+            <text class="ax" x="188" y="204" text-anchor="middle">Creatures on screen →</text>
+            <text class="ax" x="528" y="204" text-anchor="middle">Creatures on screen →</text>
+          </svg>
+          <p class="cap">Schematic. Illustrates the trade-off, not measured performance data.</p>
+        </div>
+
+        <p class="pull">If fifty creatures look fantastic and destroy the frame rate, the design is not fantastic. It's an expensive slideshow.</p>
+        <p>The collection fantasy had to be delivered within a rendering budget, which meant designing presentation — how a large collection is displayed, when creatures are visible, how tiers are communicated — around what the hardware could actually sustain. A game designer working on constrained hardware cannot separate design from technology.</p>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 13</div><h3>Production-conscious design</h3></div>
+      <div class="step-body">
+        <p>Later design work accounted for factors the earlier work simply ignored: low-end hardware, total asset count, per-creature animation cost, cheap content generation, on-screen limits, reusable systems, tier variations as content multipliers, and overall content scalability.</p>
+        <p>Tier variations are the clearest example. Six tiers over a shared creature base multiplies perceived content without multiplying asset production — a decision made in direct response to a production constraint that nonetheless improved the game rather than merely economising on it.</p>
+
+        <div class="cmp">
+          <div class="cmp-cell">
+            <div class="k">The question I used to ask</div>
+            <p>Can I design this?</p>
+          </div>
+          <div class="cmp-cell now">
+            <div class="k">The question I ask now</div>
+            <p>Can I actually produce and run this?</p>
+          </div>
+        </div>
+        <p style="margin-top:16px">For a solo developer that distinction isn't a refinement. It's the difference between a shipped game and an interesting document.</p>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 14</div><h3>Evolution as a designer</h3></div>
+      <div class="step-body">
+        <div class="stages">
+          <div class="stage">
+            <div class="sn">01</div>
+            <div>
+              <h5>Feature-oriented</h5>
+              <p class="qn"><b>"What would be fun to put into the game?"</b> Strong at idea generation — but mechanics could exist without a clear purpose, and nothing in my process would catch that.</p>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="sn">02</div>
+            <div>
+              <h5>Systems designer</h5>
+              <p class="qn"><b>"How do these mechanics interact?"</b> No longer isolated features but interdependent systems, where changing one forces changes in others.</p>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="sn">03</div>
+            <div>
+              <h5>Economy designer</h5>
+              <p class="qn"><b>"What enters, where does it go, why does the player spend, and what happens when they have too much?"</b> Player motivation as a function of scarcity rather than content volume.</p>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="sn">04</div>
+            <div>
+              <h5>UX / behavioural designer</h5>
+              <p class="qn"><b>"Do players understand it, use it, and come back because of it?"</b> Watching what players actually did rather than what I intended them to do.</p>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="sn">05</div>
+            <div>
+              <h5>Data-driven designer</h5>
+              <p class="qn"><b>"Where does the funnel break?"</b> Analytics moved from something appended after development to evidence used during it.</p>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="sn">06</div>
+            <div>
+              <h5>Constraint-driven designer</h5>
+              <p class="qn"><b>"What's the best experience I can create within the actual constraints of this game?"</b> Rather than what the perfect game would look like if hardware, budget and time didn't exist.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 15</div><h3>What Brainrot taught me</h3></div>
+      <div class="step-body">
+        <div class="lessons">
+          <div class="lesson"><span class="n">Lesson 01</span><p>A mechanic isn't valuable because it's fun in isolation. It's valuable because it strengthens the overall loop.</p></div>
+          <div class="lesson"><span class="n">Lesson 02</span><p>Player behaviour is more reliable evidence than designer assumption.</p></div>
+          <div class="lesson"><span class="n">Lesson 03</span><p>Progression needs emotional meaning, not just larger numbers.</p></div>
+          <div class="lesson"><span class="n">Lesson 04</span><p>Every system creates another system problem. Stealing creates a need for protection; protection creates scarcity; scarcity creates economy requirements; economy creates sinks. The skill is anticipating the next link rather than being surprised by it.</p></div>
+          <div class="lesson"><span class="n">Lesson 05</span><p>Clarity is a mechanic. If players don't understand a system, that system effectively doesn't exist.</p></div>
+          <div class="lesson"><span class="n">Lesson 06</span><p>Performance is part of design. A beautiful mechanic that can't run on the target device isn't a successful mechanic.</p></div>
+          <div class="lesson"><span class="n">Lesson 07</span><p>The achievement isn't getting the first design right — it's getting better at identifying why the first design was wrong.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="step">
+      <div class="step-label"><div class="n">SECTION 16</div><h3>Evidence table</h3></div>
+      <div class="step-body">
+        <p>The compressed version of the case study. It's deliberately structured around mistakes, because the mistakes are where the evidence of growth actually lives.</p>
+
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead>
+              <tr><th>Area</th><th>Initial assumption</th><th>What happened</th><th>Design change</th><th>What I learned</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="lead">Combat</td><td class="was">Simple combat would be enough</td><td>Encounters lacked engagement</td><td class="now">Directional QTE system</td><td>Interaction needs meaningful decisions, not just input</td></tr>
+              <tr><td class="lead">Collection</td><td class="was">More creatures means more motivation</td><td>Collection alone wasn't enough</td><td class="now">Stats, rarity and tiers</td><td>Collection needs purpose beyond accumulation</td></tr>
+              <tr><td class="lead">Duplicates</td><td class="was">Duplicate creatures are useless</td><td>Players accumulate them anyway</td><td class="now">Merging above a level threshold</td><td>Excess content can become progression currency</td></tr>
+              <tr><td class="lead">Damage</td><td class="was">HP should simply reset</td><td>Damage carried no consequence</td><td class="now">Persistent damage plus timed healing</td><td>Risk requires a recovery system to stay tolerable</td></tr>
+              <tr><td class="lead">Stealing</td><td class="was">Stealing creates excitement</td><td>Players need protection</td><td class="now">Shields</td><td>Risk requires counterplay, or it's just loss</td></tr>
+              <tr><td class="lead">Milestones</td><td class="was">Players will notice objectives</td><td>Players forgot them entirely</td><td class="now">Improved visibility and sequencing</td><td>Presence is not comprehension</td></tr>
+              <tr><td class="lead">Progression</td><td class="was">More levels means more engagement</td><td>Drop-offs clustered at specific points</td><td class="now">Level-by-level analysis and rebalancing</td><td>Content volume does not equal retention</td></tr>
+              <tr><td class="lead">Performance</td><td class="was">More brainrots means a better collection fantasy</td><td>Frame rate collapsed on low-end hardware</td><td class="now">Optimisation and bounded on-screen counts</td><td>Technical constraints shape design, not just schedules</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <b>The arc</b>
+          <p>Idea designer → feature designer → systems designer → economy designer → UX and behaviour designer → data-driven designer → constraint-aware game designer.</p>
+          <p>I designed and iterated a creature-collection game while balancing player motivation, progression, economy, UX, retention and severe hardware constraints. The game is the artifact. The evolution in how I think is the actual case study.</p>
+        </div>
       </div>
     </section>
 
@@ -1280,7 +1729,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/project/goon-fight">Next: Goon Fight →</a>
     </div>
-    <p class="cs-rights">Brainrot Game is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas. This page describes design process only; feature descriptions reflect the public store listing.</p>
+    <p class="cs-rights">Brainrot Game is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas. This page describes design process only; no performance figures, cohort data or internal tuning values are published, and all diagrams are schematic illustrations of method rather than measured results.</p>
   </div>
 </div>
 
