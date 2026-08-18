@@ -455,6 +455,19 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
   .cmp,.lessons{grid-template-columns:1fr}
 }
 
+
+/* ---- enemy categories ---- */
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 20px}
+.cat{display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#FAF9FE}
+.cat .dot{width:14px;height:14px;border-radius:50%;margin-top:4px}
+.cat .dot.d1{background:#6D3BF5}
+.cat .dot.d2{background:#FF9F1C}
+.cat .dot.d3{background:#D9453B}
+.cat .dot.d4{background:#0FA37F}
+.cat b{font-size:15.5px;font-weight:600;display:block;margin-bottom:3px}
+.cat p{margin:0;font-size:14px;line-height:1.45;color:var(--ink-soft)}
+@media (max-width:700px){.cats{grid-template-columns:1fr}}
+
 /* ============================================================
    LIGHTBOX
    ============================================================ */
@@ -576,9 +589,9 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <a class="hl-more" href="#/case/my-cooking-story">↓ Read more</a>
             </div>
             <div class="hl-slide" data-hl="1">
-              <h3>Shaping combat encounters that stay readable at speed</h3>
-              <p>Goon Fight is a side-on brawler across dungeon, jungle, village and moving-bus environments. One axis of movement and very little room.</p>
-              <p>I built and tuned the levels: layout, enemy composition, and where the peaks and rests sit across the set.</p>
+              <h3>Designing fights in a room the camera never leaves</h3>
+              <p>Goon Fight gives you one screen, no scrolling, and nowhere to hide a difficulty curve.</p>
+              <p>So I used layout and enemy placement to pull players where I needed them, then tuned it all against a dynamic difficulty system.</p>
               <a class="hl-more" href="#/project/goon-fight">↓ Read more</a>
             </div>
             <div class="hl-slide" data-hl="2">
@@ -734,12 +747,12 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             </div>
 
             <div class="card-copy">
-              <p class="card-desc">A retro 2D beat 'em up across dungeon, jungle, village and moving-bus environments. I built and tuned the combat levels: layout, encounter composition and difficulty pacing across the progression.</p>
+              <p class="card-desc">A retro 2D beat 'em up where every level is a single room with a fixed camera. I built the layouts and the enemy waves, designed the enemy roster, and tuned the game's dynamic difficulty system.</p>
               <ul class="bullets">
-                <li>Level layout across four environment themes</li>
-                <li>Encounter composition, street goons through to bosses</li>
-                <li>Difficulty pacing and booster placement</li>
-                <li>Playtest iteration</li>
+                <li>Room layouts from a three piece construction kit</li>
+                <li>Enemy roster, from airborne chargers to snipers</li>
+                <li>Wave placement in a room with no scrolling camera</li>
+                <li>Tuning for a dynamic difficulty system</li>
               </ul>
             </div>
           </div>
@@ -747,7 +760,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
           <div class="card-foot">
             <span class="status">Live</span>
             <span class="storelink"><a href="https://play.google.com/store/apps/details?id=com.renderedideas.goonfight" target="_blank" rel="noopener">Google Play ↗</a></span>
-            <a class="btn btn-primary btn-sm" href="#/project/goon-fight">View project →</a>
+            <a class="btn btn-primary btn-sm" href="#/project/goon-fight">Design direction →</a>
           </div>
         </article>
 
@@ -1377,12 +1390,12 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 <div class="view" id="view-goon-fight" hidden>
   <div class="wrap cs-head">
     <a class="back" href="#top">← Back to work</a>
-    <p class="cs-kicker">Project 03 · Level &amp; encounter design</p>
+    <p class="cs-kicker">Project 03 · Design direction</p>
     <div class="cs-titlerow">
       <img class="appicon" src="https://play-lh.googleusercontent.com/WUZKUU5mv2hCIJo1Q3sEQ6mjYpClqyfnKI2YmN8TF8BP-PRPy_Oow_WGqIqWv21GQMM6J1txKXXXxzrhprTz=s180" alt="Goon Fight app icon" loading="lazy">
       <h1 class="cs-title">Goon Fight</h1>
     </div>
-    <p class="cs-sub">A retro 2D beat 'em up. I built and tuned the combat levels: layout, encounter composition and difficulty pacing across four environment themes.</p>
+    <p class="cs-sub">Every level is one closed room with a fixed camera. No scrolling, no reveals, nowhere to hide a difficulty curve. Everything has to come from the layout, the enemies in each wave, and where they're placed.</p>
 
     <div class="cs-actions">
       <a class="btn btn-store" href="https://play.google.com/store/apps/details?id=com.renderedideas.goonfight" target="_blank" rel="noopener">Play on Google Play ↗</a>
@@ -1396,76 +1409,193 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <figure class="shot"><img src="https://play-lh.googleusercontent.com/KLxIBN22lc52bvhHYPlTggy7R8TLtdD0AQcOkbTPACeRJGaLUI445ihEcu5Nc9xai9Dcg2197XYzJvN_6hRu=w1052-h592" alt="Goon Fight boss" loading="lazy"></figure>
       <figure class="shot"><img src="https://play-lh.googleusercontent.com/Zf5I7eVyioZTMc6pG59Wk6SsyUEnJMpF7pN47yFdE208Mn5XEReGHLv_vBYuGGnWWL_Hh_saaA_4x1MsSeFV4Pc=w1052-h592" alt="Goon Fight level" loading="lazy"></figure>
     </div>
-    <p class="shot-cap">From the public Google Play listing. Click to enlarge.</p>
+    <p class="shot-cap">From the Google Play listing. Click to enlarge.</p>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Level Designer</div></div>
-      <div class="fact"><div class="k">Focus</div><div class="v">Levels &amp; encounters</div></div>
-      <div class="fact"><div class="k">Genre</div><div class="v">2D beat 'em up</div></div>
-      <div class="fact"><div class="k">Environments</div><div class="v">Dungeon · Jungle · Village · Moving bus</div></div>
+      <div class="fact"><div class="k">Structure</div><div class="v">Single room, fixed camera</div></div>
+      <div class="fact"><div class="k">Owned</div><div class="v">Layouts, enemy types, waves, DDA tuning</div></div>
+      <div class="fact"><div class="k">Environments</div><div class="v">Dungeon, jungle, village, moving bus</div></div>
       <div class="fact"><div class="k">Tools</div><div class="v">Unity</div></div>
     </div>
   </div>
 
   <div class="wrap">
+
+    <!-- 01 -->
     <section class="step">
       <div class="step-label"><div class="n">01</div><h3>Level design</h3></div>
       <div class="step-body">
-        <p>A side-on brawler gives you one axis of movement and a camera that gates progress, so the design work is about what the player can see coming and how much room they have when it arrives. Each environment theme changes that arithmetic: a dungeon corridor pins you against walls, a jungle gives you verticality, a village opens the space out, and a moving bus removes retreat entirely.</p>
-        <span class="fill"><b>Add here:</b> your layout approach in your own words. How you spaced pickups and obstacles, where you put the camera locks, and how you made a space readable the moment a player walks in.</span>
+        <p>The camera doesn't move. The whole fight happens in what you can see when the level loads, which takes away most of the usual level design tools. No corridors to pace someone through, no corner to put a surprise behind. What's left is the shape of the room and where things stand in it.</p>
+        <p>Levels get built from three pieces:</p>
+
+        <div class="dgm-card">
+          <h4>The construction kit</h4>
+          <svg class="dgm" viewBox="0 0 700 280" role="img" aria-label="A level layout built from a base platform, a raised terrain section and floating platforms on a grid">
+            <g opacity=".5">
+              <line class="gl" x1="40" y1="30" x2="660" y2="30"/>
+              <line class="gl" x1="40" y1="64" x2="660" y2="64"/>
+              <line class="gl" x1="40" y1="98" x2="660" y2="98"/>
+              <line class="gl" x1="40" y1="132" x2="660" y2="132"/>
+              <line class="gl" x1="40" y1="166" x2="660" y2="166"/>
+              <line class="gl" x1="40" y1="200" x2="660" y2="200"/>
+              <line class="gl" x1="40" y1="234" x2="660" y2="234"/>
+              <line class="gl" x1="102" y1="30" x2="102" y2="234"/>
+              <line class="gl" x1="164" y1="30" x2="164" y2="234"/>
+              <line class="gl" x1="226" y1="30" x2="226" y2="234"/>
+              <line class="gl" x1="288" y1="30" x2="288" y2="234"/>
+              <line class="gl" x1="350" y1="30" x2="350" y2="234"/>
+              <line class="gl" x1="412" y1="30" x2="412" y2="234"/>
+              <line class="gl" x1="474" y1="30" x2="474" y2="234"/>
+              <line class="gl" x1="536" y1="30" x2="536" y2="234"/>
+              <line class="gl" x1="598" y1="30" x2="598" y2="234"/>
+            </g>
+
+            <rect x="40" y="166" width="620" height="68" fill="#8E86B8" rx="3"/>
+            <text class="ax" x="150" y="206" fill="#fff">Base platform, 2 grids high</text>
+
+            <rect x="474" y="98" width="186" height="68" fill="#6D3BF5" rx="3"/>
+            <text class="ax" x="490" y="128" fill="#fff">Terrain modifier</text>
+            <text class="ax" x="490" y="144" fill="#fff" opacity=".85">raises any section, up to 6</text>
+
+            <rect x="164" y="98" width="124" height="14" fill="#0FA37F" rx="3"/>
+            <rect x="350" y="64" width="100" height="14" fill="#0FA37F" rx="3"/>
+            <text class="ax" x="164" y="90" fill="#0A7A5E">Floating platforms, up to 6 grids up</text>
+
+            <g class="fade">
+              <text class="dg-label" x="40" y="20">10 grids across the screen</text>
+              <path d="M40,262 L660,262" stroke="#B4ADD4" stroke-width="1"/>
+              <path d="M40,257 L40,267 M660,257 L660,267" stroke="#B4ADD4" stroke-width="1"/>
+            </g>
+          </svg>
+          <p class="cap">Ten grids of screen width to work with, six grids of usable height above the floor.</p>
+        </div>
+
+        <p>The rule I held to across most of the game is that a player can reach any part of the floor or any standing platform in two jumps. It keeps the room feeling like one space instead of a set of separate ledges, and it means enemy placement is doing the work rather than traversal.</p>
+        <p>A few levels break it on purpose. Somewhere near the top of the map is a platform you can't get to in two jumps, and the first time you try you fall short. That's the point. Once a player has learned a rule, taking it away for one level is one of the only tools a fixed camera leaves you for creating surprise.</p>
+
+        <div class="dgm-card">
+          <h4>Two jumps, except when it isn't</h4>
+          <svg class="dgm" viewBox="0 0 700 210" role="img" aria-label="One layout where every platform is reachable in two jumps and one where the highest platform is deliberately out of reach">
+            <rect x="30" y="150" width="300" height="34" fill="#8E86B8" rx="3"/>
+            <rect x="120" y="106" width="70" height="10" fill="#0FA37F" rx="3"/>
+            <rect x="240" y="70" width="70" height="10" fill="#0FA37F" rx="3"/>
+            <circle cx="60" cy="140" r="8" fill="#171233"/>
+            <path d="M60,134 Q110,86 150,102" class="sline-ghost" stroke="#6D3BF5" fill="none"/>
+            <path d="M155,100 Q215,50 262,66" class="sline-ghost" stroke="#6D3BF5" fill="none"/>
+            <text class="dg-label" x="30" y="26">Standard</text>
+            <text class="ax" x="30" y="204">Anywhere in two jumps</text>
+
+            <rect x="370" y="150" width="300" height="34" fill="#8E86B8" rx="3"/>
+            <rect x="460" y="106" width="70" height="10" fill="#0FA37F" rx="3"/>
+            <rect x="590" y="44" width="70" height="10" fill="#D9453B" rx="3"/>
+            <circle cx="400" cy="140" r="8" fill="#171233"/>
+            <path d="M400,134 Q450,86 490,102" class="sline-ghost" stroke="#6D3BF5" fill="none"/>
+            <path d="M495,100 Q550,58 585,70" class="sline-ghost" stroke="#D9453B" fill="none"/>
+            <text class="ax" x="600" y="36" fill="#B23A32">out of reach</text>
+            <text class="dg-label" x="370" y="26">Deliberately broken</text>
+            <text class="ax" x="370" y="204">The second jump falls short</text>
+          </svg>
+        </div>
+
+        <p>The other hard constraint is spawn separation. Player spawn and enemy spawns never sit close together, because in a room this size a bad spawn means the fight starts with a hit the player couldn't have avoided.</p>
       </div>
     </section>
 
+    <!-- 02 -->
     <section class="step">
       <div class="step-label"><div class="n">02</div><h3>Encounter design</h3></div>
       <div class="step-body">
-        <p>Enemies range from low-level street goons to bosses, and the interesting work is composition rather than count. Which enemy types are on screen together, what order they arrive in, and which skill each wave is asking for. Boosters like shields, double punch and magic jump are part of that equation: where they're placed decides whether a wave reads as a threat or a power fantasy.</p>
-        <span class="fill"><b>Add here:</b> one encounter broken down beat by beat. Spawn order, timing, and what the player is meant to learn from it.</span>
-      </div>
-    </section>
+        <p>I designed the enemy roster to cover different ranges and different kinds of pressure, so a wave can be built out of contrasts rather than more of the same thing.</p>
 
-    <section class="step">
-      <div class="step-label"><div class="n">03</div><h3>Difficulty &amp; pacing</h3></div>
-      <div class="step-body">
-        <p>Intensity is shaped across the level set rather than within a single level: peaks at boss encounters and theme transitions, rests immediately after, and a slow widening of the enemy mix so new types get introduced against familiar ones.</p>
+        <div class="cats">
+          <div class="cat"><span class="dot d1"></span><div><b>Airborne chargers</b><p>Come at you across the room and ignore the floor layout entirely.</p></div></div>
+          <div class="cat"><span class="dot d2"></span><div><b>Brawlers</b><p>Close range, straightforward, there to occupy your hands.</p></div></div>
+          <div class="cat"><span class="dot d3"></span><div><b>Snipers</b><p>Long range and stationary. Punish you for standing still.</p></div></div>
+          <div class="cat"><span class="dot d4"></span><div><b>Grenade throwers</b><p>Short range area denial. Push you off wherever you're comfortable.</p></div></div>
+        </div>
+
+        <h4>The wave problem</h4>
+        <p>In a scrolling game you always roughly know where the player is, because they're moving forward. In a single room they could be anywhere when a wave ends. I'm placing the next wave without knowing where they're standing, which means placement is a guess unless you can shape it.</p>
+        <p>So I built the waves to pull players toward a position rather than trying to predict one. Two things do the pulling:</p>
+        <p><b>Visual weight.</b> Bigger, louder, more obviously dangerous enemies draw attention first. Players go where the threat looks biggest, so putting weight on one side of the room reliably moves them to that side.</p>
+        <p><b>Enemies that are genuinely annoying.</b> Snipers and grenade throwers don't look like the biggest threat, but a few seconds into the wave the player works out that they have to deal with them or nothing else will go well. That realisation happens mid fight, and it moves them.</p>
 
         <div class="dgm-card">
-          <h4>Intensity across a level set</h4>
-          <svg class="dgm" viewBox="0 0 700 200" role="img" aria-label="A schematic intensity curve with peaks at boss encounters and rests after each">
-            <line class="gl" x1="46" y1="34"  x2="672" y2="34"/>
-            <line class="gl" x1="46" y1="82"  x2="672" y2="82"/>
-            <line class="gl" x1="46" y1="130" x2="672" y2="130"/>
-            <line class="gl" x1="46" y1="160" x2="672" y2="160"/>
-            <text class="ax" x="14" y="97" transform="rotate(-90 14 97)" text-anchor="middle">Intensity</text>
-            <polyline class="sline amberline" points="60,140 120,118 180,126 240,74 300,132 360,104 420,112 480,52 540,126 600,96 660,44"/>
-            <g class="fade">
-              <circle cx="240" cy="74" r="5" fill="#FF9F1C"/>
-              <circle cx="480" cy="52" r="5" fill="#FF9F1C"/>
-              <circle cx="660" cy="44" r="5" fill="#FF9F1C"/>
-              <text class="ax" x="240" y="62" text-anchor="middle" fill="#B26A00">boss</text>
-              <text class="ax" x="480" y="40" text-anchor="middle" fill="#B26A00">boss</text>
-              <text class="ax" x="300" y="150" text-anchor="middle">rest</text>
-              <text class="ax" x="540" y="146" text-anchor="middle">rest</text>
-            </g>
-            <text class="ax" x="360" y="184" text-anchor="middle">Level →</text>
-          </svg>
-          <p class="cap">Schematic. Illustrates the intended pacing shape, not measured difficulty data.</p>
+          <h4>Shaping the wave instead of guessing</h4>
+          <div class="chain">
+            <span class="chain-node start">Place visual weight</span><span class="chain-sep">→</span>
+            <span class="chain-node">Add an annoying enemy</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Player ends up here</span><span class="chain-sep">→</span>
+            <span class="chain-node">Build the next wave around it</span>
+          </div>
+          <p class="chain-note">Right about 60% of the time, which is enough to design against</p>
         </div>
+
+        <p>Sixty percent isn't certainty, but it's a long way from nothing. It means the next wave can be built as a strong plan for the likely case plus something that still works if the player is somewhere else, instead of hedging every wave into blandness.</p>
       </div>
     </section>
 
+    <!-- 03 -->
+    <section class="step">
+      <div class="step-label"><div class="n">03</div><h3>Difficulty and pacing</h3></div>
+      <div class="step-body">
+        <p>A fixed difficulty curve assumes everyone plays the same way, and they don't. So we built our own dynamic difficulty adjustment and I owned the tuning side of it.</p>
+        <p>Every parameter a designer can touch sits inside a category. Each category also has a few scoring parameters, and those give a score for the level you just played. The system looks at your last five levels, finds the categories you're scoring badly in, and eases those parameters. Categories you're scoring well in tighten up.</p>
+
+        <div class="dgm-card">
+          <h4>How a category works</h4>
+          <div class="dtable-wrap">
+            <table class="dtable">
+              <thead><tr><th>Part</th><th>What it is</th><th>What it does</th></tr></thead>
+              <tbody>
+                <tr><td class="lead">Tunable parameters</td><td>The values a designer sets for that part of the game</td><td>The thing that actually changes</td></tr>
+                <tr><td class="lead">Scoring parameters</td><td>A few measures of how the player handled that part</td><td>Produces a score per level</td></tr>
+                <tr><td class="lead">Adjustment</td><td>Rolling read of the last five levels</td><td>Eases low scoring categories, tightens high ones</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="chain" style="margin-top:14px">
+            <span class="chain-node start">Play a level</span><span class="chain-sep">→</span>
+            <span class="chain-node">Score each category</span><span class="chain-sep">→</span>
+            <span class="chain-node">Compare last five</span><span class="chain-sep">→</span>
+            <span class="chain-node q">Ease or tighten</span><span class="chain-sep">→</span>
+            <span class="chain-node">Next level</span>
+          </div>
+          <p class="chain-note">Each category moves on its own, so two players get different levels</p>
+        </div>
+
+        <p>Keeping the categories independent is what makes it useful. A player who dodges well but can't handle crowds gets thinner waves without losing the enemies that make them move. A player with the opposite problem gets the reverse. One global difficulty slider would have flattened both of them into the same middle.</p>
+        <p>It also changes what my job is. I'm not authoring one difficulty curve any more, I'm setting the range each category is allowed to move inside and making sure both ends of that range still play well.</p>
+      </div>
+    </section>
+
+    <!-- 04 -->
     <section class="step">
       <div class="step-label"><div class="n">04</div><h3>Iteration</h3></div>
       <div class="step-body">
-        <span class="fill"><b>Write here:</b> pick one level that failed playtest. What players actually did, what you changed, how it played after. One concrete example beats five vague ones. This is the section a level design lead will read first.</span>
+        <p>None of the three systems above started where they ended up.</p>
+
+        <h4>The two jump rule came out of testing, not planning</h4>
+        <p>Early layouts used the full six grids of height freely, because the kit allowed it. Rooms built that way read as separate ledges rather than one space, and fights turned into climbing. Capping normal traversal at two jumps fixed that, and it only became a rule worth breaking once it was reliable enough that players had actually learned it.</p>
+
+        <h4>Wave placement started as guesswork</h4>
+        <p>The first waves were placed on instinct, and they landed badly often enough that it was clearly a system problem rather than bad luck. Visual weight was the first fix and it helped, but it only worked on enemies that looked threatening. Adding the second lever, enemies that become priorities once you're fighting them, is what took it from a coin flip to something worth designing around.</p>
+
+        <h4>The DDA changed what I tune</h4>
+        <p>Before it existed I was tuning individual levels. After it, a level isn't a fixed thing any more, so tuning a single instance of it tells you very little. I had to start checking the eased and tightened ends of every category and asking whether both still made a good fight, which is slower but catches problems a single playthrough never would.</p>
       </div>
     </section>
 
+    <!-- 05 -->
     <section class="step">
       <div class="step-label"><div class="n">05</div><h3>Final gameplay</h3></div>
       <div class="step-body">
-        <p>The finished level set is live on Google Play across all four environment themes.</p>
-        <span class="fill"><b>Add here:</b> a short walkthrough of two or three levels you're proudest of, in your own words.</span>
+        <p>The shipped game runs across four environment sets: dungeon, jungle, village and a moving bus. They reuse the same construction kit, so what changes between them is the shape of the room and the enemy mix rather than the rules.</p>
+        <p>A level plays out as a stack of the three systems. The layout decides where a player can stand and how fast they can cross the room. The wave decides where they want to stand. The DDA decides how hard that fight is for this particular player, based on the last five levels they played.</p>
+        <p>The moving bus is the clearest example of the kit being pushed. It's still one room with a fixed camera, but the floor is narrow and there's nowhere to fall back to, so waves that work in an open village square become far more dangerous without a single parameter changing.</p>
+        <p>The whole set is live on Google Play.</p>
       </div>
     </section>
 
@@ -1473,7 +1603,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
       <a class="btn btn-ghost" href="#top">← All work</a>
       <a class="btn btn-primary" href="#/case/my-cooking-story">Case study: My Cooking Story →</a>
     </div>
-    <p class="cs-rights">Goon Fight is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas; screenshots shown are from the public Google Play listing. This page describes design process only.</p>
+    <p class="cs-rights">Goon Fight is a Rendered Ideas title. All rights, artwork and related materials remain the property of Rendered Ideas. Screenshots are from the public Google Play listing. This page covers design process only, and the diagrams are illustrations rather than production layouts.</p>
   </div>
 </div>
 
