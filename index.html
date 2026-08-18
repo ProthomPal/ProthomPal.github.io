@@ -133,7 +133,8 @@ p{margin:0 0 14px}
 .hl-slide{display:none}
 .hl-slide.on{display:block;animation:hlIn .4s ease}
 @keyframes hlIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.hl-dots{display:flex;justify-content:center;gap:8px;margin:16px 0 4px}
+.hl-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px 0 14px}
+.hl-dots{display:flex;justify-content:center;gap:8px;margin:0}
 .hl-dots button{
   width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;
   background:#E6E1F7;color:var(--ink-soft);font-family:var(--mono);font-size:12px;font-weight:700;
@@ -141,14 +142,13 @@ p{margin:0 0 14px}
 }
 .hl-dots button:hover{transform:translateY(-1px);background:#D9D2F3}
 .hl-dots button[aria-current="true"]{background:var(--plum);color:#fff}
-.hl-body{display:grid;grid-template-columns:38px 1fr 38px;gap:10px;align-items:start;margin-top:12px}
 .hl-arrow{
-  width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);
+  width:38px;height:38px;flex:none;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);
   color:var(--ink-soft);cursor:pointer;display:grid;place-items:center;font-size:16px;line-height:1;
-  transition:border-color .15s ease,color .15s ease,transform .15s ease;align-self:center;
+  transition:border-color .15s ease,color .15s ease,transform .15s ease;
 }
 .hl-arrow:hover{border-color:var(--plum);color:var(--plum);transform:translateY(-1px)}
-.hl-copy{text-align:center;min-height:210px}
+.hl-copy{text-align:center;min-height:196px}
 .hl-copy h3{font-size:20px;line-height:1.25;color:var(--plum-deep);margin-bottom:12px}
 .hl-copy p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-bottom:10px}
 .hl-swipe{display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin:4px 0 0}
@@ -166,7 +166,6 @@ p{margin:0 0 14px}
 
 .card-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
 .appicon{width:62px;height:62px;border-radius:16px;flex:none;border:1px solid var(--line);box-shadow:var(--shadow-sm);object-fit:cover;background:#EEEBF9}
-.appicon-fake{display:grid;place-items:center;font-family:var(--display);font-size:23px;font-weight:800;color:#fff;background:linear-gradient(140deg,#6D3BF5,#B03BF5 55%,#FF9F1C)}
 .card-head .ht{min-width:0}
 .card-num{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--plum);margin-bottom:3px}
 .card-title{font-size:clamp(24px,3vw,30px);margin-bottom:4px}
@@ -473,11 +472,22 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 /* ============================================================
    NAV DROPDOWN + MOBILE MENU
    ============================================================ */
-.nav-toggle{display:none;margin-left:auto;width:40px;height:40px;border:1px solid var(--line);border-radius:11px;background:var(--panel);cursor:pointer;padding:0;place-items:center;gap:4px}
-.nav-toggle span{display:block;width:17px;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s ease,opacity .2s ease}
-.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
-.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav-toggle{
+  display:none;margin-left:auto;width:42px;height:42px;padding:0;cursor:pointer;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  box-shadow:var(--shadow-sm);
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  transition:border-color .18s ease,background .18s ease;
+}
+.nav-toggle span{
+  display:block;width:16px;height:1.5px;border-radius:2px;background:var(--ink);
+  transition:transform .22s cubic-bezier(.2,.8,.3,1),opacity .15s ease,width .22s ease;
+}
+.nav-toggle[aria-expanded="true"]{border-color:var(--plum);background:rgba(109,59,245,.06)}
+.nav-toggle[aria-expanded="true"] span{background:var(--plum-deep);width:17px}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;width:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
 .dd{position:relative}
 .dd-btn{background:none;border:none;cursor:pointer;color:var(--ink-soft);font-family:var(--body);font-size:14px;font-weight:500;padding:4px 0;border-bottom:2px solid transparent;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
@@ -496,7 +506,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
    MOBILE
    ============================================================ */
 @media (max-width:900px){
-  .nav-toggle{display:grid}
+  .nav-toggle{display:flex}
   .nav-links{
     position:fixed;top:60px;left:0;right:0;
     flex-direction:column;align-items:stretch;gap:0;margin:0;
@@ -515,66 +525,98 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 }
 
 @media (max-width:700px){
-  /* wide diagrams stay readable by panning instead of shrinking */
-  .dgm-card{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .dgm-card > svg.dgm{min-width:540px}
-  .dgm-card > .cap,.dgm-card > h4,.dgm-card > .legend,.dgm-card > .chain-note{position:sticky;left:0}
+  /* wide diagrams pan instead of shrinking to unreadable */
+  .dgm-card > svg.dgm{min-width:520px}
+  .dgm-card{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .dgm-card > h4,.dgm-card > .cap,.dgm-card > .legend,.dgm-card > .chain-note,
+  .dgm-card > .chain,.dgm-card > .ladder,.dgm-card > .rank-cols,
+  .dgm-card > .dtable-wrap,.dgm-card > .verdict{min-width:0;max-width:100%}
+  .cats{grid-template-columns:1fr}
 }
 
 @media (max-width:560px){
   .wrap{padding:0 18px}
-  .hero{padding:34px 0 30px}
-  .hero-grid{gap:28px}
+
+  /* hero */
+  .hero{padding:30px 0 26px}
+  .hero-grid{gap:26px}
   .hero-pitch{font-size:17.5px;margin-bottom:22px}
   .hero-cta .btn{flex:1 1 auto;justify-content:center}
-  .band{padding:42px 0}
+
+  /* highlights */
+  .hl{padding:14px 14px 14px;border-radius:16px}
+  .hl-label{font-size:10px;margin-bottom:12px}
+  .hl-controls{margin:12px 0 12px;gap:12px}
+  .hl-dots button{width:30px;height:30px;font-size:12px}
+  .hl-arrow{width:34px;height:34px;font-size:15px}
+  .hl-copy{text-align:left;min-height:0}
+  .hl-copy h3{font-size:18px;line-height:1.28;margin-bottom:10px}
+  .hl-copy p{font-size:14.5px;margin-bottom:9px}
+  .hl-swipe{display:block;margin-top:12px}
+
+  /* sections */
+  .band{padding:40px 0}
   .eyebrow{margin-bottom:16px}
 
-  .hl{padding:16px 14px 16px;border-radius:16px}
-  .hl-copy{min-height:0;text-align:left}
-  .hl-copy h3{font-size:18px}
-  .hl-body{grid-template-columns:1fr;gap:14px}
-  .hl-arrow{display:none}
-  .hl-dots button{width:32px;height:32px}
-  .hl-swipe{display:block}
-
+  /* work cards */
   .card{padding:18px 15px}
   .card-head{gap:12px;margin-bottom:14px}
   .card-title{font-size:22px}
   .card-desc{font-size:15.5px}
+  .appicon{width:52px;height:52px;border-radius:14px}
   .outcome{padding:10px 13px}
-  .card-foot{margin-top:20px;padding-top:16px;gap:10px}
+  .outcome .v{font-size:15px}
+  .card-foot{margin-top:18px;padding-top:16px;gap:10px}
 
-  .facts{grid-template-columns:1fr 1fr}
-  .fact{padding:12px 14px}
-  .fact .v{font-size:14.5px}
-  .cs-head{padding:26px 0 20px}
-  .cs-titlerow{gap:12px;margin-bottom:12px}
-  .cs-title{font-size:29px}
-  .cs-sub{font-size:17px;margin-top:12px}
-  .cs-actions{margin-top:18px}
-  .cs-actions .btn{width:100%;justify-content:center}
-  .step{padding:26px 0;gap:12px}
-  .step-label h3{font-size:20px}
-  .step-body h4{margin:18px 0 5px}
-  .cs-next{padding:26px 0 20px}
-  .cs-next .btn{flex:1 1 100%;justify-content:center}
-  .cs-rights{padding-bottom:44px}
-
-  .shots{gap:8px}
-  .shots-4,.shots-3,.shots-5{grid-template-columns:1fr 1fr}
-  .dgm-card{padding:14px 14px 12px}
+  /* awards + experience + skills */
   .prize{font-size:21px}
   .award-card .meta{padding:16px 18px}
-  .contact{padding:48px 0 32px}
-  .contact h2{font-size:32px}
   .skillset{padding:17px 18px}
   .chip{font-size:13.5px}
+
+  /* case study pages */
+  .cs-head{padding:24px 0 4px}
+  .back{margin-bottom:18px}
+  .cs-kicker{font-size:10.5px;letter-spacing:.16em;margin-bottom:10px}
+  .cs-titlerow{gap:12px;margin-bottom:12px;align-items:flex-start}
+  .cs-title{font-size:28px;line-height:1.06;max-width:100%}
+  .cs-sub{font-size:16.5px;margin-top:12px}
+  .cs-actions{margin-top:18px;gap:10px}
+  .cs-actions .btn{width:100%;justify-content:center}
+  .shots{margin-top:20px;gap:8px}
+  .shot-cap{margin-top:7px}
+  .facts{margin-top:20px}
+  .fact{padding:12px 14px}
+  .fact .k{font-size:9.5px}
+  .fact .v{font-size:14.5px}
+
+  .step{padding:24px 0;gap:10px}
+  .step-label h3{font-size:20px;margin-top:4px}
+  .step-label .n{font-size:10.5px}
+  .step-body{max-width:100%;font-size:16px}
+  .step-body h4{font-size:16.5px;margin:20px 0 5px}
+  .dgm-card{padding:14px 14px 12px;margin:16px 0 4px}
+  .dgm-card h4{margin-bottom:12px}
+  .callout{padding:14px 16px}
+  .cmp,.verdict,.rank-cols,.cats{gap:10px}
+  .chain{gap:6px}
+  .chain-node{font-size:11.5px;padding:6px 11px}
+  .cs-next{padding:26px 0 18px;gap:10px}
+  .cs-next .btn{flex:1 1 100%;justify-content:center}
+  .cs-rights{padding-bottom:44px;font-size:10px}
+
+  /* contact */
+  .contact{padding:46px 0 30px}
+  .contact h2{font-size:32px}
+  .links{margin-top:24px}
 }
 
 @media (max-width:400px){
   .shots-4,.shots-3,.shots-5{grid-template-columns:1fr}
   .facts{grid-template-columns:1fr}
+  .cs-title{font-size:26px}
+  .hero-name{font-size:42px}
+  .card-title{font-size:21px}
 }
 
 /* touch devices: no hover, so always show carousel arrows */
@@ -624,7 +666,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
   .tl-dur{margin-left:0}
   .link-row{grid-template-columns:1fr;gap:2px}
   .card-foot .btn{margin-left:0;width:100%;justify-content:center}
-  .hl-body{grid-template-columns:32px 1fr 32px}
   .hl-arrow{width:32px;height:32px}
   .car-btn{opacity:1}
 }
@@ -703,17 +744,17 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             <img src="https://play-lh.googleusercontent.com/WLdu1hI90M2n9MUB3yD2gJ2sjd4QWW1ZhGVDr4eh-19N5fjF_39JZVQ4GCZdVilXCg8UVzvLZMRZrR3y8egEFw=w1052-h592" alt="Goon Fight combat" loading="lazy">
           </div>
           <div class="hl-slide" data-hl="2">
-            <div class="cover-tile"><div><div class="t">Brainrot Game</div><div class="s">Fire TV · Fire Tablet</div></div></div>
+            <img src="assets/img/brainrot-2.jpg" alt="Brainrot Game timing based encounter" loading="lazy">
           </div>
         </div>
 
-        <div class="hl-dots" id="hlDots" role="tablist" aria-label="Portfolio highlights"></div>
-        <p class="hl-swipe">Swipe to browse</p>
-
-        <div class="hl-body">
+        <div class="hl-controls">
           <button class="hl-arrow" id="hlPrev" aria-label="Previous highlight">←</button>
+          <div class="hl-dots" id="hlDots" role="tablist" aria-label="Portfolio highlights"></div>
+          <button class="hl-arrow" id="hlNext" aria-label="Next highlight">→</button>
+        </div>
 
-          <div class="hl-copy">
+        <div class="hl-copy">
             <div class="hl-slide on" data-hl="0">
               <h3>Finding out where players quit, and fixing it</h3>
               <p>My Cooking Story was losing new players in the first few levels, and we were under our Day-1 retention target.</p>
@@ -732,10 +773,9 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <p>Rebuilding it around decisions, on cheap hardware, taught me most of what I know about systems.</p>
               <a class="hl-more" href="#/case/brainrot-game">↓ Read more</a>
             </div>
-          </div>
-
-          <button class="hl-arrow" id="hlNext" aria-label="Next highlight">→</button>
         </div>
+
+        <p class="hl-swipe">Swipe to browse</p>
       </div>
     </div>
   </section>
@@ -802,7 +842,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
           <div class="card-grid">
             <div class="card-media">
               <div class="card-head">
-                <div class="appicon appicon-fake" aria-hidden="true">BR</div>
+                <img class="appicon" src="assets/img/brainrot-icon.jpg" alt="Brainrot Game icon" loading="lazy">
                 <div class="ht">
                   <p class="card-num">02</p>
                   <h2 class="card-title">Brainrot Game</h2>
@@ -810,18 +850,17 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
                 </div>
               </div>
 
-              <div class="car" data-car data-nozoom>
+              <div class="car" data-car>
                 <div class="car-view">
                   <div class="car-track">
-                    <figure class="car-slide" style="cursor:default"><div class="cover-tile"><div><div class="t">Hatch</div><div class="s">Egg → reveal → collect</div></div></div></figure>
-                    <figure class="car-slide" style="cursor:default"><div class="cover-tile" style="background:linear-gradient(140deg,#3a1a5e 0%,#B03BF5 60%,#FF9F1C 100%)"><div><div class="t">Steal</div><div class="s">Raid rival zones</div></div></div></figure>
-                    <figure class="car-slide" style="cursor:default"><div class="cover-tile" style="background:linear-gradient(140deg,#0d3d33 0%,#0FA37F 55%,#7BE3B8 100%)"><div><div class="t">Compete</div><div class="s">Deck power · rankings</div></div></div></figure>
+                    <figure class="car-slide"><img src="assets/img/brainrot-1.jpg" alt="Brainrot Game overworld with collected creatures" loading="lazy"></figure>
+                    <figure class="car-slide"><img src="assets/img/brainrot-2.jpg" alt="Brainrot Game timing based encounter" loading="lazy"></figure>
+                    <figure class="car-slide"><img src="assets/img/brainrot-3.jpg" alt="Brainrot Game catch objective" loading="lazy"></figure>
                   </div>
                 </div>
-                <button class="car-btn prev" aria-label="Previous pillar">←</button>
-                <button class="car-btn next" aria-label="Next pillar">→</button>
+                <button class="car-btn prev" aria-label="Previous screenshot">←</button>
+                <button class="car-btn next" aria-label="Next screenshot">→</button>
                 <div class="car-dots"></div>
-                <p class="car-cap">Loop pillars. Store artwork isn't available for embedding.</p>
               </div>
             </div>
 
@@ -975,7 +1014,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <span class="tl-dur">10 mos</span>
             </div>
             <div class="tl-roles">
-              <div class="tl-role"><b>Technical Designer</b></div>
               <div class="tl-role"><b>Game Designer Developer</b></div>
             </div>
             <ul class="bullets">
@@ -1299,7 +1337,7 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     <a class="back" href="#top">← Back to work</a>
     <p class="cs-kicker">Case study 02 · Fire TV &amp; Fire Tablet</p>
     <div class="cs-titlerow">
-      <div class="appicon appicon-fake" aria-hidden="true">BR</div>
+      <img class="appicon" src="assets/img/brainrot-icon.jpg" alt="Brainrot Game icon" loading="lazy">
       <h1 class="cs-title">A list of fun mechanics isn't a game</h1>
     </div>
     <p class="cs-sub">Brainrot is a creature collection game for cheap living room hardware. I was the only designer on a team of six: I specced the systems and set the numbers, and our developer built them. Most of what I know now came from getting the first version wrong.</p>
@@ -1310,11 +1348,11 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
     </div>
 
     <div class="shots shots-3">
-      <div class="cover-tile" style="border-radius:11px"><div><div class="t">Hatch</div><div class="s">Egg, reveal, collect</div></div></div>
-      <div class="cover-tile" style="border-radius:11px;background:linear-gradient(140deg,#3a1a5e 0%,#B03BF5 60%,#FF9F1C 100%)"><div><div class="t">Steal</div><div class="s">Own it, then defend it</div></div></div>
-      <div class="cover-tile" style="border-radius:11px;background:linear-gradient(140deg,#0d3d33 0%,#0FA37F 55%,#7BE3B8 100%)"><div><div class="t">Merge</div><div class="s">Duplicates become tiers</div></div></div>
+      <figure class="shot"><img src="assets/img/brainrot-1.jpg" alt="Brainrot Game overworld with collected creatures" loading="lazy"></figure>
+      <figure class="shot"><img src="assets/img/brainrot-2.jpg" alt="Brainrot Game timing based encounter" loading="lazy"></figure>
+      <figure class="shot"><img src="assets/img/brainrot-3.jpg" alt="Brainrot Game catch objective" loading="lazy"></figure>
     </div>
-    <p class="shot-cap">The three things the loop is built on.</p>
+    <p class="shot-cap">From the Amazon Appstore listing. Click to enlarge.</p>
 
     <div class="facts">
       <div class="fact"><div class="k">Role</div><div class="v">Sole game designer</div></div>
