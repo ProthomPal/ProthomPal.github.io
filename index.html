@@ -151,6 +151,7 @@ p{margin:0 0 14px}
 .hl-copy{text-align:center;min-height:210px}
 .hl-copy h3{font-size:20px;line-height:1.25;color:var(--plum-deep);margin-bottom:12px}
 .hl-copy p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-bottom:10px}
+.hl-swipe{display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin:4px 0 0}
 .hl-more{font-family:var(--body);font-size:14.5px;font-weight:600;color:var(--plum-deep);display:inline-flex;gap:6px;align-items:center}
 
 /* ============================================================
@@ -468,6 +469,120 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 .cat p{margin:0;font-size:14px;line-height:1.45;color:var(--ink-soft)}
 @media (max-width:700px){.cats{grid-template-columns:1fr}}
 
+
+/* ============================================================
+   NAV DROPDOWN + MOBILE MENU
+   ============================================================ */
+.nav-toggle{display:none;margin-left:auto;width:40px;height:40px;border:1px solid var(--line);border-radius:11px;background:var(--panel);cursor:pointer;padding:0;place-items:center;gap:4px}
+.nav-toggle span{display:block;width:17px;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.dd{position:relative}
+.dd-btn{background:none;border:none;cursor:pointer;color:var(--ink-soft);font-family:var(--body);font-size:14px;font-weight:500;padding:4px 0;border-bottom:2px solid transparent;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.dd-btn:hover{color:var(--ink);border-bottom-color:var(--amber)}
+.dd-btn .caret{font-size:10px;transition:transform .2s ease}
+.dd.open .dd-btn{color:var(--ink)}
+.dd.open .dd-btn .caret{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-md);padding:8px;min-width:236px;display:none;z-index:60}
+.dd.open .dd-menu{display:block}
+.dd-menu a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink);border:none}
+.dd-menu a:hover{background:#F4F2FB;text-decoration:none}
+.dd-menu a b{display:block;font-size:14.5px;font-weight:600}
+.dd-menu a span{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:2px}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width:900px){
+  .nav-toggle{display:grid}
+  .nav-links{
+    position:fixed;top:60px;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;margin:0;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    padding:6px 22px 20px;display:none;overflow-y:auto;
+    max-height:calc(100dvh - 60px);box-shadow:var(--shadow-md);
+  }
+  .nav-links.open{display:flex}
+  .nav-links > a{font-size:16px;padding:14px 0;border-bottom:1px solid var(--line);border-left:none}
+  .nav-links > a:hover{border-bottom-color:var(--line)}
+  .dd{border-bottom:1px solid var(--line)}
+  .dd-btn{width:100%;justify-content:space-between;font-size:16px;padding:14px 0;border-bottom:none}
+  .dd-menu{position:static;transform:none;display:none;box-shadow:none;border:none;background:transparent;padding:0 0 8px 2px;min-width:0}
+  .dd.open .dd-menu{display:block}
+  .dd-menu a{padding:11px 12px;background:#FAF9FE;border:1px solid var(--line);margin-bottom:6px}
+}
+
+@media (max-width:700px){
+  /* wide diagrams stay readable by panning instead of shrinking */
+  .dgm-card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .dgm-card > svg.dgm{min-width:540px}
+  .dgm-card > .cap,.dgm-card > h4,.dgm-card > .legend,.dgm-card > .chain-note{position:sticky;left:0}
+}
+
+@media (max-width:560px){
+  .wrap{padding:0 18px}
+  .hero{padding:34px 0 30px}
+  .hero-grid{gap:28px}
+  .hero-pitch{font-size:17.5px;margin-bottom:22px}
+  .hero-cta .btn{flex:1 1 auto;justify-content:center}
+  .band{padding:42px 0}
+  .eyebrow{margin-bottom:16px}
+
+  .hl{padding:16px 14px 16px;border-radius:16px}
+  .hl-copy{min-height:0;text-align:left}
+  .hl-copy h3{font-size:18px}
+  .hl-body{grid-template-columns:1fr;gap:14px}
+  .hl-arrow{display:none}
+  .hl-dots button{width:32px;height:32px}
+  .hl-swipe{display:block}
+
+  .card{padding:18px 15px}
+  .card-head{gap:12px;margin-bottom:14px}
+  .card-title{font-size:22px}
+  .card-desc{font-size:15.5px}
+  .outcome{padding:10px 13px}
+  .card-foot{margin-top:20px;padding-top:16px;gap:10px}
+
+  .facts{grid-template-columns:1fr 1fr}
+  .fact{padding:12px 14px}
+  .fact .v{font-size:14.5px}
+  .cs-head{padding:26px 0 20px}
+  .cs-titlerow{gap:12px;margin-bottom:12px}
+  .cs-title{font-size:29px}
+  .cs-sub{font-size:17px;margin-top:12px}
+  .cs-actions{margin-top:18px}
+  .cs-actions .btn{width:100%;justify-content:center}
+  .step{padding:26px 0;gap:12px}
+  .step-label h3{font-size:20px}
+  .step-body h4{margin:18px 0 5px}
+  .cs-next{padding:26px 0 20px}
+  .cs-next .btn{flex:1 1 100%;justify-content:center}
+  .cs-rights{padding-bottom:44px}
+
+  .shots{gap:8px}
+  .shots-4,.shots-3,.shots-5{grid-template-columns:1fr 1fr}
+  .dgm-card{padding:14px 14px 12px}
+  .prize{font-size:21px}
+  .award-card .meta{padding:16px 18px}
+  .contact{padding:48px 0 32px}
+  .contact h2{font-size:32px}
+  .skillset{padding:17px 18px}
+  .chip{font-size:13.5px}
+}
+
+@media (max-width:400px){
+  .shots-4,.shots-3,.shots-5{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+}
+
+/* touch devices: no hover, so always show carousel arrows */
+@media (hover:none){
+  .car-btn{opacity:1}
+  .shot:hover img{transform:none}
+}
+
 /* ============================================================
    LIGHTBOX
    ============================================================ */
@@ -495,7 +610,6 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
   .step-label{position:static}
   .acts-grid,.rank-cols,.verdict{grid-template-columns:1fr}
   .shots-5{grid-template-columns:repeat(3,1fr)}
-  .nav-links a:nth-child(n+4){display:none}
 }
 @media (max-width:560px){
   body{font-size:16px}
@@ -529,8 +643,25 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="mark" href="#top">Prothom&nbsp;Pal</a>
-    <nav class="nav-links" aria-label="Primary">
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navMenu" aria-label="Primary">
       <a href="#work">Work</a>
+
+      <div class="dd" id="ddCase">
+        <button class="dd-btn" id="ddBtn" aria-expanded="false" aria-controls="ddMenu" type="button">
+          Case Studies <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="dd-menu" id="ddMenu">
+          <a href="#/case/my-cooking-story"><b>My Cooking Story</b><span>Progression &amp; economy</span></a>
+          <a href="#/case/brainrot-game"><b>Brainrot Game</b><span>Systems &amp; constraints</span></a>
+          <a href="#/project/goon-fight"><b>Goon Fight</b><span>Level &amp; encounter design</span></a>
+        </div>
+      </div>
+
       <a href="#awards">Awards</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
@@ -577,15 +708,16 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
         </div>
 
         <div class="hl-dots" id="hlDots" role="tablist" aria-label="Portfolio highlights"></div>
+        <p class="hl-swipe">Swipe to browse</p>
 
         <div class="hl-body">
           <button class="hl-arrow" id="hlPrev" aria-label="Previous highlight">←</button>
 
           <div class="hl-copy">
             <div class="hl-slide on" data-hl="0">
-              <h3>Tuning a level list until players stopped falling off</h3>
-              <p>My Cooking Story lost new players at three separate difficulty walls before they ever saw the game open up.</p>
-              <p>I treated the level list as a tunable system, scoped each build to one question, and retuned until Day-1 retention cleared its target.</p>
+              <h3>Finding out where players quit, and fixing it</h3>
+              <p>My Cooking Story was losing new players in the first few levels, and we were under our Day-1 retention target.</p>
+              <p>Four builds, one question each, until I found the three difficulty walls doing it and retuned them.</p>
               <a class="hl-more" href="#/case/my-cooking-story">↓ Read more</a>
             </div>
             <div class="hl-slide" data-hl="1">
@@ -595,9 +727,9 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
               <a class="hl-more" href="#/project/goon-fight">↓ Read more</a>
             </div>
             <div class="hl-slide" data-hl="2">
-              <h3>Turning a pile of good mechanics into a system</h3>
-              <p>Brainrot started as a list of appealing verbs. Explore, catch, fight, collect. None of them asked the player anything.</p>
-              <p>I rebuilt the loop around decisions, then let hardware limits, economy and player behaviour drive the design rather than my own instincts.</p>
+              <h3>A list of fun mechanics isn't a game</h3>
+              <p>Brainrot started as a list of verbs that sounded good. Explore, catch, fight, collect. None of them asked the player anything.</p>
+              <p>Rebuilding it around decisions, on cheap hardware, taught me most of what I know about systems.</p>
               <a class="hl-more" href="#/case/brainrot-game">↓ Read more</a>
             </div>
           </div>
@@ -844,9 +976,10 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             </div>
             <div class="tl-roles">
               <div class="tl-role"><b>Technical Designer</b></div>
+              <div class="tl-role"><b>Game Designer Developer</b></div>
             </div>
             <ul class="bullets">
-              <li>Prototyped and implemented gameplay systems in Unity.</li>
+              <li>Designed and built gameplay systems in Unity, from spec through to working feature.</li>
             </ul>
           </div>
         </li>
@@ -1623,6 +1756,94 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
   document.getElementById("year").textContent = new Date().getFullYear();
 
   /* ==========================================================
+     NAV: mobile menu + case studies dropdown
+     ========================================================== */
+  (function nav() {
+    var toggle = document.getElementById("navToggle"),
+        menu   = document.getElementById("navMenu"),
+        dd     = document.getElementById("ddCase"),
+        ddBtn  = document.getElementById("ddBtn");
+
+    function closeMenu() {
+      menu.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+    function closeDd() {
+      dd.classList.remove("open");
+      ddBtn.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", function () {
+      var open = !menu.classList.contains("open");
+      menu.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (!open) closeDd();
+    });
+
+    ddBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = !dd.classList.contains("open");
+      dd.classList.toggle("open", open);
+      ddBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    /* any link closes everything */
+    menu.addEventListener("click", function (e) {
+      if (e.target.closest("a")) { closeMenu(); closeDd(); }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest || !e.target.closest("#ddCase")) closeDd();
+      if (e.target.closest && !e.target.closest(".nav")) closeMenu();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { closeDd(); closeMenu(); }
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900) { closeMenu(); closeDd(); }
+    });
+  })();
+
+  /* ==========================================================
+     SWIPE HELPER
+     Horizontal drags move between slides. Vertical drags are
+     left alone so the page still scrolls normally.
+     ========================================================== */
+  function addSwipe(el, onSwipe) {
+    var x0 = null, y0 = null, moved = false;
+
+    el.addEventListener("touchstart", function (e) {
+      if (e.touches.length !== 1) return;
+      x0 = e.touches[0].clientX;
+      y0 = e.touches[0].clientY;
+      moved = false;
+    }, { passive: true });
+
+    el.addEventListener("touchmove", function (e) {
+      if (x0 === null) return;
+      var dx = e.touches[0].clientX - x0,
+          dy = e.touches[0].clientY - y0;
+      if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) moved = true;
+    }, { passive: true });
+
+    el.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0,
+          dy = e.changedTouches[0].clientY - y0;
+      x0 = null; y0 = null;
+      if (Math.abs(dx) < 45 || Math.abs(dy) > Math.abs(dx)) return;
+      onSwipe(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    /* so a swipe doesn't also register as a tap */
+    el.addEventListener("click", function (e) {
+      if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; }
+    }, true);
+  }
+
+  /* ==========================================================
      PORTFOLIO HIGHLIGHTS (hero)
      ========================================================== */
   (function highlights() {
@@ -1665,6 +1886,9 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
 
     document.getElementById("hlPrev").addEventListener("click", function () { go(current - 1); });
     document.getElementById("hlNext").addEventListener("click", function () { go(current + 1); });
+
+    /* swipe on the image area and the copy */
+    addSwipe(root, function (dir) { go(current + dir); });
 
     go(0);
   })();
@@ -1718,6 +1942,8 @@ svg.dgm{width:100%;height:auto;display:block;overflow:visible}
             if (img) openLb(img.currentSrc || img.src, img.alt);
           });
         }
+
+        addSwipe(car, function (dir) { go(idx + dir); });
 
         go(0);
       })(cars[c]);
